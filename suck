@@ -1,0 +1,6185 @@
+local function r0_0(r0_268, r1_268, r2_268)
+game:GetService("StarterGui"):SetCore("SendNotification", {
+Title = r0_268,
+Text = r1_268,
+Duration = r2_268,
+})
+end
+function Save(r0_24, r1_24)
+-- line: [0, 0] id: 24
+if typeof(r0_24) == "UDim2" then
+local r2_24 = r0_24.X.Scale .. "," .. r0_24.X.Offset .. "," .. r0_24.Y.Scale .. "," .. r0_24.Y.Offset
+if not r1_24:match("%.txt$") then
+r1_24 = r1_24 .. ".txt"
+end
+writefile(r1_24, r2_24)
+else
+writefile(r1_24, tostring(r0_24))
+end
+end
+if os.time({
+year = 2025,
+month = 12,
+day = 30,
+}) <= os.time() then
+return
+end
+
+r0_0("Smoke.Weed By 3ms 1/5", "Preparing Script", 5)
+local r1_0 = {
+a = "$512@",
+b = "*8#74",
+c = "#9$63",
+d = "/2$34",
+e = "%7!86",
+f = "@1$45",
+g = "!67#8",
+h = "&90!1",
+i = "~4$32",
+j = "+7#89",
+k = "|2@10",
+l = "^5$43",
+m = "=87#6",
+n = "(32!1)",
+o = "[6$54]",
+p = "]98@7[",
+q = "$1#23",
+r = "#4$56",
+s = "%7#89",
+t = "+2$34",
+u = "&5$67",
+v = "@8$90",
+w = "^32#1",
+x = "~65$4",
+y = "[9#87]",
+z = "$43@2",
+A = "!12#5",
+B = "$67#8",
+C = "#9$01",
+D = "%4#32",
+E = "~78$9",
+F = "&21@0",
+G = "^5$43",
+H = "@87#6",
+I = "!3$21",
+J = "+6#54",
+K = "=9$87",
+L = "[1$23]",
+M = "$4#56",
+N = "&7$89",
+O = "#2$34",
+P = "%5$67",
+Q = "~8$90",
+R = "$3#21",
+S = "^6$54",
+T = "#9$87",
+U = "&4$32",
+V = "+7$65",
+W = "[8$76]",
+X = "~1$23",
+Y = "[2#34]",
+Z = "!3$45",
+["0"] = "+6$78",
+["1"] = "/9$01",
+["2"] = "^4#32",
+["3"] = "|7$89",
+["4"] = "#2@10",
+["5"] = "~5$43",
+["6"] = "-8$76",
+["7"] = "=3#21",
+["8"] = "%6$54",
+["9"] = "*9$87",
+["!"] = "$/1#25",
+["@"] = "+$2#15",
+["#"] = "^8$76",
+["$"] = "*+4$32",
+["%"] = "-5#43",
+["^"] = "|=2$34",
+["&"] = "~9$87",
+["*"] = "#|6$78",
+["("] = "><3$21",
+[")"] = "[9$87]",
+}
+function Load(r0_291, r1_291)
+-- line: [0, 0] id: 291
+if not isfile(r1_291) then
+return nil
+end
+if r0_291 == "UDim2" then
+local r3_291, r4_291, r5_291, r6_291 = string.match(readfile(r1_291), "([%d%.%-]+),([%d%.%-]+),([%d%.%-]+),([%d%.%-]+)")
+if r3_291 and r5_291 then
+return UDim2.new(tonumber(r3_291), tonumber(r4_291), tonumber(r5_291), tonumber(r6_291))
+end
+return nil
+end
+return readfile(r1_291)
+end
+
+r0_0("Smoke.Weed  1.5/5", "Success! Sub connected...", 5)
+
+local function espcuh()
+--[[
+if not _G.InjectedGui then
+return
+end]]
+local r0_0 = game:GetService("RunService")
+local r1_0 = game:GetService("Workspace")
+local r2_0 = game:GetService("Players")
+local r3_0 = game:GetService("ReplicatedStorage")
+local r4_0 = r2_0.LocalPlayer
+local r5_0 = r1_0.CurrentCamera
+local r6_0 = {}
+local r7_0 = {
+TeamCheck = false,
+WallCheck = false,
+Enabled = false,
+ShowBox = false,
+BoxType = "2D",
+ShowName = false,
+ShowHealth = false,
+ShowDistance = false,
+ShowSkeletons = false,
+ActiveGun = false,
+StudsToMeters = false,
+MaxDistance = 5000,
+CharSize = Vector2.new(4, 6),
+SkeletonThickness = 2,
+BoxOutlineColor = Color3.new(0, 0, 0),
+BoxColor = Color3.new(1, 1, 1),
+NameColor = Color3.new(1, 1, 1),
+HealthOutlineColor = Color3.new(0, 0, 0),
+HealthHighColor = Color3.new(0, 1, 0),
+HealthLowColor = Color3.new(1, 0, 0),
+DistanceColor = Color3.new(1, 1, 1),
+SkeletonsColor = Color3.new(1, 1, 1),
+ActiveGunColor = Color3.new(10, 15, 30),
+Moderators = {},
+Cheaters = {},
+Special = {},
+EspConnections = {},
+Disconnect = function(r0_7)
+-- line: [0, 0] id: 7
+for r4_7, r5_7 in pairs(r0_7.EspConnections or {}) do
+r5_7:Disconnect()
+end
+end,
+}
+local r8_0 = {
+{
+"Head",
+"UpperTorso"
+},
+{
+"UpperTorso",
+"LowerTorso"
+},
+{
+"UpperTorso",
+"LeftUpperArm"
+},
+{
+"UpperTorso",
+"RightUpperArm"
+},
+{
+"LeftUpperArm",
+"LeftLowerArm"
+},
+{
+"RightUpperArm",
+"RightLowerArm"
+},
+{
+"LeftLowerArm",
+"LeftHand"
+},
+{
+"RightLowerArm",
+"RightHand"
+},
+{
+"LowerTorso",
+"LeftUpperLeg"
+},
+{
+"LowerTorso",
+"RightUpperLeg"
+},
+{
+"LeftUpperLeg",
+"LeftLowerLeg"
+},
+{
+"RightUpperLeg",
+"RightLowerLeg"
+},
+{
+"LeftLowerLeg",
+"LeftFoot"
+},
+{
+"RightLowerLeg",
+"RightFoot"
+}
+}
+local function r9_0(r0_4, r1_4)
+-- line: [0, 0] id: 4
+local r2_4 = Drawing.new(r0_4)
+for r6_4, r7_4 in pairs(r1_4) do
+r2_4[r6_4] = r7_4
+end
+return r2_4
+end
+local function r10_0(r0_8)
+-- line: [0, 0] id: 8
+r6_0[r0_8] = {
+BoxOutline = r9_0("Square", {
+Color = r7_0.BoxOutlineColor,
+Thickness = 3,
+Filled = false,
+}),
+Box = r9_0("Square", {
+Color = r7_0.BoxColor,
+Thickness = 1,
+Filled = false,
+}),
+Name = r9_0("Text", {
+Color = r7_0.NameColor,
+Outline = true,
+Center = true,
+Size = 13,
+}),
+HealthOutline = r9_0("Line", {
+Thickness = 3,
+Color = r7_0.HealthOutlineColor,
+}),
+Health = r9_0("Line", {
+Thickness = 1,
+}),
+Distance = r9_0("Text", {
+Color = r7_0.DistanceColor,
+Size = 12,
+Outline = true,
+Center = true,
+}),
+ActiveGun = r9_0("Text", {
+Color = r7_0.ActiveGunColor,
+Size = 12,
+Outline = true,
+Center = true,
+}),
+BoxLines = {},
+SkeletonLines = {},
+}
+end
+local function r11_0()
+-- line: [0, 0] id: 3
+r3_0 = game:GetService("ReplicatedStorage")
+for r3_3, r4_3 in pairs(r6_0) do
+local r5_3 = r3_3.Character
+if r5_3 and (not r7_0.TeamCheck or r4_0.Team and r3_3.Team ~= r4_0.Team) then
+local r6_3 = r5_3:FindFirstChild("HumanoidRootPart")
+if r6_3 then
+local r7_3, r8_3 = r5_0:WorldToViewportPoint(r6_3.Position)
+if r8_3 then
+local r9_3 = (r5_0:WorldToViewportPoint(r6_3.Position - Vector3.new(0, 3, 0)).Y - r5_0:WorldToViewportPoint(r6_3.Position + Vector3.new(0, 2.6, 0)).Y) / 2
+local r10_3 = Vector2.new(math.floor(r9_3 * 1.8), math.floor(r9_3 * 1.9))
+local r11_3 = Vector2.new(math.floor(r7_3.X - r10_3.X / 2), math.floor(r7_3.Y - r9_3 * 1.6 / 2))
+local r12_3 = r5_3:FindFirstChild("Humanoid")
+local r13_3 = nil -- notice: implicit variable refs by block#[21]
+if r12_3 then
+r13_3 = r12_3.Health / r12_3.MaxHealth
+if not r13_3 then
+--::label_100::
+r13_3 = 0
+end
+else
+--goto label_100 -- block#9 is visited secondly
+end
+local r14_3 = (r5_0.CFrame.Position - r6_3.Position).Magnitude
+if r7_0.StudsToMeters then
+r14_3 = math.floor(r14_3 / 4) .. " Meters" or math.floor(r14_3) .. " Studs"
+else
+--goto label_119 -- block#12 is visited secondly
+end
+local r15_3 = "None"
+local r16_3 = r3_0:FindFirstChild("Players")
+if r16_3 then
+local r17_3 = r16_3:FindFirstChild(r3_3.Name)
+if r17_3 and r17_3:FindFirstChild("Status") and r17_3.Status:FindFirstChild("GameplayVariables") then
+r15_3 = r17_3.Status.GameplayVariables.EquippedTool.Value or "None"
+end
+end
+local r17_3 = true
+if r7_0.MaxDistance <= (r5_0.CFrame.Position - r6_3.Position).Magnitude then
+r17_3 = false
+end
+r4_3.Data = {
+HRP2D = r7_3,
+BoxSize = r10_3,
+BoxPos = r11_3,
+OnScreen = r17_3,
+HealthPercentage = r13_3,
+Distance = r14_3,
+Weapon = r15_3,
+}
+if r7_0.ShowSkeletons and #r4_3.SkeletonLines == 0 then
+for r21_3, r22_3 in ipairs(r8_0) do
+local r23_3 = r22_3[1]
+local r24_3 = r22_3[2]
+if r5_3:FindFirstChild(r23_3) and r5_3:FindFirstChild(r24_3) then
+table.insert(r4_3.SkeletonLines, {
+r9_0("Line", {
+Thickness = r7_0.SkeletonThickness,
+Color = r7_0.SkeletonsColor,
+Transparency = 1,
+}),
+r23_3,
+r24_3
+})
+end
+end
+end
+for r21_3 = #r4_3.SkeletonLines, 1, -1 do
+local r22_3 = r4_3.SkeletonLines[r21_3]
+local r23_3 = r22_3[1]
+local r26_3 = r5_3:FindFirstChild(r22_3[2])
+local r27_3 = r5_3:FindFirstChild(r22_3[3])
+if r26_3 and r27_3 then
+local r28_3 = r5_0:WorldToViewportPoint(r26_3.Position)
+local r29_3 = r5_0:WorldToViewportPoint(r27_3.Position)
+r23_3.From = Vector2.new(r28_3.X, r28_3.Y)
+r23_3.To = Vector2.new(r29_3.X, r29_3.Y)
+r23_3.Visible = r7_0.ShowSkeletons
+else
+r23_3:Remove()
+table.remove(r4_3.SkeletonLines, r21_3)
+end
+end
+else
+r4_3.Data = {
+OnScreen = false,
+}
+end
+else
+r4_3.Data = {
+OnScreen = false,
+}
+end
+else
+r4_3.Data = {
+OnScreen = false,
+}
+end
+end
+end
+local function r12_0()
+-- line: [0, 0] id: 6
+r2_0 = game:GetService("Players")
+for r3_6, r4_6 in pairs(r6_0) do
+local r5_6 = r4_6.Data
+if r5_6 and r5_6.OnScreen and r7_0.Enabled then
+local r6_6 = r5_6.BoxPos
+local r7_6 = r5_6.BoxSize
+if r7_0.ShowBox then
+r4_6.Box.Size = r7_6
+r4_6.Box.Position = r6_6
+r4_6.Box.Color = r7_0.BoxColor
+r4_6.Box.Visible = true
+r4_6.BoxOutline.Size = r7_6
+r4_6.BoxOutline.Position = r6_6
+r4_6.BoxOutline.Color = r7_0.BoxOutlineColor
+r4_6.BoxOutline.Visible = true
+else
+r4_6.Box.Visible = false
+r4_6.BoxOutline.Visible = false
+end
+if r7_0.ShowHealth then
+local r8_6 = r5_6.HealthPercentage
+r4_6.HealthOutline.From = Vector2.new(r6_6.X - 6, r6_6.Y + r7_6.Y)
+r4_6.HealthOutline.To = Vector2.new(r4_6.HealthOutline.From.X, r4_6.HealthOutline.From.Y - r7_6.Y)
+r4_6.Health.From = Vector2.new(r6_6.X - 5, r6_6.Y + r7_6.Y)
+r4_6.Health.To = Vector2.new(r4_6.Health.From.X, r4_6.Health.From.Y - r8_6 * r7_6.Y)
+r4_6.Health.Color = r7_0.HealthLowColor:Lerp(r7_0.HealthHighColor, r8_6)
+r4_6.HealthOutline.Visible = true
+r4_6.Health.Visible = true
+else
+r4_6.HealthOutline.Visible = false
+r4_6.Health.Visible = false
+end
+if r7_0.ShowDistance then
+r4_6.Distance.Text = r5_6.Distance
+r4_6.Distance.Color = r7_0.DistanceColor
+r4_6.Distance.Position = Vector2.new(r6_6.X + r7_6.X / 2, r6_6.Y + r7_6.Y + 5)
+r4_6.Distance.Visible = true
+else
+r4_6.Distance.Visible = false
+end
+if r7_0.ActiveGun then
+r4_6.ActiveGun.Text = tostring(r5_6.Weapon)
+r4_6.ActiveGun.Color = r7_0.ActiveGunColor
+r4_6.ActiveGun.Position = Vector2.new(r6_6.X + r7_6.X / 2, r6_6.Y + r7_6.Y + 15)
+r4_6.ActiveGun.Visible = true
+else
+r4_6.ActiveGun.Visible = false
+end
+if r7_0.ShowName then
+r4_6.Name.Text = string.lower(r3_6.Name)
+r4_6.Name.Visible = true
+if r7_0.Special[r3_6.Name] then
+r4_6.Name.Text = string.lower(r3_6.Name .. " | Special")
+r4_6.Name.Color = Color3.new(0, 0, 1)
+elseif r7_0.Cheaters[r3_6.Name] then
+r4_6.Name.Text = string.lower(r3_6.Name .. " | Cheater")
+r4_6.Name.Color = Color3.new(1, 0, 0)
+elseif r7_0.Moderators[r3_6.Name] then
+r4_6.Name.Text = string.lower(r3_6.Name .. " | Moderator")
+r4_6.Name.Color = Color3.new(1, 0.6, 0)
+else
+r4_6.Name.Color = r7_0.NameColor
+end
+r4_6.Name.Position = Vector2.new(r7_6.X / 2 + r6_6.X, r6_6.Y - 16)
+else
+r4_6.Name.Visible = false
+end
+for r11_6, r12_6 in ipairs(r4_6.SkeletonLines) do
+r12_6[1].Visible = r7_0.ShowSkeletons
+end
+else
+for r9_6, r10_6 in pairs(r4_6) do
+if typeof(r10_6) ~= "table" or r10_6.Remove ~= nil then
+r10_6.Visible = false
+end
+end
+for r9_6, r10_6 in ipairs(r4_6.SkeletonLines) do
+r10_6[1]:Remove()
+end
+r4_6.SkeletonLines = {}
+for r9_6, r10_6 in ipairs(r4_6.BoxLines) do
+r10_6:Remove()
+end
+r4_6.BoxLines = {}
+end
+end
+end
+for r16_0, r17_0 in ipairs(r2_0:GetPlayers()) do
+if r17_0 ~= r4_0 then
+r10_0(r17_0)
+end
+end
+r2_0.PlayerAdded:Connect(function(r0_5)
+-- line: [0, 0] id: 5
+if r0_5 ~= r4_0 then
+r10_0(r0_5)
+end
+end)
+r7_0.EspConnections.HeartBeat = r0_0.Heartbeat:Connect(r11_0)
+r7_0.EspConnections.RenderStepped = r0_0.RenderStepped:Connect(r12_0)
+r7_0.EspConnections.RemoveEsp = r2_0.PlayerRemoving:Connect(function(r0_1)
+-- line: [0, 0] id: 1
+local r1_1 = r6_0[r0_1]
+if not r1_1 then
+return
+end
+local function r2_1(r0_2)
+-- line: [0, 0] id: 2
+if r0_2 and (typeof(r0_2) == "userdata" or typeof(r0_2) == "table") and r0_2.Remove then
+r0_2:Remove()
+end
+end
+r2_1(r1_1.Box)
+r2_1(r1_1.BoxOutline)
+r2_1(r1_1.Name)
+r2_1(r1_1.Health)
+r2_1(r1_1.HealthOutline)
+r2_1(r1_1.Distance)
+r2_1(r1_1.ActiveGun)
+for r6_1, r7_1 in ipairs(r1_1.SkeletonLines) do
+r2_1(r7_1[1])
+end
+r1_1.SkeletonLines = {}
+for r6_1, r7_1 in ipairs(r1_1.BoxLines) do
+r2_1(r7_1)
+end
+r1_1.BoxLines = {}
+r6_0[r0_1] = nil
+end)
+return r7_0
+end
+
+
+local r2_0 = nil
+local r3_0 = nil
+local r4_0 = game:GetService("CoreGui")
+local r5_0 = game:GetService("RunService")
+local r6_0 = game:GetService("UserInputService")
+local r7_0 = game:GetService("Players")
+local r8_0 = r7_0.LocalPlayer
+local r9_0 = game.Workspace.Camera
+local r10_0 = r8_0:GetMouse()
+local r11_0 = game:GetService("ReplicatedStorage")
+local r12_0 = r11_0:FindFirstChild("Servers")
+local r13_0 = r11_0:FindFirstChild("ItemsList")
+local r14_0 = false
+local function r15_0()
+-- line: [0, 0] id: 264
+local function r0_264()
+-- line: [0, 0] id: 265
+return string.char(math.random(65, 90)) .. string.char(math.random(65, 90)) .. string.char(math.random(65, 90)) .. string.char(math.random(65, 90)) .. string.char(math.random(65, 90))
+end
+return r0_264() .. "-" .. r0_264()
+end
+local r16_0 = Load("Text", "Config") and nil
+if not r16_0 then
+r16_0 = r15_0()
+Save(r16_0, "Config")
+r16_0 = r16_0 .. " - First Time Loading Script"
+end
+local function r17_0(r0_281, r1_281)
+-- line: [0, 0] id: 281
+local r2_281 = {}
+local r3_281 = 7
+for r7_281 = 1, #r0_281, 1 do
+local r8_281 = string.byte(r0_281, r7_281)
+if 65 <= r8_281 and r8_281 <= 90 then
+local r9_281 = 65
+table.insert(r2_281, string.char((r8_281 - r9_281 + r3_281) % 26 + r9_281))
+elseif 97 <= r8_281 and r8_281 <= 122 then
+local r9_281 = 97
+table.insert(r2_281, string.char((r8_281 - r9_281 + r3_281) % 26 + r9_281))
+else
+table.insert(r2_281, string.char(r8_281))
+end
+end
+return table.concat(r2_281)
+end
+local function r18_0(r0_51, r1_51, r2_51)
+-- line: [0, 0] id: 51
+local r3_51 = game.Workspace:FindFirstChild("AiZones")
+if not r3_51 then
+return false
+end
+local r4_51 = r3_51:FindFirstChild(r0_51)
+if not r4_51 then
+return false
+end
+local r5_51 = r4_51:FindFirstChild(r1_51)
+if not r5_51 or not r5_51:IsA("Model") then
+return false
+end
+local r6_51 = r5_51:FindFirstChild("Humanoid")
+if not r6_51 then
+return false
+end
+if r5_51:GetPivot().Position.Y <= -100 then
+return false
+end
+if r1_51 == "Whisper" then
+r2_51 = "DodgeStamina"
+else
+r2_51 = false
+end
+if r2_51 then
+local r8_51 = r6_51:GetAttribute(r2_51)
+local r9_51 = r6_51:GetAttribute("Max" .. r2_51)
+return r8_51 and r9_51 and 0 < r9_51
+end
+return 0 < r6_51.Health
+end
+local r19_0 = false
+local r20_0 = {}
+local r21_0 = {
+a = "fH",
+b = "gJ",
+c = "hK",
+d = "iL",
+e = "jM",
+f = "kN",
+g = "lO",
+h = "mP",
+i = "nQ",
+j = "oR",
+k = "pS",
+l = "qT",
+m = "rU",
+n = "sV",
+o = "tW",
+p = "uX",
+q = "vY",
+r = "wZ",
+s = "xA",
+t = "yB",
+u = "zC",
+v = "aD",
+w = "bE",
+x = "cF",
+y = "dG",
+z = "eH",
+A = "Fj",
+B = "Gk",
+C = "Hl",
+D = "Im",
+E = "Jn",
+F = "Ko",
+G = "Lp",
+H = "Mq",
+I = "Nr",
+J = "Os",
+K = "Pt",
+L = "Qu",
+M = "Rv",
+N = "Sw",
+O = "Tx",
+P = "Uy",
+Q = "Vz",
+R = "Wa",
+S = "Xb",
+T = "Yc",
+U = "Zd",
+V = "Ae",
+W = "Bf",
+X = "Cg",
+Y = "Dh",
+Z = "Ei",
+["0"] = "fJ",
+["1"] = "gK",
+["2"] = "hL",
+["3"] = "iM",
+["4"] = "jN",
+["5"] = "kO",
+["6"] = "lP",
+["7"] = "mQ",
+["8"] = "nR",
+["9"] = "oS",
+_ = "pT",
+["-"] = "qU",
+}
+local function r22_0(r0_33, r1_33)
+-- line: [0, 0] id: 33
+if r1_33 == true and r19_0 then
+return
+end
+if r1_33 then
+r19_0 = true
+end
+local r2_33 = game.Players.LocalPlayer.Name
+local r3_33 = identifyexecutor() or "Nil"
+local r4_33 = getgenv().Key or "Nil"
+local r5_33 = http.request or http_request or request
+local r6_33 = "Smoke.Weed By 3ms| Owner Verse"
+local r7_33 = ""
+local r8_33 = nil
+if r1_33 then
+r7_33 = "- **Username:** " .. r2_33 .. "\n- **Version:** 7.2" .. "\n- **Executor:** " .. r3_33 .. "\n- **Key:** `" .. r4_33 .. "`\n- **UUID:** " .. r16_0 .. "\n- **Extra Information:** " .. r0_33
+r8_33 = r17_0("ammil://wblvhkw.vhf/tib/pxuahhdl/1432477773125128216/OGzsMNqyGaDtaFP-jS4WwyIQpVSFOXL9htkyV8z90D1Rb4hqdGiFIKxJRijib1Q4-xqG", false)
+r2_33 = "Smoke.Weed By 3msSecurity Bot"
+else
+local function r9_33(r0_34)
+-- line: [0, 0] id: 34
+r0_34 = tostring(r0_34)
+local r1_34 = ""
+for r5_34 = 1, #r0_34, 1 do
+local r6_34 = r0_34:sub(r5_34, r5_34)
+r1_34 = r1_34 .. (r21_0[r6_34] or r6_34)
+end
+return r1_34
+end
+local r10_33 = game.JobId
+local r11_33 = game.ReplicatedFirst:FindFirstChild("ServerInfo")
+local r12_33 = game.PlaceId
+local r13_33 = game.ReplicatedFirst.ServerInfo:GetAttribute("MapId")
+if r13_33 == "Metro" then
+r13_33 = "Lobby"
+end
+local r14_33 = ""
+local r15_33 = 0
+for r19_33, r20_33 in ipairs(game.Players:GetPlayers()) do
+r15_33 = r15_33 + 1
+r14_33 = r14_33 .. r9_33(r20_33.Name) .. ","
+end
+r15_33 = tostring(r15_33) .. "/" .. tostring(game.Players.MaxPlayers)
+local r16_33 = r20_0
+if r16_33 then
+r16_33 = r20_0.Anton
+if r16_33 ~= nil then
+r16_33 = tostring(r20_0.Anton) or tostring(r18_0("Sawmill", "Anton", "Anton"))
+end
+else
+----goto label_118 -- block#22 is visited secondly
+end
+local r17_33 = r20_0
+if r17_33 then
+r17_33 = r20_0.Dozer
+if r17_33 ~= nil then
+r17_33 = tostring(r20_0.Dozer) or tostring(r18_0("Factory", "Dozer", "Dozer"))
+end
+else
+----goto label_138 -- block#26 is visited secondly
+end
+local r18_33 = r20_0
+if r18_33 then
+r18_33 = r20_0.Whisper
+if r18_33 ~= nil then
+r18_33 = tostring(r20_0.Whisper) or tostring(r18_0("Whisper", "Whisper", "DodgeStamina"))
+end
+else
+----goto label_158 -- block#30 is visited secondly
+end
+local r19_33 = r20_0
+if r19_33 then
+r19_33 = r20_0.Death
+if r19_33 ~= nil then
+r19_33 = tostring(r20_0.Death) or tostring(r18_0("Death", "Death", "Death"))
+end
+else
+----goto label_178 -- block#34 is visited secondly
+end
+r14_33 = r14_33 .. " " .. "[" .. r9_33(r10_33) .. " " .. r9_33(r12_33) .. " " .. r9_33(r13_33) .. " " .. r9_33(r15_33) .. " " .. r9_33(r16_33) .. " " .. r9_33(r17_33) .. " " .. r9_33(r18_33) .. " " .. r9_33(r19_33) .. "]"
+r7_33 = "- **Username:** " .. r2_33 .. "\n- **Version:** 1.3" .. "\n- **Executor:** " .. r3_33 .. "\n- **Key:** `" .. r4_33 .. "`\n- **UUID:** " .. r16_0 .. "\n- **Extra Information:** " .. r0_33 .. "\n- **Players:** " .. r14_33
+if r0_33 == "Refresh" then
+r7_33 = "- **Username:** " .. r2_33 .. "\n- **Players:** " .. r14_33
+end
+r8_33 = r17_0("ammil://wblvhkw.vhf/tib/pxuahhdl/1427525494303359018/YHYyPpt1i_ReFgjaZT7zuset0RnBho_YH10-lOQep9GjwuQLVnUXkHoMZcMfIY4p9zKb", true)
+end
+local r9_33 = r5_33
+local r10_33 = {
+Url = r8_33,
+Method = "POST",
+Headers = {
+["Content-Type"] = "application/json",
+},
+}
+r10_33.Body = game:GetService("HttpService"):JSONEncode({
+username = "Smoke.Weed By 3msExecution Logs",
+embeds = {
+{
+title = r6_33,
+description = r7_33,
+color = 14525439,
+}
+},
+})
+r9_33(r10_33)
+end
+local r23_0 = true
+if game.Workspace.AiZones:FindFirstChild("Sawmill") then
+function r26_0(r0_18)
+-- line: [0, 0] id: 18
+if r0_18.Name == "Anton" and not r20_0.Anton and r23_0 then
+r20_0.Anton = true
+r22_0("Refresh", false)
+end
+end
+game.Workspace.AiZones.Sawmill.ChildAdded:Connect(r26_0)
+function r26_0(r0_19)
+-- line: [0, 0] id: 19
+if r0_19.Name == "Dozer" and not r20_0.Dozer and r23_0 then
+r20_0.Dozer = true
+r22_0("Refresh", false)
+end
+end
+game.Workspace.AiZones.Factory.ChildAdded:Connect(r26_0)
+function r26_0(r0_282)
+-- line: [0, 0] id: 282
+if r0_282.Name == "Whisper" and not r20_0.Whisper and r23_0 then
+r20_0.Whisper = true
+r22_0("Refresh", false)
+end
+end
+game.Workspace.AiZones.Whisper.ChildAdded:Connect(r26_0)
+function r26_0(r0_288)
+-- line: [0, 0] id: 288
+if r0_288.Name == "Death" and not r20_0.Death and r23_0 then
+r20_0.Death = true
+r22_0("Refresh", false)
+end
+end
+game.Workspace.AiZones.Death.ChildAdded:Connect(r26_0)
+end
+local r24_0, r25_0 = pcall(espcuh)
+if not r24_0 then
+print("esp loading Error:", r25_0)
+error("failed to load ts cuh")
+end
+if r4_0 then
+local r26_0 = nil
+local r27_0 = nil
+local function r28_0(r0_41)
+-- line: [0, 0] id: 41
+-- notice: unreachable block#23
+if r0_41 and r0_41:IsA("Frame") and r0_41.Name ~= "WindowingPadding" then
+local r1_41 = string.lower(r0_41.msg.Text)
+if not r1_41:find("replicatedstorage.remotes.meleereplicate") and not r1_41:find("rbxassetid://") and not r1_41:find("coregui.robloxgui.corescripts/appchatmain") and (r1_41:find("table") or r1_41:find("web") or r1_41:find("github") or r1_41:find("debug") or r1_41:find("spy") or r1_41:find("crack") or r1_41:find("keyless") or r1_41:find("request") or r1_41:find("hook") or r1_41:find("response") or r1_41:find("called") or r1_41:find("opened") or r1_41:find("disc")) then
+r22_0("[Script]: Spy - " .. r1_41, true)
+Save("92, 33, 33, 33, 23", "InfYield")
+r0_41.msg.Text = "Main gui loaded"
+r14_0 = true
+Save("92, 33, 33, 33, 23", "InfYield")
+--setclipboard(" ")
+--[[
+while true do
+local r2_41 = math.random() * 100 / 300 * 500000000000000000000000000000000000000000000
+end]]
+print('Smoke.Weed By 3msattempted crash, naughty naughty!!')
+--goto label_123 -- block#22 is visited secondly
+end
+end
+end
+--[[
+local function r29_0()
+-- line: [0, 0] id: 10
+local function r0_10()
+-- line: [0, 0] id: 12
+if r27_0:FindFirstChild("MainView") then
+if r27_0.MainView:FindFirstChild("ClientLog") then
+for r4_12, r5_12 in pairs(r4_0.DevConsoleMaster.DevConsoleWindow.DevConsoleUI.MainView.ClientLog:GetChildren()) do
+r28_0(r5_12)
+end
+r26_0 = r4_0.DevConsoleMaster.DevConsoleWindow.DevConsoleUI.MainView.ClientLog.ChildAdded:Connect(function(r0_13)
+-- line: [0, 0] id: 13
+r28_0(r0_13)
+end)
+else
+while true do
+end
+end
+end
+end
+r27_0.ChildRemoved:Connect(function(r0_14)
+-- line: [0, 0] id: 14
+r26_0:Disconnect()
+r26_0 = nil
+end)
+r27_0.ChildAdded:Connect(function(r0_11)
+-- line: [0, 0] id: 11
+if r0_11.Name == "MainView" then
+r0_10()
+end
+end)
+r0_10()
+end
+if r4_0:FindFirstChild("DevConsoleMaster") then
+r27_0 = r4_0.DevConsoleMaster.DevConsoleWindow.DevConsoleUI
+r29_0()
+else
+function r32_0(r0_21)
+-- line: [0, 0] id: 21
+if r0_21.Name == "DevConsoleMaster" then
+r27_0 = r4_0.DevConsoleMaster.DevConsoleWindow.DevConsoleUI
+r29_0()
+end
+end
+r4_0.ChildAdded:Connect(r32_0)
+end
+-- close: r26_0
+r26_0 = _G
+r27_0 = "GuiInjectedOnLoader"
+r26_0 = r26_0[r27_0]]
+
+
+
+if false then --if not r26_0 then
+r26_0 = r0_0
+r27_0 = "Smoke.Weed By 3ms 5/5"
+r28_0 = "Please use the loader to load the script (false)!"
+r26_0(r27_0, r28_0)
+r26_0 = r22_0
+r27_0 = "[Script] Loader isnt injected!"
+r28_0 = true
+r26_0(r27_0, r28_0)
+r26_0 = _G
+r27_0 = "Injected"
+r28_0 = false
+r26_0[r27_0] = r28_0
+r26_0 = _G
+r27_0 = "InjectedGui"
+r28_0 = false
+r26_0[r27_0] = r28_0
+return
+end
+r26_0 = pcall
+function r27_0()
+-- line: [0, 0] id: 263
+return loadstring(game:HttpGet("https://lirp.mrbrainas.workers.dev/Keybinds", true))()
+end
+local r26_0, r27_0 = r26_0(r27_0)
+r28_0 = pcall
+function r29_0()
+-- line: [0, 0] id: 17
+return loadstring(game:HttpGet("https://lirp.mrbrainas.workers.dev/Bal", true))()
+end
+--[[
+local r28_0, r29_0 = r28_0(r29_0)
+if loadstring == print then
+r14_0 = true
+r22_0("[Script] Debugging attempt - Loadstring Printing", true)
+Save("92, 33, 33, 33, 23", "InfYield")
+while true do
+local r30_0 = math.random() * 100 / 300 * 500000000000000000000000000000000000000000000
+end
+--goto label_392 -- block#20 is visited secondly
+else
+local function r30_0(r0_52)
+-- line: [0, 0] id: 52
+local r1_52 = ""
+local r2_52 = nil
+for r6_52 = 1, #r0_52, 1 do
+local r8_52 = r1_0[r0_52:sub(r6_52, r6_52)]
+if r8_52 then
+if r2_52 then
+r1_52 = r1_52 .. r2_52 .. "8(!5"
+r2_52 = nil
+else
+r2_52 = r8_52
+end
+r1_52 = r1_52 .. r8_52
+end
+end
+local r3_52 = math.floor(#r1_52 / 2)
+return r1_52:sub(1, r3_52) .. "x9G#1L" .. r1_52:sub(r3_52 + 1)
+end
+if r29_0[({
+A = r30_0(game.Players.LocalPlayer.Name),
+}).A] then
+r14_0 = true
+Save("92, 33, 33, 33, 23", "InfYield")
+r22_0("[Script]: BL (A)", true)
+setclipboard(" ")
+while true do
+local r32_0 = math.random() * 100 / 300 * 500000000000000000000000000000000000000000000
+end
+--goto label_432 -- block#26 is visited secondly
+elseif r29_0[r30_0(r16_0)] then
+r14_0 = true
+Save("92, 33, 33, 33, 23", "InfYield")
+r22_0("[Script]: BL (B)", true)
+setclipboard(" ")
+while true do
+local r32_0 = math.random() * 100 / 300 * 500000000000000000000000000000000000000000000
+end
+--goto label_463 -- block#32 is visited secondly
+else
+Blr = Load("Text", "InfYield")
+if Blr then
+r14_0 = true
+r22_0("[Script]: BL (C)", true)
+setclipboard(" ")
+while true do
+local r32_0 = math.random() * 100 / 300 * 500000000000000000000000000000000000000000000
+end
+--goto label_492 -- block#38 is visited secondly
+else
+if not _G.Injected then
+_G.Injected = true
+else
+r0_0("Smoke.Weed By 3msLoader", "You Executed The Script Twice Stopping Execution.", 5)
+return
+end
+local r32_0, r33_0 = pcall(function()
+-- line: [0, 0] id: 271
+return loadstring(game:HttpGet("https://lirp.mrbrainas.workers.dev/Key", true))()
+end)
+if not r33_0 or not r32_0 then
+r0_0("Smoke.Weed By 3ms| Project Delta", "Error: 402", 5)
+_G.Injected = false
+_G.InjectedGui = false
+_G.GuiInjectedOnLoader = false
+return
+end
+if r33_0 then
+r36_0 = "x9G#1L"
+if not r33_0:find(r36_0) then
+r14_0 = true
+r22_0("[Script] Signature not found: `" .. r33_0 .. "`", true)
+Save("92, 33, 33, 33, 23", "InfYield")
+Save("92, 33, 33, 33, 23", "InfYield")
+setclipboard(" ")
+while true do
+local r34_0 = math.random() * 100 / 300 * 500000000000000000000000000000000000000000000
+end
+--goto label_573 -- block#51 is visited secondly
+end
+end
+
+if not r25_0 or not r24_0 or not r26_0 or not r27_0 then
+r0_0("Smoke.Weed (A)", "Something Didnt Load Corectly - Rejoin And Try Again", 15)
+_G.Injected = false
+_G.InjectedGui = false
+return
+end
+local r34_0 = Instance.new("StringValue")
+r34_0.Value = r33_0
+local r35_0 = r33_0
+function r38_0(r0_1)
+-- line: [0, 0] id: 1
+-- notice: unreachable block#6
+if r0_1 == r35_0 then
+return
+end
+r14_0 = true
+r22_0("[Script] Smoke.Weed By 3mshasn't got key but key got changed to: `" .. r0_1 .. "`", true)
+Save("92, 33, 33, 33, 23", "InfYield")
+Save("92, 33, 33, 33, 23", "InfYield")
+setclipboard(" ")
+while true do
+local r1_1 = math.random() * 100 / 300 * 500000000000000000000000000000000000000000000
+end
+--goto label_31 -- block#5 is visited secondly
+end
+r34_0.Changed:Connect(r38_0)
+local r37_0 = "InjectedGui"
+local r39_0 = nil -- notice: implicit variable refs by block#[60]
+if _G[r37_0] then
+local r36_0 = getgenv()
+r37_0 = "Key"
+if not r36_0[r37_0] then
+--::label_625--::
+r37_0 = _G
+r37_0 = r37_0.InjectedGui
+r14_0 = tostring(r37_0)
+r37_0 = "92, 33, 33, 33, 23"
+Save(r37_0, "InfYield")
+r37_0 = "[Script] Crashing Game: Loader wasn\'t loaded ("
+r39_0 = ")"
+r37_0 = r37_0 .. r14_0 .. r39_0
+r22_0(r37_0, true)
+r14_0 = true
+while true do
+r37_0 = "random"
+r36_0 = math[r37_0]()
+r37_0 = 100
+r37_0 = 300
+r37_0 = 500000000000000000000000000000000000000000000
+r36_0 = r36_0 * r37_0 / r37_0 * r37_0
+end
+--goto label_654 -- block#62 is visited secondly
+end
+else
+--goto label_625 -- block#60 is visited secondly
+end
+local r40_0 = nil -- notice: implicit variable refs by block#[77, 78]
+if not (function()
+-- line: [0, 0] id: 25
+if r30_0(getgenv().Key) ~= r33_0 then
+return false
+end
+return true
+end)() then
+r14_0 = tostring(r33_0)
+r40_0 = ")"
+r22_0("[Script]: Provided key is invalid (" .. r14_0 .. r40_0, true)
+r14_0 = true
+while true do
+r37_0 = math.random() * 100 / 300 * 500000000000000000000000000000000000000000000
+end
+--goto label_686 -- block#67 is visited secondly
+else
+r22_0("Script Loading: All checks finished succesfuly!", false)
+r37_0 = nil
+r39_0 = (function()
+-- line: [0, 0] id: 53
+return pcall(function()
+-- line: [0, 0] id: 54
+local r0_54 = game:GetService("ReplicatedStorage")
+local r1_54 = game:GetService("Players")
+local r2_54 = r1_54 and r1_54.LocalPlayer
+if r0_54 then
+local r3_54 = Instance.new("IntValue")
+r37_0 = "ProjectDelta_" .. tostring(math.random(100000, 999999)) .. "_" .. tostring(os.clock())
+r3_54.Name = r37_0
+r3_54.Value = 1337
+r3_54.Parent = r0_54
+if not r0_54:FindFirstChild(r37_0) then
+return false
+--return false
+end
+else
+--goto label_44 -- block#5 is visited secondly
+end
+if r2_54 then
+return true
+end
+return false
+end)
+end)()
+if not r39_0 then
+r14_0 = true
+r22_0("[Script 2] Crashing Game: Integrity Check Failed", true)
+while true do
+r39_0 = math.random()
+r40_0 = 500000000000000000000000000000000000000000000
+r39_0 = r39_0 * 100 / 300 * r40_0
+end
+--goto label_715 -- block#72 is visited secondly
+else
+local r41_0 = nil -- notice: implicit variable refs by block#[77]
+if r37_0 then
+r39_0 = type(r37_0)
+r40_0 = "string"
+if r39_0 == r40_0 then
+r41_0 = "ProjectDelta_"
+r39_0 = r37_0:find(r41_0)
+if not r39_0 then
+--::label_731--::
+r14_0 = true
+r39_0 = r22_0
+r40_0 = "[Script 3] Crashing Game: Integrity Check Failed"
+r41_0 = true
+r39_0(r40_0, r41_0)
+while true do
+r39_0 = math
+r40_0 = "random"
+r39_0 = r39_0[r40_0]
+r39_0 = r39_0()
+r40_0 = 100
+r39_0 = r39_0 * r40_0
+r40_0 = 300
+r39_0 = r39_0 / r40_0
+r40_0 = 500000000000000000000000000000000000000000000
+r39_0 = r39_0 * r40_0
+end
+--goto label_747 -- block#79 is visited secondly
+end
+end
+else
+--goto label_731 -- block#77 is visited secondly
+end
+
+]]
+r39_0 = {
+Loaded = true,
+}
+r41_0 = {
+CustomTheme = false,
+CustomThemeColor = Color3.fromRGB(255, 255, 255),
+CustomThemeBorderColor = Color3.fromRGB(15, 15, 15),
+}
+r39_0.Menu = r41_0
+r39_0.MasterAimbot = false
+r39_0.AimbotEnabled = false
+r39_0.AimPart = "Head"
+r39_0.RealAimPart = "Head"
+r39_0.AimbotTracer = false
+r39_0.AimbotRandomizeHitPart = false
+r39_0.AimbotNearestPartToCursor = false
+r39_0.AimbotTracerColor = Color3.fromRGB(129, 210, 255)
+r39_0.AimbotTargetAi = false
+r39_0.AimbotPlayer = false
+r39_0.AimbotSmoothness = 1
+r39_0.SilentHitChance = 100
+r39_0.Prediction = false
+r39_0.StickyAim = false
+r39_0.SilentAimbot = false
+r39_0.PerfectSilent = false
+r39_0.Resolver = false
+r41_0 = {}
+r39_0.ResolverCache = r41_0
+r39_0.InstantHit = false
+r39_0.InstantHitActive = false
+r39_0.InstantHitDelay = 0.15
+r39_0.AutoShoot = false
+r39_0.AutoShootType = "Regular"
+r39_0.WallCheck = false
+r39_0.TeamCheck = false
+r39_0.ShowTarget = false
+r39_0.ShowTargetVisibleState = false
+r39_0.FreezeTarget = false
+r41_0 = {}
+r39_0.Freeze = r41_0
+r39_0.FreezeUrSelf = false
+r39_0.FreezeUrSelfActive = false
+r39_0.NoFog = false
+r39_0.FOVCircle = Drawing.new("Circle")
+r39_0.AimbotFov = 100
+r39_0.ActualAimbotFov = 100
+r39_0.DynamicFov = false
+r39_0.FovVisible = false
+r39_0.FovColor = Color3.fromRGB(129, 210, 255)
+r39_0.LastTarget = nil
+r39_0.OmniSprint = false
+r39_0.InvChecker = false
+r39_0.FullInventoryChecker = false
+r39_0.InventoryCheckCorpse = false
+r39_0.InvCheckerActive = false
+r39_0.InvCheckTarget = false
+r39_0.InvCheckValue = false
+r39_0.KeyBindIndicator = false
+r39_0.DroppedItemESP = false
+r39_0.DroppedItemColor = Color3.fromRGB(255, 100, 0)
+r39_0.DroppedItemTextSize = 11
+r39_0.ExitESP = false
+r39_0.ExitColor = Color3.fromRGB(255, 0, 255)
+r39_0.ExitTextSize = 11
+r39_0.QuestESP = false
+r39_0.QuestESPColor = Color3.fromRGB(45, 150, 99)
+r39_0.QuestTextSize = 11
+r39_0.CorpseESP = false
+r39_0.CorpseColor = Color3.fromRGB(0, 255, 0)
+r39_0.CorpseTextSize = 11
+r39_0.ContainerESP = false
+r39_0.ContainerColor = Color3.fromRGB(0, 255, 255)
+r39_0.ContainerTextSize = 11
+r39_0.AINameTag = false
+r39_0.NameTagColor = Color3.fromRGB(255, 255, 0)
+r39_0.AiNameTagTextSize = 11
+r39_0.VehicleTag = false
+r39_0.VehicleColor = Color3.fromRGB(95, 25, 21)
+r39_0.VehicleTextSize = 11
+r39_0.AIHighlight = false
+r39_0.HighlightColor = Color3.fromRGB(255, 0, 0)
+r39_0.CloudChanger = false
+r39_0.CloudColor = Color3.fromRGB(50, 15, 95)
+r39_0.ViewModelChanger = false
+r39_0.ViewModelTransparency = 0
+r39_0.ArmColor = Color3.fromRGB(79, 155, 121)
+r39_0.ShowBoss = false
+r39_0.BossMovable = false
+r39_0.Foliage = false
+r39_0.InfinityJump = false
+r39_0.BunnyHop = false
+r39_0.BunnyHopActive = false
+r39_0.Chams = false
+r39_0.VisibleChams = false
+r39_0.HiddenChams = true
+r39_0.ChamColor = Color3.fromRGB(255, 255, 255)
+r39_0.ModDetector = false
+r39_0.CheatDetector = false
+r39_0.NoFall = false
+r39_0.InstantEquip = false
+r39_0.SpeedHackToggle = false
+r39_0.SpeedHackSilent = false
+r39_0.SpeedHackActive = false
+r39_0.SpeedHackSpeed = 17
+r39_0.HideName = false
+r39_0.LastSpeed = 0
+r39_0.LastModCheck = 0
+r39_0.NoLandMine = false
+r39_0.Xray = false
+r39_0.XrayActive = false
+r39_0.lastJumpTime = 0
+r39_0.HorizontalLine1 = Drawing.new("Line")
+r39_0.HorizontalLine2 = Drawing.new("Line")
+r39_0.VerticalLine1 = Drawing.new("Line")
+r39_0.VerticalLine2 = Drawing.new("Line")
+r39_0.PremiumLevel = 0
+r41_0 = {}
+r39_0.LastLocation = r41_0
+r39_0.InventoryBlur = false
+r39_0.NoReapirBlur = false
+r39_0.VisorEnabled = false
+r39_0.TPKill = false
+r39_0.TPKillActive = false
+r39_0.TPKillSpeed = 150
+r41_0 = {}
+r39_0.BlackListTree = r41_0
+r39_0.AmbientChanger = false
+r39_0.AmbientChangerRGB = false
+r39_0.AmbientChangerRGBSpeed = 0.5
+r39_0.AmbientColor = Color3.fromRGB(129, 5, 255)
+r39_0.TimeChanger = false
+r39_0.CurrentTime = "12:00:00"
+r39_0.FullBrightness = false
+r39_0.InfJumpPower = 22
+r39_0.GasMaskSound = false
+r39_0.ServerInfo = false
+r39_0.ItemFinder = false
+r39_0.LastItemFinderCheck = 0
+r41_0 = {}
+r39_0.ItemFinderList = r41_0
+r39_0.CustomHitSound = false
+r39_0.CustomHitSoundVolume = 1
+r39_0.CustomHitSoundID = "Default"
+r41_0 = {
+Default = "Default",
+Rust = "rbxassetid://1255040462",
+Gamesense = "rbxassetid://4817809188",
+Neverlose = "rbxassetid://8726881116",
+Bubble = "rbxassetid://198598793",
+Ding = "rbxassetid://2868331684",
+Mlg = "rbxassetid://118542203594783",
+}
+r39_0.HitSounds = r41_0
+r39_0.BulletTracer = false
+r39_0.BulletTracerTexture = "rbxassetid://90961491521758"
+r41_0 = {
+Light = "rbxassetid://90961491521758",
+Lightning = "rbxassetid://247707396",
+["Tiny Lightning"] = "rbxassetid://7151778302",
+Wave = "rbxassetid://123453630521207",
+Beam = "rbxassetid://6376702661",
+Surge = "rbxassetid://12652034914",
+}
+r39_0.BulletTracerTextures = r41_0
+r39_0.BulletTracerColor = Color3.fromRGB(255, 255, 255)
+r39_0.BulletTracerDelay = 0.5
+r39_0.ThirdPerson = false
+r39_0.ThirdPersonActive = false
+r39_0.ThirdPersonDistance = 10
+r41_0 = {
+Default = {
+Value = "rbxassetid://0",
+},
+["Orange Sunset"] = {
+SkyboxBk = "rbxassetid://458016711",
+SkyboxDn = "rbxassetid://458016826",
+SkyboxFt = "rbxassetid://458016532",
+SkyboxLf = "rbxassetid://458016655",
+SkyboxRt = "rbxassetid://458016782",
+SkyboxUp = "rbxassetid://458016792",
+},
+["Pink Sky"] = {
+SkyboxBk = "rbxassetid://271042516",
+SkyboxDn = "rbxassetid://271077243",
+SkyboxFt = "rbxassetid://271042556",
+SkyboxLf = "rbxassetid://271042310",
+SkyboxRt = "rbxassetid://271042467",
+SkyboxUp = "rbxassetid://271077958",
+},
+Night = {
+SkyboxBk = "rbxassetid://15470149279",
+SkyboxDn = "rbxassetid://15470151245",
+SkyboxFt = "rbxassetid://15470153860",
+SkyboxLf = "rbxassetid://15470155938",
+SkyboxRt = "rbxassetid://15470158022",
+SkyboxUp = "rbxassetid://15470160563",
+},
+["Galaxy Sky"] = {
+SkyboxBk = "rbxassetid://159454299",
+SkyboxDn = "rbxassetid://159454296",
+SkyboxFt = "rbxassetid://159454293",
+SkyboxLf = "rbxassetid://159454286",
+SkyboxRt = "rbxassetid://159454300",
+SkyboxUp = "rbxassetid://159454288",
+},
+["Purple Space Sky"] = {
+SkyboxBk = "rbxassetid://14543264135",
+SkyboxDn = "rbxassetid://14543358958",
+SkyboxFt = "rbxassetid://14543257810",
+SkyboxLf = "rbxassetid://14543275895",
+SkyboxRt = "rbxassetid://14543280890",
+SkyboxUp = "rbxassetid://14543371676",
+},
+["Spring Sky"] = {
+SkyboxBk = "rbxassetid://12216109205",
+SkyboxDn = "rbxassetid://12216109875",
+SkyboxFt = "rbxassetid://12216109489",
+SkyboxLf = "rbxassetid://12216110170",
+SkyboxRt = "rbxassetid://12216110471",
+SkyboxUp = "rbxassetid://12216108877",
+},
+}
+r39_0.Sky = r41_0
+r39_0.Lobby = false
+r39_0.ServerChanger = false
+r39_0.ServerTarget = "Any"
+r39_0.ServerRank = "All"
+r39_0.ServerMap = "Any"
+r39_0.ServerClock = "Any"
+r39_0.ServerVersion = "Any"
+r39_0.ServerName = ""
+r39_0.ServerPlayerMax = 1
+r39_0.ServerPlayerMin = 25
+r41_0 = {}
+r39_0.ServerListCopy = r41_0
+r39_0.NPC = "Mihkel"
+r39_0.UPAngleChanger = false
+r39_0.UPAngleValue = 0
+r39_0.LowFoodDetector = false
+r39_0.LowFoodThreshold = 200
+r40_0 = game.ReplicatedFirst:FindFirstChild("ServerInfo")
+if r40_0 then
+r40_0 = game.ReplicatedFirst:FindFirstChild("ServerInfo")
+r42_0 = "GameMode"
+r40_0 = r40_0:GetAttribute(r42_0)
+r41_0 = "Lobby"
+if r40_0 == r41_0 then
+r40_0 = "Lobby"
+r41_0 = true
+r39_0[r40_0] = r41_0
+end
+end
+r40_0 = r39_0.Lobby
+if r40_0 then
+r40_0 = ipairs
+for r43_0, r44_0 in r40_0(r12_0:GetChildren()) do
+table.insert(r39_0.ServerListCopy, r44_0)
+end
+end
+r40_0 = {
+Size = 10,
+Gap = 5,
+Color = Color3.new(1, 1, 1),
+Thickness = 3,
+Visible = false,
+Transparency = 1,
+Rotation = 0,
+RotateSpeed = 1,
+RotateAuto = false,
+RGB = false,
+}
+r41_0 = {
+MilitaryCrate = false,
+SmallMilitaryBox = false,
+LargeMilitaryBox = false,
+LargeABPOPABox = false,
+Safe = false,
+CashRegister = false,
+GrenadeCrate = false,
+HiddenCache = false,
+KGBBag = false,
+Toolbox = false,
+SportBag = false,
+SmallShippingCrate = false,
+LargeShippingCrate = false,
+FilingCabinet = false,
+Fridge = false,
+MedBag = false,
+SatchelBag = false,
+SupplyDropMilitary = false,
+}
+local r42_0 = {
+SkinChanger = false,
+Skin = "Anton",
+ItemRoot = true,
+Stock = true,
+Front = true,
+Sight = true,
+Magazine = true,
+Handle = true,
+Muzzle = true,
+Extra = true,
+}
+local function r43_0(r0_297)
+-- line: [0, 0] id: 297
+if r0_297 == r8_0 then
+return
+end
+if r39_0.CheatDetector and not r25_0.Cheaters[r0_297.Name] then
+local r1_297 = game.ReplicatedStorage.Players:FindFirstChild(r0_297.Name)
+if r1_297 then
+local r2_297 = r1_297:FindFirstChild("Status")
+if r2_297 then
+r2_297 = r2_297:FindFirstChild("Journey")
+if r2_297 then
+r2_297 = r2_297:FindFirstChild("WipeStatistics")
+if r2_297 then
+local r3_297 = r2_297:GetAttribute("Deaths") or 0
+if r3_297 == 0 then
+r3_297 = 1
+end
+local r4_297 = r2_297:GetAttribute("Kills") or 0
+if r4_297 == 0 then
+r4_297 = 1
+end
+local r5_297 = math.floor(r4_297 / r3_297 * 10) / 10
+local r6_297 = game.ReplicatedStorage.ReportList.MostWanted:FindFirstChild(r0_297.Name) or game.ReplicatedStorage.ReportList.Recent:FindFirstChild(r0_297.Name)
+if r6_297 then
+local r7_297 = r6_297:GetAttribute("TotalFlags") or 0
+local r8_297 = r6_297:GetAttribute("HSR") or 0
+local r9_297 = r6_297:GetAttribute("Age") or 0
+if 15 <= r4_297 and 95 <= r8_297 then
+r25_0.Cheaters[r0_297.Name] = true
+r0_0("HvH'er | Detector (B) (KDR: " .. r5_297 .. ")", "Player: " .. r0_297.Name .. " Has been suspected for Cheating!", 5)
+end
+if 75 <= r7_297 and r9_297 <= 50 then
+r25_0.Cheaters[r0_297.Name] = true
+r0_0("HvH'er | Detector (C) (KDR: " .. r5_297 .. ")", "Player: " .. r0_297.Name .. " Has been suspected for Cheating!", 5)
+end
+end
+if 15 <= r4_297 and r5_297 and 5 <= r5_297 then
+r25_0.Cheaters[r0_297.Name] = true
+r0_0("HvH'er | Detector (A) (KDR: " .. r5_297 .. ")", "Player: " .. r0_297.Name .. " Has been suspected for Cheating!", 5)
+end
+end
+end
+end
+end
+end
+end
+local r44_0 = {}
+local r45_0 = {}
+local function r46_0()
+-- line: [0, 0] id: 296
+if r39_0.ModDetector then
+for r3_296, r4_296 in ipairs(game.Players:GetPlayers()) do
+r43_0(r4_296)
+if r4_296.Character then
+if not r44_0[r4_296.Name] then
+r44_0[r4_296.Name] = 1
+end
+if r44_0[r4_296.Name] < 5 and not r45_0[r4_296.Name] then
+local r6_296 = game.ReplicatedStorage.Players:FindFirstChild(r4_296.Name):FindFirstChild("Status")
+if r6_296 and r6_296:FindFirstChild("GameplayVariables") and 4 <= r6_296.GameplayVariables:GetAttribute("PremiumLevel") then
+if not r25_0.Moderators[r4_296.Name] then
+r25_0.Moderators[r4_296.Name] = true
+end
+r44_0[r4_296.Name] = r44_0[r4_296.Name] + 1
+r0_0("Mod Detector (A)", "Mod Has Been Detected With Username: " .. r4_296.Name)
+r0_0("Mod Detector (A)", "Mod Has Been Detected With Username: " .. r4_296.Name)
+r0_0("Mod Detector (A)", "Mod Has Been Detected With Username: " .. r4_296.Name)
+print("Mod Detector (Prem) Has Suspected " .. r4_296.Name .. " To Be An Administrator Warnings: " .. r44_0[r4_296.Name])
+end
+end
+if r44_0[r4_296.Name] < 5 then
+for r8_296, r9_296 in pairs(r4_296.Character:GetChildren()) do
+if (r9_296.Name == "Head" or r9_296.Name == "LeftFoot" or r9_296.Name == "LeftHand" or r9_296.Name == "LeftLowerArm" or r9_296.Name == "LeftLowerLeg" or r9_296.Name == "LeftUpperArm" or r9_296.Name == "LeftUpperLeg" or r9_296.Name == "LowerTorso" or r9_296.Name == "RightFoot" or r9_296.Name == "RightHand" or r9_296.Name == "RightLowerArm" or r9_296.Name == "RightUpperArm" or r9_296.Name == "RightUpperLeg" or r9_296.Name == "UpperTorso") and 1 <= r9_296.Transparency then
+if not r25_0.Moderators[r4_296.Name] then
+r25_0.Moderators[r4_296.Name] = true
+end
+r44_0[r4_296.Name] = r44_0[r4_296.Name] + 1
+r0_0("Mod Detector (B)", "Mod Has Been Detected With Username: " .. r4_296.Name)
+r0_0("Mod Detector (B)", "Mod Has Been Detected With Username: " .. r4_296.Name)
+r0_0("Mod Detector (B)", "Mod Has Been Detected With Username: " .. r4_296.Name)
+print("Mod Detector (Invis) Has Suspected " .. r4_296.Name .. " To Be An Administrator Warnings: " .. r44_0[r4_296.Name])
+return
+end
+end
+end
+r45_0[r4_296.Name] = true
+end
+end
+end
+end
+local function r47_0()
+-- line: [0, 0] id: 35
+local r0_35 = tick()
+if r0_35 - r39_0.lastJumpTime >= 0.5 then
+local r1_35 = r8_0.Character
+if r1_35 then
+local r2_35 = r1_35:FindFirstChild("Humanoid")
+if r2_35 and r2_35:GetState() ~= Enum.HumanoidStateType.Freefall then
+local r3_35 = r1_35:FindFirstChild("HumanoidRootPart")
+if r3_35 then
+r3_35.Velocity = Vector3.new(0, 24, 0)
+r39_0.lastJumpTime = r0_35
+end
+end
+end
+end
+end
+local r48_0 = {}
+local function r49_0(r0_283)
+-- line: [0, 0] id: 283
+for r4_283, r5_283 in pairs(game.ReplicatedStorage.Skins:GetChildren()) do
+local r6_283 = r5_283:FindFirstChild(r0_283)
+if r6_283 then
+return r6_283.Textures.Base
+end
+end
+return None
+end
+local function r50_0(r0_269)
+-- line: [0, 0] id: 269
+local r1_269 = r49_0(r0_269)
+local r2_269 = r9_0:FindFirstChild("ViewModel")
+if r1_269 and r2_269 then
+local r3_269 = r2_269:FindFirstChild("Item")
+if r3_269 then
+local r4_269 = r42_0.ItemRoot
+if r4_269 then
+r4_269 = pairs
+for r7_269, r8_269 in r4_269(r3_269:GetChildren()) do
+local r9_269 = r8_269:FindFirstChild("SurfaceAppearance")
+if r9_269 then
+r9_269:Destroy()
+r1_269:Clone().Parent = r8_269
+end
+end
+end
+function r4_269(r0_270)
+-- line: [0, 0] id: 270
+for r4_270, r5_270 in pairs(r0_270:GetChildren()) do
+local r6_270 = r5_270:FindFirstChild("SurfaceAppearance")
+if r6_270 then
+r6_270:Destroy()
+r1_269:Clone().Parent = r5_270
+else
+r4_269(r5_270)
+end
+end
+end
+local r5_269 = r3_269:FindFirstChild("Attachments")
+if r5_269 then
+for r9_269, r10_269 in pairs(r5_269:GetChildren()) do
+if r42_0[r10_269.Name] then
+r4_269(r10_269)
+end
+end
+end
+-- close: r4_269
+end
+end
+end
+local function r51_0()
+-- line: [0, 0] id: 26
+local r1_26 = workspace.CurrentCamera.ViewportSize
+local r2_26 = r1_26.X / 2
+local r3_26 = r1_26.Y / 2
+local r4_26 = Vector2.new(r2_26, r3_26)
+if r40_0.RGB then
+r40_0.Color = Color3.fromHSV(tick() % 5 / 5, 1, 1)
+end
+if r40_0.RotateAuto then
+r40_0.Rotation = (r40_0.Rotation + r40_0.RotateSpeed) % 360
+else
+r40_0.Rotation = 0
+end
+local function r5_26(r0_27, r1_27, r2_27)
+-- line: [0, 0] id: 27
+local r3_27 = math.rad(r1_27)
+local r4_27 = math.cos(r3_27)
+local r5_27 = math.sin(r3_27)
+local r6_27 = r2_27.X - r0_27.X
+local r7_27 = r2_27.Y - r0_27.Y
+return Vector2.new(r4_27 * r6_27 - r5_27 * r7_27 + r0_27.X, r5_27 * r6_27 + r4_27 * r7_27 + r0_27.Y)
+end
+local r6_26 = Vector2.new(r2_26 - r40_0.Size - r40_0.Gap, r3_26)
+local r7_26 = Vector2.new(r2_26 - r40_0.Gap, r3_26)
+local r8_26 = Vector2.new(r2_26 + r40_0.Gap, r3_26)
+local r9_26 = Vector2.new(r2_26 + r40_0.Size + r40_0.Gap, r3_26)
+local r10_26 = Vector2.new(r2_26, r3_26 - r40_0.Size - r40_0.Gap)
+local r11_26 = Vector2.new(r2_26, r3_26 - r40_0.Gap)
+local r12_26 = Vector2.new(r2_26, r3_26 + r40_0.Gap)
+local r13_26 = Vector2.new(r2_26, r3_26 + r40_0.Size + r40_0.Gap)
+r39_0.HorizontalLine1.From = r5_26(r4_26, r40_0.Rotation, r6_26)
+r39_0.HorizontalLine1.To = r5_26(r4_26, r40_0.Rotation, r7_26)
+r39_0.HorizontalLine2.From = r5_26(r4_26, r40_0.Rotation, r8_26)
+r39_0.HorizontalLine2.To = r5_26(r4_26, r40_0.Rotation, r9_26)
+r39_0.VerticalLine1.From = r5_26(r4_26, r40_0.Rotation, r10_26)
+r39_0.VerticalLine1.To = r5_26(r4_26, r40_0.Rotation, r11_26)
+r39_0.VerticalLine2.From = r5_26(r4_26, r40_0.Rotation, r12_26)
+r39_0.VerticalLine2.To = r5_26(r4_26, r40_0.Rotation, r13_26)
+for r17_26, r18_26 in pairs({
+r39_0.HorizontalLine1,
+r39_0.HorizontalLine2,
+r39_0.VerticalLine1,
+r39_0.VerticalLine2
+}) do
+r18_26.Color = r40_0.Color
+r18_26.Thickness = r40_0.Thickness
+r18_26.Visible = r40_0.Visible
+local r19_26 = r40_0.Transparency
+r18_26.Transparency = r19_26
+end
+end
+r39_0.FOVCircle.Position = Vector2.new(r9_0.ViewportSize.X / 2, r9_0.ViewportSize.Y / 2)
+r39_0.FOVCircle.Visible = r39_0.FovVisible
+r39_0.FOVCircle.NumSides = 64
+r39_0.FOVCircle.Radius = r39_0.AimbotFov
+r39_0.FOVCircle.Thickness = 3
+r39_0.FOVCircle.Transparency = 0.5
+r39_0.FOVCircle.Color = Color3.fromRGB(129, 210, 255)
+local r52_0 = Instance.new("ScreenGui", game:GetService("CoreGui"))
+r52_0.ResetOnSpawn = false
+r52_0.ZIndexBehavior = Enum.ZIndexBehavior.Global
+r52_0.Name = "DontWorry404"
+local r53_0 = Instance.new("ScreenGui", game:GetService("CoreGui"))
+r53_0.ResetOnSpawn = false
+r53_0.IgnoreGuiInset = true
+r53_0.ZIndexBehavior = Enum.ZIndexBehavior.Global
+r53_0.Name = "YouShudWorry404"
+local r54_0 = Instance.new("Frame", r53_0)
+r54_0.Name = "TopLine"
+r54_0.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+r54_0.Visible = false
+r54_0.BorderSizePixel = 0
+r54_0.Position = UDim2.new(0, 0, 0, 0)
+r54_0.Size = UDim2.new(1, 0, 0.003, 0)
+r54_0.ZIndex = 9999
+local r55_0 = nil
+local r56_0 = nil
+local r57_0 = Instance.new("BillboardGui")
+local r58_0 = Instance.new("TextLabel", r57_0)
+r57_0.ResetOnSpawn = false
+r57_0.AlwaysOnTop = true
+r57_0.LightInfluence = 0
+r57_0.Size = UDim2.new(1.75, 0, 1.75, 0)
+r58_0.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+r58_0.Text = ""
+r58_0.Size = UDim2.new(0.0001, 0.0001, 0.0001, 0.0001)
+r58_0.BorderSizePixel = 4
+r58_0.BorderColor3 = Color3.new(255, 255, 255)
+r58_0.BorderSizePixel = 0
+r58_0.Font = "GothamSemibold"
+r58_0.TextSize = 0
+r58_0.TextColor3 = Color3.fromRGB(255)
+local r59_0 = Instance.new("Highlight")
+r59_0.Name = "Sigma"
+r59_0.Parent = nil
+if r52_0 then
+r55_0 = Instance.new("TextLabel", r52_0)
+r55_0.Size = UDim2.new(0.3, 0, 0.015, 0)
+r55_0.Position = UDim2.new(0.5, 0, 0.535, 0)
+r55_0.AnchorPoint = Vector2.new(0.5, 0.5)
+r55_0.BackgroundTransparency = 1
+r55_0.TextColor3 = Color3.new(1, 0, 0)
+r55_0.Font = Enum.Font.GothamSemibold
+r55_0.Visible = false
+r55_0.TextScaled = true
+r56_0 = Instance.new("TextLabel", r52_0)
+r56_0.Size = UDim2.new(0.19, 0, 0.03, 0)
+r56_0.Position = UDim2.new(0.5, 0, 0.08, 0)
+r56_0.AnchorPoint = Vector2.new(0.5, 0.5)
+r56_0.BackgroundTransparency = 1
+r56_0.TextColor3 = Color3.fromRGB(255, 255, 255)
+r56_0.Font = Enum.Font.GothamSemibold
+r56_0.Visible = false
+r56_0.TextScaled = true
+else
+warn("Screengui Not Found")
+end
+local function r60_0(r0_266)
+-- line: [0, 0] id: 266
+local r1_266 = workspace.CurrentCamera.CFrame.Position
+local r2_266 = 500
+for r6_266, r7_266 in ipairs(workspace:GetDescendants()) do
+if r7_266:IsA("BasePart") then
+local r8_266 = r7_266.Parent
+if not (r8_266 and r8_266:FindFirstChildOfClass("Humanoid")) and (r1_266 - r7_266.Position).Magnitude <= r2_266 then
+if r0_266 and r7_266.Transparency == 0 then
+r7_266.Transparency = 0.5
+elseif not r0_266 and r7_266.Transparency == 0.5 then
+r7_266.Transparency = 0
+end
+end
+end
+end
+end
+local r61_0 = game:GetService("Lighting")
+function FullBrightness(r0_309)
+-- line: [0, 0] id: 309
+if r0_309 then
+r61_0.Brightness = 10
+r61_0.OutdoorAmbient = Color3.fromRGB(255, 255, 255)
+r61_0.Ambient = Color3.fromRGB(255, 255, 255)
+else
+r61_0.Brightness = 2
+r61_0.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+r61_0.Ambient = Color3.fromRGB(128, 128, 128)
+end
+end
+local r62_0 = 0
+local r63_0 = 0
+local r64_0 = 0
+local r65_0 = Vector3.new(0, 0, 0)
+local function r66_0(r0_40, r1_40)
+-- line: [0, 0] id: 40
+if not r0_40 then
+return
+end
+local r2_40 = r0_40:FindFirstChild("HumanoidRootPart")
+local r3_40 = Vector3.new(r62_0, r63_0, r64_0)
+local r4_40 = r3_40
+if r1_40 then
+r4_40 = r3_40 - r65_0
+r65_0 = r3_40
+end
+local r5_40 = r2_40:FindFirstChild("LeftUpperArm")
+local r6_40 = r2_40:FindFirstChild("RightUpperArm")
+local r7_40 = r2_40:FindFirstChild("Motor6D")
+if r5_40 and r6_40 and r7_40 and r4_40 then
+r5_40.C0 = r5_40.C0 + r4_40
+r6_40.C0 = r6_40.C0 + r4_40
+r7_40.C0 = r7_40.C0 + r4_40
+end
+end
+local function r67_0(r0_292, r1_292)
+-- line: [0, 0] id: 292
+if r1_292 and r0_292 == "Color" then
+for r5_292, r6_292 in pairs(r1_292:GetChildren()) do
+if r6_292.Name == "LeftHand" or r6_292.Name == "LeftLowerArm" or r6_292.Name == "LeftUpperArm" or r6_292.Name == "RightHand" or r6_292.Name == "RightLowerArm" or r6_292.Name == "RightUpperArm" then
+r6_292.Color = r39_0.ArmColor
+end
+end
+elseif r1_292 and r0_292 == "Transparency" then
+for r5_292, r6_292 in pairs(r1_292:GetChildren()) do
+if r6_292.Name == "LeftHand" or r6_292.Name == "LeftLowerArm" or r6_292.Name == "LeftUpperArm" or r6_292.Name == "RightHand" or r6_292.Name == "RightLowerArm" or r6_292.Name == "RightUpperArm" then
+r6_292.Transparency = r39_0.ViewModelTransparency
+end
+end
+end
+end
+local function r68_0(r0_39)
+-- line: [0, 0] id: 39
+if r0_39 then
+for r4_39, r5_39 in pairs(r0_39:GetChildren()) do
+if r5_39.Name ~= "Body Colors" and r5_39.Name ~= "Clothing" and r5_39.Name ~= "Humanoid" and r5_39.Name ~= "ZoomAmount" and r5_39.Name ~= "Item" and r5_39.Name ~= "LeftHand" and r5_39.Name ~= "LeftLowerArm" and r5_39.Name ~= "LeftUpperArm" and r5_39.Name ~= "RightHand" and r5_39.Name ~= "RightLowerArm" and r5_39.Name ~= "RightUpperArm" and r5_39.Name ~= "AimPart" and r5_39.Name ~= "AimPartCanted" and r5_39.Name ~= "FakeCamera" and r5_39.Name ~= "HumanoidRootPart" then
+r5_39:Destroy()
+end
+end
+end
+r67_0("Color", r0_39)
+r67_0("Transparency", r0_39)
+end
+local r69_0 = {}
+function r73_0(r0_32)
+-- line: [0, 0] id: 32
+if r0_32.Name == r8_0.Name then
+return
+end
+if r0_32:IsA("Model") and r39_0.ViewModelChanger or r42_0.SkinChanger or r39_0.InstantEquip then
+local r1_32 = 0
+local r2_32 = nil
+while not r2_32 and r1_32 < 250 do
+r1_32 = r1_32 + 1
+r2_32 = r9_0:FindFirstChild("ViewModel")
+task.wait(0.01)
+end
+if not r2_32 then
+return
+end
+if r42_0.SkinChanger then
+r50_0(r42_0.Skin)
+end
+if r39_0.ViewModelChanger then
+r66_0(r2_32, false)
+r68_0(r2_32)
+end
+if r39_0.InstantEquip then
+while true do
+for r6_32, r7_32 in ipairs(r0_32.Humanoid.Animator:GetPlayingAnimationTracks()) do
+if r7_32.Animation.Name == "Equip" then
+r7_32:AdjustSpeed(15)
+r7_32.TimePosition = r7_32.Length - 0.01
+return
+end
+end
+task.wait(0.001)
+end
+end
+end
+end
+r69_0.Model = game.Workspace.Camera.ChildAdded:Connect(r73_0)
+r0_0("Smoke.Weed By 3ms2/5", "Loading Functions", 2.5)
+local function r70_0(r0_7)
+-- line: [0, 0] id: 7
+if r0_7 == true then
+for r4_7, r5_7 in pairs(workspace.DroppedItems:GetChildren()) do
+if not r5_7:FindFirstChild("Humanoid") and not r5_7:FindFirstChild("BillboardGui") and r5_7.Name == "RPG7" then
+local r6_7 = r57_0:Clone()
+local r7_7 = r58_0:Clone()
+local r8_7 = r5_7:FindFirstChild("ItemProperties")
+if r8_7 then
+r8_7 = r8_7:GetAttribute("Amount") or 1
+else
+r8_7 = 1
+end
+r7_7.Text = r5_7.Name .. " " .. r8_7 .. "X" .. " | Item"
+r7_7.TextColor3 = r39_0.DroppedItemColor
+r7_7.Parent = r6_7
+r7_7.TextSize = r39_0.DroppedItemTextSize
+r6_7.Parent = r5_7
+end
+end
+elseif r0_7 == false then
+for r4_7, r5_7 in pairs(workspace.DroppedItems:GetChildren()) do
+if not r5_7:FindFirstChild("Humanoid") and r5_7:FindFirstChild("BillboardGui") then
+r5_7:FindFirstChild("BillboardGui"):Destroy()
+end
+end
+end
+if r0_7 == "Humanoid" then
+for r4_7, r5_7 in pairs(workspace.DroppedItems:GetChildren()) do
+if r5_7:FindFirstChild("Humanoid") and not r5_7:FindFirstChild("BillboardGui") then
+local r6_7 = r57_0:Clone()
+local r7_7 = r58_0:Clone()
+r7_7.Text = r5_7.Name .. " | Corpse"
+if r5_7.Name == r8_0.Name then
+r7_7.TextColor3 = Color3.fromRGB(255, 102, 0)
+else
+r7_7.TextColor3 = r39_0.CorpseColor
+end
+r7_7.TextSize = r39_0.CorpseTextSize
+r7_7.Parent = r6_7
+r6_7.Parent = r5_7
+end
+end
+elseif r0_7 == "HumanoidRemove" then
+for r4_7, r5_7 in pairs(workspace.DroppedItems:GetChildren()) do
+if r5_7:FindFirstChild("Humanoid") and r5_7:FindFirstChild("BillboardGui") then
+local r6_7 = r5_7:FindFirstChild("BillboardGui")
+if r6_7 then
+r6_7:Destroy()
+end
+end
+end
+end
+end
+function r74_0(r0_272)
+-- line: [0, 0] id: 272
+if r0_272:IsA("BillboardGui") then
+return
+end
+if r0_272:FindFirstChild("Highlight") then
+r0_272:FindFirstChild("Highlight"):Destroy()
+end
+local r1_272 = nil
+for r5_272, r6_272 in pairs(game:GetService("Players"):GetPlayers()) do
+if r6_272.Name == r0_272.Name then
+r1_272 = true
+break
+else
+r1_272 = false
+end
+end
+if r0_272:FindFirstChild("Humanoid") then
+r1_272 = true
+end
+if r1_272 == false and not r0_272:FindFirstChild("BillboardGui") and r39_0.DroppedItemESP then
+task.wait(0.05)
+local r3_272 = r57_0:Clone()
+local r4_272 = r58_0:Clone()
+local r5_272 = r0_272:FindFirstChild("ItemProperties")
+if r5_272 then
+r5_272 = r5_272:GetAttribute("Amount") or 1
+else
+r5_272 = 1
+end
+r4_272.Text = r0_272.Name .. " " .. r5_272 .. "X" .. " | Item"
+r4_272.TextColor3 = r39_0.DroppedItemColor
+r4_272.TextSize = r39_0.DroppedItemTextSize
+r4_272.Parent = r3_272
+r3_272.Parent = r0_272
+elseif r1_272 == true and r39_0.CorpseESP then
+task.wait(0.05)
+local r3_272 = r0_272:FindFirstChild("BillboardGui")
+if r3_272 then
+r3_272:Destroy()
+end
+local r4_272 = r57_0:Clone()
+local r5_272 = r58_0:Clone()
+r5_272.Text = r0_272.Name .. " | Corpse"
+if r0_272.Name == r8_0.Name then
+r5_272.TextColor3 = Color3.fromRGB(255, 102, 0)
+else
+r5_272.TextColor3 = r39_0.CorpseColor
+end
+r5_272.TextSize = r39_0.CorpseTextSize
+r5_272.Parent = r4_272
+r4_272.Parent = r0_272
+end
+end
+r69_0.DroppedItems = game.Workspace.DroppedItems.ChildAdded:Connect(r74_0)
+local function r71_0(r0_28)
+-- line: [0, 0] id: 28
+for r4_28, r5_28 in pairs(workspace.NoCollision.ExitLocations:GetChildren()) do
+(function(r0_29)
+-- line: [0, 0] id: 29
+local r1_29 = r5_28:FindFirstChild("ExitLocation")
+if r0_29 and not r1_29 then
+local r2_29 = r57_0:Clone()
+r2_29.Name = "ExitLocation"
+local r3_29 = r58_0:Clone()
+r3_29.Text = r5_28.Name .. " | Extract 0 Studs"
+r3_29.TextColor3 = r39_0.ExitColor
+r3_29.TextSize = r39_0.ExitTextSize
+r3_29.Parent = r2_29
+r2_29.Parent = r5_28
+local r4_29 = nil
+local r5_29 = false
+while r5_29 == false do
+if not r4_29 then
+r4_29 = workspace.NoCollision.ExitLocations.ChildRemoved:Connect(function(r0_30)
+-- line: [0, 0] id: 30
+if r0_30 == r5_28 then
+r5_29 = true
+end
+if not r5_28:FindFirstChild("ExitLocation") then
+r5_29 = true
+end
+if not r39_0.ExitESP then
+r5_29 = true
+end
+if r5_29 and r4_29 then
+r4_29:Disconnect()
+end
+end)
+end
+if r8_0.Character then
+HumanoidRootPart = r8_0.Character:FindFirstChild("HumanoidRootPart")
+end
+if HumanoidRootPart then
+r3_29.Text = r5_28.Name .. " | Extract " .. math.floor((HumanoidRootPart.Position - r5_28.CFrame.Position).Magnitude) .. " Studs"
+end
+task.wait(0.05)
+end
+-- close: r2_29
+elseif not r0_29 and r1_29 then
+r1_29:Destroy()
+end
+end)(r0_28)
+-- close: r4_28
+end
+end
+function r75_0(r0_2)
+-- line: [0, 0] id: 2
+if r0_2:IsA("BillboardGui") then
+return
+end
+if r39_0.ExitESP then
+r71_0(true)
+end
+end
+r69_0.Exit = workspace.NoCollision.ExitLocations.ChildAdded:Connect(r75_0)
+local function r72_0(r0_262)
+-- line: [0, 0] id: 262
+if not workspace:FindFirstChild("QuestItems") then
+return
+end
+if r0_262 == true then
+for r4_262, r5_262 in pairs(workspace.QuestItems:GetChildren()) do
+local r6_262 = r5_262:GetAttribute("Hidden")
+if not r5_262:FindFirstChild("BillboardGui") and r6_262 == false then
+local r7_262 = r57_0:Clone()
+local r8_262 = r58_0:Clone()
+r8_262.Text = r5_262.Name .. " | Quest"
+r8_262.TextColor3 = r39_0.QuestESPColor
+r8_262.TextSize = r39_0.QuestTextSize
+r8_262.Parent = r7_262
+r7_262.Parent = r5_262
+end
+end
+else
+for r4_262, r5_262 in pairs(workspace.QuestItems:GetChildren()) do
+local r6_262 = r5_262:FindFirstChild("BillboardGui")
+if r6_262 then
+r6_262:Destroy()
+end
+end
+end
+end
+function r75_0(r0_285)
+-- line: [0, 0] id: 285
+if r39_0.QuestESP and not r0_285:FindFirstChild("BillboardGui") and r0_285:GetAttribute("Hidden") == false then
+local r3_285 = r57_0:Clone()
+local r4_285 = r58_0:Clone()
+r4_285.Text = r0_285.Name .. " | Quest"
+r4_285.TextColor3 = r39_0.QuestESPColor
+r4_285.TextSize = r39_0.QuestTextSize
+r4_285.Parent = r3_285
+r3_285.Parent = r0_285
+end
+end
+workspace.QuestItems.ChildAdded:Connect(r75_0)
+function r73_0(r0_20)
+-- line: [0, 0] id: 20
+if r0_20 == true then
+for r4_20, r5_20 in pairs(workspace.AiZones:GetChildren()) do
+for r9_20, r10_20 in pairs(r5_20:GetChildren()) do
+if r10_20:IsA("Model") and r10_20:FindFirstChild("Humanoid") and 0 < r10_20.Humanoid.Health then
+if r39_0.AINameTag and not r10_20:FindFirstChild("BillboardGui") then
+local r11_20 = r57_0:Clone()
+r11_20.StudsOffset = Vector3.new(0, 1.5, 0)
+local r12_20 = r58_0:Clone()
+r12_20.Text = r10_20.Name .. " | NPC"
+r12_20.TextColor3 = r39_0.NameTagColor
+r12_20.TextSize = r39_0.AiNameTagTextSize
+r12_20.Parent = r11_20
+r11_20.Parent = r10_20
+end
+if r39_0.AIHighlight and not r10_20:FindFirstChild("Highlight") and r10_20:FindFirstChild("Humanoid") and 0 < r10_20.Humanoid.Health then
+local r11_20 = r59_0:Clone()
+r11_20.Parent = r10_20
+r11_20.FillColor = r39_0.HighlightColor
+r11_20.OutlineColor = r39_0.HighlightColor
+end
+end
+end
+end
+else
+for r4_20, r5_20 in pairs(workspace.AiZones:GetChildren()) do
+for r9_20, r10_20 in pairs(r5_20:GetChildren()) do
+if r0_20 == "NameTag" then
+local r11_20 = r10_20:FindFirstChild("BillboardGui")
+if r11_20 then
+r11_20:Destroy()
+end
+end
+if r0_20 == "Highlight" then
+local r11_20 = r10_20:FindFirstChild("Highlight")
+if r11_20 then
+r11_20:Destroy()
+end
+end
+end
+end
+end
+end
+for r77_0, r78_0 in pairs(workspace.AiZones:GetChildren()) do
+function r81_0(r0_31)
+-- line: [0, 0] id: 31
+if r0_31:IsA("BillboardGui") or r0_31:IsA("Highlight") then
+return
+end
+if not r0_31:FindFirstChild("BillboardGui") and r39_0.AINameTag then
+task.wait(1.5)
+if r0_31:FindFirstChild("Humanoid") then
+local r1_31 = r57_0:Clone()
+r1_31.StudsOffset = Vector3.new(0, 1.75, 0)
+local r2_31 = r58_0:Clone()
+r2_31.Text = r0_31.Name .. " | NPC"
+r2_31.TextColor3 = r39_0.NameTagColor
+r2_31.TextSize = r39_0.AiNameTagTextSize
+r2_31.Parent = r1_31
+r1_31.Parent = r0_31
+end
+end
+if not r0_31:FindFirstChild("Highlight") and r39_0.AIHighlight then
+task.wait(2.5)
+if r0_31:FindFirstChild("Humanoid") then
+local r1_31 = r59_0:Clone()
+r1_31.Parent = r0_31
+r1_31.FillColor = r39_0.HighlightColor
+r1_31.OutlineColor = r39_0.HighlightColor
+end
+end
+end
+r78_0.ChildAdded:Connect(r81_0)
+end
+function r74_0(r0_43)
+-- line: [0, 0] id: 43
+local r1_43 = nil -- notice: implicit variable refs by block#[1, 5]
+if r0_43 == true then
+function r1_43(r0_45)
+-- line: [0, 0] id: 45
+if r0_45:IsA("Folder") then
+for r4_45, r5_45 in pairs(r0_45:GetChildren()) do
+if r5_45:IsA("Folder") then
+r1_43(r5_45)
+end
+end
+elseif not r0_45:FindFirstChild("BillboardGui") and r41_0[r0_45.Name] and r39_0.ContainerESP then
+local r1_45 = r57_0:Clone()
+local r2_45 = r58_0:Clone()
+r2_45.Text = r0_45.Name .. " | Container"
+r2_45.TextSize = r39_0.ContainerTextSize
+r2_45.TextColor3 = r39_0.ContainerColor
+r2_45.Parent = r1_45
+r1_45.Parent = r0_45
+end
+end
+for r5_43, r6_43 in pairs(workspace.Containers:GetChildren()) do
+r1_43(r6_43)
+end
+-- close: r1_43
+else
+function r1_43(r0_44)
+-- line: [0, 0] id: 44
+if r0_44:IsA("Folder") then
+for r4_44, r5_44 in pairs(r0_44:GetChildren()) do
+if r5_44:IsA("Folder") then
+r1_43(r5_44)
+end
+end
+elseif r39_0.ContainerESP and r0_44:FindFirstChild("BillboardGui") and not r41_0[r0_44.Name] then
+r0_44:FindFirstChild("BillboardGui"):Destroy()
+elseif (not r39_0.ContainerESP or r0_43 == "Reload") and r0_44:FindFirstChild("BillboardGui") then
+r0_44:FindFirstChild("BillboardGui"):Destroy()
+end
+end
+for r5_43, r6_43 in pairs(workspace.Containers:GetChildren()) do
+r1_43(r6_43)
+end
+-- close: r1_43
+end
+end
+function r78_0(r0_22)
+-- line: [0, 0] id: 22
+if r0_22:IsA("BillboardGui") then
+return
+end
+if not r0_22:FindFirstChild("BillboardGui") and r41_0[r0_22.Name] and r39_0.ContainerESP then
+local r1_22 = r57_0:Clone()
+local r2_22 = r58_0:Clone()
+r2_22.Text = r0_22.Name .. " | Container"
+r2_22.TextSize = r39_0.ContainerTextSize
+r2_22.TextColor3 = r39_0.ContainerColor
+r2_22.Parent = r1_22
+r1_22.Parent = r0_22
+end
+end
+r69_0.Container = workspace.Containers.ChildAdded:Connect(r78_0)
+function r75_0(r0_286)
+-- line: [0, 0] id: 286
+if r0_286 == true then
+for r4_286, r5_286 in pairs(workspace.Vehicles:GetChildren()) do
+if not r5_286:FindFirstChild("BillboardGui") then
+local r6_286 = r57_0:Clone()
+local r7_286 = r58_0:Clone()
+r7_286.Text = r5_286.Name .. " | Vehicle"
+r7_286.TextColor3 = r39_0.VehicleColor
+r7_286.TextSize = r39_0.VehicleTextSize
+r7_286.Parent = r6_286
+r6_286.Parent = r5_286
+end
+end
+else
+for r4_286, r5_286 in pairs(workspace.Vehicles:GetChildren()) do
+if r5_286:FindFirstChild("BillboardGui") then
+local r6_286 = r5_286:FindFirstChild("BillboardGui")
+if r6_286 then
+r6_286:Destroy()
+end
+end
+end
+end
+end
+function r79_0(r0_290)
+-- line: [0, 0] id: 290
+if r0_290:IsA("BillboardGui") then
+return
+end
+if not r0_290:FindFirstChild("BillboardGui") and r39_0.VehicleTag then
+task.wait(0.75)
+local r1_290 = r57_0:Clone()
+local r2_290 = r58_0:Clone()
+r2_290.Text = r0_290.Name .. " | Vehicle"
+r2_290.TextColor3 = r39_0.VehicleColor
+r2_290.TextSize = r39_0.VehicleTextSize
+r2_290.Parent = r1_290
+r1_290.Parent = ExitBlock
+end
+end
+r69_0.VehicleCon = workspace.Vehicles.ChildAdded:Connect(r79_0)
+local r76_0 = {}
+local function r77_0(r0_267)
+-- line: [0, 0] id: 267
+if r0_267 == true then
+for r4_267, r5_267 in pairs(game.ReplicatedStorage.AmmoTypes:GetChildren()) do
+if not r76_0[r5_267] then
+r76_0[r5_267] = r5_267:GetAttribute("RecoilStrength")
+end
+r5_267:SetAttribute("RecoilStrength", 0)
+end
+else
+for r4_267, r5_267 in pairs(game.ReplicatedStorage.AmmoTypes:GetChildren()) do
+if r76_0[r5_267] then
+r5_267:SetAttribute("RecoilStrength", r76_0[r5_267])
+end
+end
+end
+end
+r78_0 = {}
+function NoSpread(r0_3)
+-- line: [0, 0] id: 3
+if r0_3 == true then
+for r4_3, r5_3 in pairs(game.ReplicatedStorage.AmmoTypes:GetChildren()) do
+if not r78_0[r5_3] then
+r78_0[r5_3] = {
+AccuracyDeviation = r5_3:GetAttribute("AccuracyDeviation"),
+ProjectileDrop = r5_3:GetAttribute("ProjectileDrop"),
+}
+end
+if r5_3:GetAttribute("AccuracyDeviation") ~= nil then
+r5_3:SetAttribute("AccuracyDeviation", 0)
+end
+r5_3:SetAttribute("ProjectileDrop", 0)
+end
+else
+for r4_3, r5_3 in pairs(game.ReplicatedStorage.AmmoTypes:GetChildren()) do
+if r78_0[r5_3] then
+local r6_3 = r78_0[r5_3]
+if r6_3.AccuracyDeviation ~= nil then
+r5_3:SetAttribute("AccuracyDeviation", r6_3.AccuracyDeviation)
+end
+r5_3:SetAttribute("ProjectileDrop", r6_3.ProjectileDrop)
+end
+end
+end
+end
+function r79_0(r0_42)
+-- line: [0, 0] id: 42
+local r1_42 = game.ReplicatedStorage.Players:FindFirstChild(r8_0.Name)
+if r1_42 and r1_42:FindFirstChild("Settings") then
+local r2_42 = r1_42.Settings.GameplaySettings
+if r0_42 == "Fov" then
+return 90
+end
+r2_42:SetAttribute("DefaultFOV", r0_42)
+end
+end
+local r80_0 = {}
+local function r81_0(r0_308, r1_308)
+-- line: [0, 0] id: 308
+if r0_308 == "Visor" or r0_308 == "GasMask" then
+local r2_308 = r8_0.PlayerGui:FindFirstChild("NoInsetGui")
+if r2_308 then
+local r3_308 = r2_308.MainFrame:FindFirstChild("ScreenEffects")
+if r3_308 and r0_308 == "Visor" and r3_308 then
+if not r80_0.Visor then
+r80_0.Visor = r3_308.Visor.Visible
+r80_0.Mask = r3_308.Mask.Visible
+r80_0.HelmetMask = r3_308.HelmetMask.Visible
+r80_0.Flashbang = r3_308.Flashbang.Visible
+end
+if r1_308 == true then
+r3_308.Visor.Visible = false
+r3_308.HelmetMask.Visible = false
+r3_308.Mask.Visible = false
+r3_308.Flashbang.Visible = false
+elseif r80_0.Visor then
+r3_308.Visor.Visible = r80_0.Visor
+r3_308.Mask.Visible = r80_0.Mask
+r3_308.HelmetMask.Visible = r80_0.HelmetMask
+r3_308.Flashbang.Visible = r80_0.Flashbang
+end
+elseif r3_308 then
+local r4_308 = r3_308.Mask:FindFirstChild("GP5")
+if r4_308 then
+local r5_308 = r4_308.GasMask
+if r5_308 and r5_308.Playing then
+r5_308.Playing = false
+end
+end
+end
+end
+elseif r0_308 == "InventoryBlur" then
+local r2_308 = game:FindFirstChild("Lighting")
+if r2_308 and r2_308:FindFirstChild("InventoryBlur") then
+r2_308.InventoryBlur.Size = 0
+end
+elseif r0_308 == "Repair" then
+local r2_308 = r9_0:FindFirstChild("ViewModel")
+if r2_308 and r2_308:FindFirstChild("Item") and r2_308.Item:FindFirstChild("Attachments") and r2_308.Item.Attachments:FindFirstChild("Sight") and r2_308.Item.Attachments.Sight:FindFirstChild("Repair") and r2_308.Item.Attachments.Sight.Reapir.Reticle:FindFirstChild("PrismScopeGui") then
+r2_308.Item.Attachments.Sight.Reapir.Reticle.PrismScopeGui.Sight.StaticLCD.Visible = not r1_308
+end
+elseif r0_308 == "Inventory" then
+local r2_308 = r8_0.PlayerGui:FindFirstChild("MainGui")
+local r3_308 = false
+if r2_308 then
+local r4_308 = r2_308:FindFirstChild("MainFrame")
+if r4_308 then
+return r4_308:FindFirstChild("BackpackFrame").Visible
+end
+end
+return false
+end
+end
+local r82_0 = Instance.new("Highlight")
+local function r83_0(r0_15, r1_15)
+-- line: [0, 0] id: 15
+if r0_15 == r8_0 and r39_0.Loaded or r0_15.Name == "MI24V" then
+return
+end
+local function r2_15(r0_16, r1_16)
+-- line: [0, 0] id: 16
+local r2_16 = r0_16:FindFirstChild("HighlightVisible")
+local r3_16 = r0_16:FindFirstChild("HighlightHidden")
+if r1_16 then
+if r39_0.VisibleChams and not r2_16 then
+local r4_16 = r82_0:Clone()
+r4_16.Name = "HighlightVisible"
+r4_16.FillColor = r39_0.ChamColor
+r4_16.OutlineColor = r39_0.ChamColor
+r4_16.DepthMode = Enum.HighlightDepthMode.Occluded
+r4_16.Parent = r0_16
+end
+if r39_0.HiddenChams and not r3_16 then
+local r4_16 = r82_0:Clone()
+r4_16.Name = "HighlightHidden"
+r4_16.FillColor = r39_0.ChamColor
+r4_16.OutlineColor = r39_0.ChamColor
+r4_16.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+r4_16.Parent = r0_16
+end
+else
+if r2_16 then
+r2_16:Destroy()
+end
+if r3_16 then
+r3_16:Destroy()
+end
+end
+end
+if r0_15.Character then
+r2_15(r0_15.Character, r1_15)
+end
+end
+local r84_0 = {}
+local function r85_0(r0_289)
+-- line: [0, 0] id: 289
+local r2_289 = r9_0:FindFirstChild("ViewModel")
+local r1_289 = nil -- notice: implicit variable refs by block#[4, 11, 13, 14]
+if r2_289 then
+local r3_289 = r2_289:FindFirstChild("Item")
+local r4_289 = r3_289:FindFirstChild("Attachments")
+local r5_289 = r3_289.Attachments:FindFirstChild("Front")
+if r5_289 and r5_289:FindFirstChild("Barrel") then
+r1_289 = r5_289:FindFirstChild("Barrel")
+end
+if not r1_289 and r3_289 and r3_289:FindFirstChild("Attachments") then
+local r6_289 = r3_289.Attachments:FindFirstChild("Front")
+if r6_289 then
+local r7_289 = r6_289:GetChildren()[1]
+if r7_289 then
+GunBarrel = r7_289:FindFirstChild("Barrel")
+if GunBarrel then
+r1_289 = GunBarrel
+end
+end
+end
+end
+end
+if not r1_289 then
+return
+end
+local r3_289 = Instance.new("Part")
+r3_289.Anchored = true
+r3_289.CanCollide = false
+r3_289.CanQuery = false
+r3_289.Transparency = 1
+r3_289.Parent = Workspace
+r3_289.Position = r1_289.Position
+r3_289.Name = "BulletStart"
+local r4_289 = Instance.new("Part")
+r4_289.Anchored = true
+r4_289.CanCollide = false
+r4_289.CanQuery = false
+r4_289.Transparency = 1
+r4_289.Parent = Workspace
+r4_289.Position = r1_289.Position
+r4_289.Name = "BulletEnd"
+local r5_289 = nil
+if r0_289 == false then
+r5_289 = workspace:Raycast(r1_289.Position, r1_289.CFrame.LookVector * 3500)
+else
+r5_289 = r0_289
+end
+if r5_289 and r0_289 == false then
+r4_289.Position = r5_289.Position
+else
+r4_289.Position = r5_289
+end
+local r6_289 = Instance.new("Beam")
+local r7_289 = Instance.new("Attachment", r3_289)
+local r8_289 = Instance.new("Attachment", r4_289)
+r7_289.Name = "BulletAttachment"
+r8_289.Name = "BulletAttachment1"
+r6_289.Attachment0 = r7_289
+r6_289.Attachment1 = r8_289
+r6_289.Color = ColorSequence.new(r39_0.BulletTracerColor)
+r6_289.Width0 = 0.3
+r6_289.Width1 = 0.3
+r6_289.Brightness = 0.85
+r6_289.Transparency = NumberSequence.new(0)
+r6_289.LightEmission = 0
+r6_289.LightInfluence = 0
+r6_289.FaceCamera = true
+r6_289.TextureSpeed = 1.5
+r6_289.TextureLength = 1
+r6_289.Texture = r39_0.BulletTracerTexture
+r6_289.Parent = Workspace
+r6_289.Name = "BulletBeam"
+task.wait(r39_0.BulletTracerDelay)
+r6_289:Destroy()
+r3_289:Destroy()
+r4_289:Destroy()
+end
+local r86_0 = {}
+local r87_0 = {}
+local function r88_0()
+-- line: [0, 0] id: 284
+for r3_284, r4_284 in ipairs(r7_0:GetPlayers()) do
+Target = r11_0.Players:FindFirstChild(r4_284.Name)
+if r4_284 ~= r8_0 and Target and not r86_0[r4_284.Name] then
+if not r87_0[r4_284.Name] then
+r87_0[r4_284.Name] = {}
+end
+if r39_0.ItemFinderList then
+local r5_284 = Target:FindFirstChild("Inventory")
+if r5_284 then
+for r9_284, r10_284 in pairs(r5_284:GetChildren()) do
+if r10_284:GetAttribute("Slot"):find("Clothing") then
+local r12_284 = r10_284:FindFirstChild("Inventory")
+if r12_284 then
+for r16_284, r17_284 in pairs(r12_284:GetChildren()) do
+if r39_0.ItemFinderList[r17_284.Name] and not r87_0[r4_284.Name][r17_284.Name] then
+r0_0("Item | Finder", "Player: " .. r4_284.Name .. " Has an: " .. r17_284.Name, 5)
+r25_0.Special[r4_284.Name] = true
+r86_0[r4_284.Name] = true
+r87_0[r4_284.Name][r17_284.Name] = true
+end
+end
+end
+end
+end
+end
+end
+end
+end
+end
+local r89_0 = 90
+task.spawn(function()
+-- line: [0, 0] id: 56
+r0_0("Smoke.Weed 3/5", "Creating UI", 2.5)
+local r1_56 = loadstring(game:HttpGet("https://lirp.mrbrainas.workers.dev/Library", true))().new("Smoke.Weed By 3ms| Project Delta | 2025/11/12 | discord.gg/8RrWuEabnc", "ProjectDelta")
+local r2_56 = r1_56.new_tab("rbxassetid://4483345998")
+local r3_56 = r1_56.new_tab("http://www.roblox.com/asset/?id=125745863213844")
+local r4_56 = r1_56.new_tab("http://www.roblox.com/asset/?id=108878875067063")
+local r5_56 = r1_56.new_tab("http://www.roblox.com/asset/?id=123050846635735")
+local r6_56 = r1_56.new_tab("http://www.roblox.com/asset/?id=79529419358191")
+local r7_56 = r2_56.new_section("AIMBOT")
+local r8_56 = r2_56.new_section("ESP")
+local r9_56 = r3_56.new_section("WORLD")
+local r10_56 = r3_56.new_section("PLAYER")
+local r11_56 = r4_56.new_section("EXTRA")
+local r12_56 = r5_56.new_section("SETTINGS")
+local r13_56 = r6_56.new_section("SERVER")
+local r14_56 = r7_56.new_sector("AIMBOT", "Left")
+local r15_56 = r7_56.new_sector("AIMBOT TOGGLES", "Right")
+local r16_56 = r7_56.new_sector("GUN MODS", "Right")
+local r17_56 = r8_56.new_sector("PLAYER ESP", "Left")
+local r18_56 = r8_56.new_sector("OTHER ESP", "Right")
+local r19_56 = r8_56.new_sector("VISUAL", "Left")
+local r20_56 = r9_56.new_sector("WORLD", "Left")
+local r21_56 = r12_56.new_sector("CONFIG", "Left")
+local r22_56 = r12_56.new_sector("CHEAT", "Left")
+local r23_56 = r10_56.new_sector("ZOOM", "Right")
+local r24_56 = r10_56.new_sector("PLAYER", "Left")
+local r25_56 = r10_56.new_sector("PLAYER VIEWMODEL", "Right")
+local r26_56 = r10_56.new_sector("Anti Aim", "Right")
+local r27_56 = r8_56.new_sector("BOSS INFORMATION", "Left")
+local r28_56 = r9_56.new_sector("CLOUD CHANGER", "Right")
+local r29_56 = r9_56.new_sector("AMBIENT CHANGER", "Right")
+local r30_56 = r9_56.new_sector("TIME CHANGER", "Left")
+local r31_56 = r12_56.new_sector("CROSSHAIR", "Right")
+local r32_56 = r12_56.new_sector("THEMES", "Left")
+local r33_56 = r12_56.new_sector("CILENT", "Left")
+local r34_56 = r12_56.new_sector("NPC", "Right")
+local r35_56 = r10_56.new_sector("Mod Detector", "Left")
+local r36_56 = r11_56.new_sector("Skin Changer", "Right")
+local r37_56 = r11_56.new_sector("Warning Indicators", "Right")
+local r38_56 = r11_56.new_sector("CUSTOM HIT SOUND", "Left")
+local r39_56 = r11_56.new_sector("ITEM FINDER", "Left")
+local r40_56 = r11_56.new_sector("SOUNDS", "Left")
+local r41_56 = r12_56.new_sector("KEYBINDS", "Left")
+local r42_56 = r13_56.new_sector("SERVER FILTER", "Left")
+local r43_56 = r13_56.new_sector("REJOIN SERVER", "Right")
+if not r39_0.Lobby then
+local r44_56 = r42_56.element("Button", " Only Available In Lobby!", false, function(r0_217)
+-- line: [0, 0] id: 217
+r0_0("", "This helps you find servers easier")
+end)
+end
+r14_56.element("Toggle", "Aimbot", false, function(r0_106)
+-- line: [0, 0] id: 106
+r39_0.MasterAimbot = r0_106.Toggle
+r27_0.UpdateKeybinds("Aimbot", "None", r39_0.MasterAimbot, r39_0.AimbotEnabled)
+end):add_keybind("Hold", function(r0_181)
+-- line: [0, 0] id: 181
+if r0_181.Active and r39_0.MasterAimbot then
+r39_0.LastTarget = nil
+r39_0.AimbotEnabled = true
+else
+r39_0.AimbotEnabled = false
+r39_0.LastTarget = nil
+end
+r27_0.UpdateKeybinds("Aimbot", r0_181.Key, r39_0.MasterAimbot, r39_0.AimbotEnabled)
+end)
+local r45_56 = r14_56.element("Toggle", "Target AI", false, function(r0_161)
+-- line: [0, 0] id: 161
+r39_0.AimbotTargetAi = r0_161.Toggle
+end)
+local r46_56 = r14_56.element("Toggle", "TARGET PLAYERS", false, function(r0_112)
+-- line: [0, 0] id: 112
+r39_0.AimbotPlayer = r0_112.Toggle
+end)
+local r47_56 = r14_56.element("Toggle", "PERFECT SILENT", false, function(r0_186)
+-- line: [0, 0] id: 186
+r39_0.PerfectSilent = r0_186.Toggle
+end)
+local r48_56 = r14_56.element("Toggle", "Resolver", false, function(r0_229)
+-- line: [0, 0] id: 229
+r39_0.Resolver = r0_229.Toggle
+end)
+local r49_56 = r14_56.element("Dropdown", "AIMBOT MODE", {
+options = {
+"Lock",
+"Silent"
+},
+}, function(r0_208)
+-- line: [0, 0] id: 208
+if r0_208.Dropdown and r0_208.Dropdown == "SILENT" then
+r39_0.SilentAimbot = true
+elseif r0_208.Dropdown then
+r39_0.SilentAimbot = false
+end
+end)
+local r50_56 = r14_56.element("Dropdown", "Aimbot Aim Part", {
+options = {
+"Head",
+"FaceHitBox",
+"HeadTopHitBox",
+"UpperTorso",
+"LowerTorso",
+"LeftUpperArm",
+"LeftLowerArm",
+"LeftHand",
+"RightUpperArm",
+"RightLowerArm",
+"RightHand",
+"LeftUpperLeg",
+"LeftLowerLeg",
+"LeftFoot",
+"RightUpperLeg",
+"RightLowerLeg",
+"RightFoot",
+nil
+},
+}, function(r0_249)
+-- line: [0, 0] id: 249
+r39_0.AimPart = r0_249.Dropdown
+end)
+local r51_56 = r14_56.element("Slider", "Aimbot Smoothnes", {
+default = {
+min = 1,
+max = 50,
+default = 1,
+},
+}, function(r0_71)
+-- line: [0, 0] id: 71
+r39_0.AimbotSmoothness = r0_71.Slider
+end)
+local r52_56 = r14_56.element("Toggle", "Randomize Aim Part - Silent, Instant Hit", false, function(r0_80)
+-- line: [0, 0] id: 80
+r39_0.AimbotRandomizeHitPart = r0_80.Toggle
+end)
+local r53_56 = r14_56.element("Toggle", "Target Nearest Aim Part", false, function(r0_189)
+-- line: [0, 0] id: 189
+if r39_0.AimbotRandomizeHitPart then
+r0_0("Smoke.Weed Aimbot", "This won\'t work with Randomize Aim Part because it will overwrite the Aim part", 1.5)
+end
+r39_0.AimbotNearestPartToCursor = r0_189.Toggle
+end)
+local r54_56 = r14_56.element("Slider", "SILENT AIM - HIT CHANCE", {
+default = {
+min = 0,
+max = 100,
+default = 100,
+},
+}, function(r0_108)
+-- line: [0, 0] id: 108
+r39_0.SilentHitChance = r0_108.Slider
+end)
+r14_56.element("Toggle", "AIMBOT TRACER", false, function(r0_120)
+-- line: [0, 0] id: 120
+r39_0.AimbotTracer = r0_120.Toggle
+end):add_color({
+Color = Color3.fromRGB(129, 210, 255),
+}, nil, function(r0_81)
+-- line: [0, 0] id: 81
+r39_0.AimbotTracerColor = r0_81.Color
+end)
+r14_56.element("Toggle", "AIMBOT FOV", false, function(r0_61)
+-- line: [0, 0] id: 61
+r39_0.FovVisible = r0_61.Toggle
+end):add_color({
+Color = Color3.fromRGB(129, 210, 255),
+}, nil, function(r0_164)
+-- line: [0, 0] id: 164
+r39_0.FOVCircle.Color = r0_164.Color
+end)
+local r57_56 = r14_56.element("Toggle", "DYNAMIC AIMBOT FOV", false, function(r0_72)
+-- line: [0, 0] id: 72
+r39_0.DynamicFov = r0_72.Toggle
+end)
+local r58_56 = r14_56.element("Slider", "FOV RADIUS", {
+default = {
+min = 1,
+max = 720,
+default = 100,
+},
+}, function(r0_131)
+-- line: [0, 0] id: 131
+r39_0.AimbotFov = r0_131.Slider
+r39_0.ActualAimbotFov = r39_0.AimbotFov
+r39_0.FOVCircle.Radius = r0_131.Slider
+end)
+local r59_56 = r14_56.element("Slider", "FOV THICKNESS", {
+default = {
+min = 1,
+max = 25,
+default = 3,
+},
+}, function(r0_129)
+-- line: [0, 0] id: 129
+r39_0.FOVCircle.Thickness = r0_129.Slider
+end)
+local r60_56 = r14_56.element("Slider", "FOV TRANSPARENCY", {
+default = {
+min = 0,
+max = 100,
+default = 50,
+},
+}, function(r0_205)
+-- line: [0, 0] id: 205
+r39_0.FOVCircle.Transparency = r0_205.Slider / 100
+end)
+r15_56.element("Toggle", "SHOW AIMBOT TARGET", false, function(r0_212)
+-- line: [0, 0] id: 212
+r39_0.ShowTarget = r0_212.Toggle
+end):add_color({
+Color = Color3.new(1, 0, 0),
+}, nil, function(r0_173)
+-- line: [0, 0] id: 173
+r55_0.TextColor3 = r0_173.Color
+end)
+local r62_56 = r15_56.element("Toggle", "DISPLAY AIMBOT TARGET VISIBLLITY STATUS", false, function(r0_254)
+-- line: [0, 0] id: 254
+r39_0.ShowTargetVisibleState = r0_254.Toggle
+end)
+local r63_56 = r15_56.element("Toggle", "AIMBOT PREDICTION", false, function(r0_250)
+-- line: [0, 0] id: 250
+r39_0.Prediction = r0_250.Toggle
+end)
+local r64_56 = r15_56.element("Toggle", "AUTO SHOOT ", false, function(r0_107)
+-- line: [0, 0] id: 107
+r39_0.AutoShoot = r0_107.Toggle
+end)
+local r65_56 = r15_56.element("Dropdown", "AUTO SHOOT Mode", {
+options = {
+"Regular",
+"Instant Hit - This Requires Silent"
+},
+}, function(r0_259)
+-- line: [0, 0] id: 259
+if r0_259.Dropdown == "REGULAR" then
+r39_0.AutoShootType = "REGULAR"
+else
+r39_0.AutoShootType = "INSTANT"
+end
+end)
+local r66_56 = r15_56.element("Toggle", "FREEZE TARGET (Players Only)", false, function(r0_256)
+-- line: [0, 0] id: 256
+r39_0.FreezeTarget = r0_256.Toggle
+end)
+local r67_56 = r15_56.element("Toggle", "WALL CHECK", false, function(r0_248)
+-- line: [0, 0] id: 248
+r39_0.WallCheck = r0_248.Toggle
+end)
+local r68_56 = r15_56.element("Toggle", "TEAM CHECK", false, function(r0_66)
+-- line: [0, 0] id: 66
+r39_0.TeamCheck = r0_66.Toggle
+end)
+local r69_56 = r15_56.element("Toggle", "CUM AIMBOT Target", false, function(r0_230)
+-- line: [0, 0] id: 230
+r39_0.StickyAim = r0_230.Toggle
+end)
+local r70_56 = r16_56.element("Toggle", "NO RECOIL | INSTANT MOSIN", false, function(r0_228)
+-- line: [0, 0] id: 228
+r77_0(r0_228.Toggle)
+end)
+local r71_56 = r16_56.element("Toggle", "NOSPREAD", false, function(r0_114)
+-- line: [0, 0] id: 114
+NoSpread(r0_114.Toggle)
+end)
+local r72_56 = r16_56.element("Toggle", "INSTANT EQUIP", false, function(r0_76)
+-- line: [0, 0] id: 76
+r39_0.InstantEquip = r0_76.Toggle
+end)
+r16_56.element("Toggle", "BULLET TRACERS", false, function(r0_75)
+-- line: [0, 0] id: 75
+r39_0.BulletTracer = r0_75.Toggle
+end):add_color({
+Color = Color3.fromRGB(255, 255, 255),
+}, nil, function(r0_140)
+-- line: [0, 0] id: 140
+r39_0.BulletTracerColor = r0_140.Color
+end)
+local r74_56 = r16_56.element("Slider", "BULLET TRACER DESPAWN DELAY", {
+default = {
+min = 5,
+max = 100,
+default = 50,
+},
+}, function(r0_73)
+-- line: [0, 0] id: 73
+r39_0.BulletTracerDelay = r0_73.Slider / 100
+end)
+local r75_56 = r16_56.element("Dropdown", "BULLET TRACER TEXTURE", {
+options = {
+"Light",
+"Lightning",
+"Tiny Lightning",
+"Wave",
+"Beam",
+"Surge"
+},
+}, function(r0_177)
+-- line: [0, 0] id: 177
+local r1_177 = r39_0.BulletTracerTextures[r0_177.Dropdown]
+if r1_177 then
+r39_0.BulletTracerTexture = r1_177
+end
+end)
+local r76_56 = workspace.Camera.DescendantAdded:Connect(function(r0_236)
+-- line: [0, 0] id: 236
+if r39_0.BulletTracer and r0_236.Name == "SMOKE" or r0_236.Name == "SmokeLittle" then
+r85_0(false)
+end
+end)
+r16_56.element("Toggle", "Instant Hit - REQUIRES KEYBIND", false, function(r0_209)
+-- line: [0, 0] id: 209
+r39_0.InstantHit = r0_209.Toggle
+r27_0.UpdateKeybinds("Instant Hit", "None", r39_0.InstantHit, r39_0.InstantHitActive)
+end):add_keybind("Hold", function(r0_64)
+-- line: [0, 0] id: 64
+if r0_64.Active and r39_0.InstantHit then
+r39_0.InstantHitActive = true
+else
+r39_0.InstantHitActive = false
+end
+r27_0.UpdateKeybinds("Instant Hit", r0_64.Key, r39_0.InstantHit, r39_0.InstantHitActive)
+end)
+local r78_56 = r16_56.element("Slider", "INSTANT HIT - SHOOT DELAY", {
+default = {
+min = 1,
+max = 100,
+default = 15,
+},
+}, function(r0_77)
+-- line: [0, 0] id: 77
+r39_0.InstantHitDelay = r0_77.Slider / 100
+end)
+local r79_56 = r17_56.element("Toggle", "ESP MASTERSWITCH", false, function(r0_65)
+-- line: [0, 0] id: 65
+r25_0.Enabled = r0_65.Toggle
+for r4_65, r5_65 in ipairs(r7_0:GetChildren()) do
+r83_0(r5_65, false)
+if r25_0.Enabled and r39_0.Chams then
+r83_0(r5_65, true)
+end
+end
+end)
+local r80_56 = r17_56.element("Slider", "MAX ESP DISTANCE", {
+default = {
+min = 100,
+max = 5000,
+default = 5000,
+},
+}, function(r0_105)
+-- line: [0, 0] id: 105
+r25_0.MaxDistance = r0_105.Slider
+end)
+r17_56.element("Toggle", "NAMETAG ESP", false, function(r0_67)
+-- line: [0, 0] id: 67
+r25_0.ShowName = r0_67.Toggle
+end):add_color({
+Color = Color3.fromRGB(255, 255, 255),
+}, nil, function(r0_198)
+-- line: [0, 0] id: 198
+r25_0.NameColor = r0_198.Color
+end)
+r17_56.element("Toggle", "HEALTH BAR ESP", false, function(r0_167)
+-- line: [0, 0] id: 167
+r25_0.ShowHealth = r0_167.Toggle
+end):add_color({
+Color = Color3.fromRGB(0, 255, 0),
+}, nil, function(r0_231)
+-- line: [0, 0] id: 231
+r25_0.HealthHighColor = r0_231.Color
+end)
+r17_56.element("Toggle", "DISTANCE ESP", false, function(r0_59)
+-- line: [0, 0] id: 59
+r25_0.ShowDistance = r0_59.Toggle
+end):add_color({
+Color = Color3.fromRGB(255, 255, 255),
+}, nil, function(r0_127)
+-- line: [0, 0] id: 127
+r25_0.DistanceColor = r0_127.Color
+end)
+local r84_56 = r17_56.element("Toggle", "Distance ESP | Studs To Meters", false, function(r0_252)
+-- line: [0, 0] id: 252
+r25_0.StudsToMeters = r0_252.Toggle
+end)
+r17_56.element("Toggle", "SKELTION ESP", false, function(r0_221)
+-- line: [0, 0] id: 221
+r25_0.ShowSkeletons = r0_221.Toggle
+end):add_color({
+Color = Color3.fromRGB(255, 255, 255),
+}, nil, function(r0_123)
+-- line: [0, 0] id: 123
+r25_0.SkeletonsColor = r0_123.Color
+end)
+r17_56.element("Toggle", "BOX ESP", false, function(r0_145)
+-- line: [0, 0] id: 145
+r25_0.ShowBox = r0_145.Toggle
+end):add_color({
+Color = Color3.fromRGB(255, 255, 255),
+}, nil, function(r0_60)
+-- line: [0, 0] id: 60
+r25_0.BoxColor = r0_60.Color
+end)
+r17_56.element("Toggle", "HELD WEAPON ESP", false, function(r0_182)
+-- line: [0, 0] id: 182
+r25_0.ActiveGun = r0_182.Toggle
+end):add_color({
+Color = Color3.fromRGB(255, 255, 255),
+}, nil, function(r0_147)
+-- line: [0, 0] id: 147
+r25_0.ActiveGunColor = r0_147.Color
+end)
+r17_56.element("Toggle", "CHAMS", false, function(r0_238)
+-- line: [0, 0] id: 238
+r39_0.Chams = r0_238.Toggle
+for r4_238, r5_238 in ipairs(r7_0:GetChildren()) do
+r83_0(r5_238, false)
+if r25_0.Enabled and r39_0.Chams then
+r83_0(r5_238, true)
+end
+end
+end):add_color({
+Color = Color3.fromRGB(255, 255, 255),
+}, nil, function(r0_170)
+-- line: [0, 0] id: 170
+r39_0.ChamColor = r0_170.Color
+for r4_170, r5_170 in ipairs(r7_0:GetChildren()) do
+r83_0(r5_170, false)
+if r25_0.Enabled and r39_0.Chams then
+r83_0(r5_170, true)
+end
+end
+end)
+local r89_56 = r17_56.element("Dropdown", "CHAMS MODE", {
+options = {
+"Always Show Chams",
+"ONLY WHEN VISBLE SHOW CHAMS"
+},
+}, function(r0_222)
+-- line: [0, 0] id: 222
+if r0_222.Dropdown == "ALWAYS SHOW CHAMS" then
+r39_0.HiddenChams = true
+r39_0.VisibleChams = false
+else
+r39_0.HiddenChams = false
+r39_0.VisibleChams = true
+end
+for r4_222, r5_222 in ipairs(r7_0:GetChildren()) do
+r83_0(r5_222, false)
+if r25_0.Enabled and r39_0.Chams then
+r83_0(r5_222, true)
+end
+end
+end)
+r18_56.element("Toggle", "DROPPED LOOT ESP", false, function(r0_153)
+-- line: [0, 0] id: 153
+r39_0.DroppedItemESP = r0_153.Toggle
+r70_0(r0_153.Toggle)
+end):add_color({
+Color = r39_0.DroppedItemColor,
+}, nil, function(r0_116)
+-- line: [0, 0] id: 116
+r39_0.DroppedItemColor = r0_116.Color
+if r39_0.DroppedItemESP then
+r70_0(false)
+r70_0(true)
+end
+end)
+local r91_56 = r18_56.element("Slider", "DROPPED LOOT ESP TEXT SIZE", {
+default = {
+min = 1,
+max = 20,
+default = 11,
+},
+}, function(r0_165)
+-- line: [0, 0] id: 165
+r39_0.DroppedItemTextSize = r0_165.Slider
+if r39_0.DroppedItemESP then
+r70_0(false)
+r70_0(true)
+end
+end)
+r18_56.element("Toggle", "CORPSE ESP", false, function(r0_62)
+-- line: [0, 0] id: 62
+r39_0.CorpseESP = r0_62.Toggle
+if r0_62.Toggle then
+r70_0("Humanoid")
+else
+r70_0("HumanoidRemove")
+end
+end):add_color({
+Color = r39_0.CorpseColor,
+}, nil, function(r0_242)
+-- line: [0, 0] id: 242
+r39_0.CorpseColor = r0_242.Color
+if r39_0.CorpseESP then
+r70_0("HumanoidRemove")
+task.wait(0.01)
+r70_0("Humanoid")
+end
+end)
+local r93_56 = r18_56.element("Slider", "CORPSE ESP TEXT SIZE", {
+default = {
+min = 1,
+max = 20,
+default = 11,
+},
+}, function(r0_79)
+-- line: [0, 0] id: 79
+r39_0.CorpseTextSize = r0_79.Slider
+if r39_0.CorpseESP then
+Corpse(false)
+Corpse(true)
+end
+end)
+r18_56.element("Toggle", "CONTAINERS ESP", false, function(r0_227)
+-- line: [0, 0] id: 227
+r39_0.ContainerESP = r0_227.Toggle
+r74_0(r0_227.Toggle)
+end):add_color({
+Color = r39_0.ContainerColor,
+}, nil, function(r0_135)
+-- line: [0, 0] id: 135
+r39_0.ContainerColor = r0_135.Color
+if r39_0.ContainerESP then
+r74_0(false)
+r74_0(true)
+end
+end)
+local r95_56 = r18_56.element("Combo", "CONTAINERS WHITELIST", {
+options = {
+"SupplyDropEDF",
+"SupplyDropMilitary",
+"MilitaryCrate",
+"SmallMilitaryBox",
+"LargeMilitaryBox",
+"LargeABPOPABox",
+"Safe",
+"CashRegister",
+"GrenadeCrate",
+"HiddenCache",
+"KGBBag",
+"Toolbox",
+"SportBag",
+"SmallShippingCrate",
+"LargeShippingCrate",
+"FilingCabinet",
+"Fridge",
+"MedBag",
+"SatchelBag",
+nil
+},
+}, function(r0_219)
+-- line: [0, 0] id: 219
+for r4_219, r5_219 in pairs(r41_0) do
+r41_0[r4_219] = false
+end
+for r4_219, r5_219 in ipairs(r0_219.Combo) do
+r41_0[r5_219] = true
+end
+if r39_0.ContainerESP then
+r74_0(false)
+r74_0(true)
+else
+r74_0(false)
+end
+end)
+local r96_56 = r18_56.element("Slider", "CONTAINER ESP TEXT SIZE", {
+default = {
+min = 1,
+max = 20,
+default = 11,
+},
+}, function(r0_68)
+-- line: [0, 0] id: 68
+r39_0.ContainerTextSize = r0_68.Slider
+if r39_0.ContainerESP then
+r74_0("Reload")
+r74_0(true)
+end
+end)
+r18_56.element("Toggle", "EXIT ESP", false, function(r0_133)
+-- line: [0, 0] id: 133
+r39_0.ExitESP = r0_133.Toggle
+r71_0(r39_0.ExitESP)
+end):add_color({
+Color = r39_0.ExitColor,
+}, nil, function(r0_172)
+-- line: [0, 0] id: 172
+r39_0.ExitColor = r0_172.Color
+if r39_0.ExitESP then
+r71_0(false)
+r71_0(true)
+end
+end)
+local r98_56 = r18_56.element("Slider", "EXIT ESP TEXT SIZE", {
+default = {
+min = 1,
+max = 20,
+default = 11,
+},
+}, function(r0_213)
+-- line: [0, 0] id: 213
+r39_0.ExitTextSize = r0_213.Slider
+if r39_0.ExitESP then
+r71_0(false)
+r71_0(true)
+end
+end)
+r18_56.element("Toggle", "Quest Item ESP (dont work rn)", false, function(r0_115)
+-- line: [0, 0] id: 115
+r39_0.QuestESP = r0_115.Toggle
+r72_0(r0_115.Toggle)
+end):add_color({
+Color = r39_0.QuestESPColor,
+}, nil, function(r0_144)
+-- line: [0, 0] id: 144
+r39_0.QuestESPColor = r0_144.Color
+if r39_0.QuestESP then
+r72_0(false)
+r72_0(true)
+end
+end)
+local r100_56 = r18_56.element("Slider", "QUEST ITEM ESP TEXT SIZE ", {
+default = {
+min = 1,
+max = 20,
+default = 11,
+},
+}, function(r0_245)
+-- line: [0, 0] id: 245
+r39_0.QuestTextSize = r0_245.Slider
+if r39_0.QuestESP then
+r72_0(false)
+r72_0(true)
+end
+end)
+r18_56.element("Toggle", "VEHICLE ESP", false, function(r0_258)
+-- line: [0, 0] id: 258
+r39_0.VehicleTag = r0_258.Toggle
+r75_0(r0_258.Toggle)
+end):add_color({
+Color = r39_0.VehicleColor,
+}, nil, function(r0_163)
+-- line: [0, 0] id: 163
+r39_0.VehicleColor = r0_163.Color
+if r39_0.VehicleTag then
+r75_0(false)
+r75_0(true)
+end
+end)
+local r102_56 = r18_56.element("Slider", "VEHICLE ESP TEXT SIZE", {
+default = {
+min = 1,
+max = 20,
+default = 11,
+},
+}, function(r0_257)
+-- line: [0, 0] id: 257
+r39_0.VehicleTextSize = r0_257.Slider
+if r39_0.VehicleTag then
+r75_0(false)
+r75_0(true)
+end
+end)
+r18_56.element("Toggle", "AI CHAMS ESP", false, function(r0_223)
+-- line: [0, 0] id: 223
+r39_0.AIHighlight = r0_223.Toggle
+if r39_0.AIHighlight then
+r73_0(true)
+else
+r73_0("Highlight")
+end
+end):add_color({
+Color = r39_0.HighlightColor,
+}, nil, function(r0_215)
+-- line: [0, 0] id: 215
+r39_0.HighlightColor = r0_215.Color
+if r39_0.AIHighlight == true then
+r73_0("Highlight")
+r73_0(true)
+end
+end)
+r18_56.element("Toggle", "AI NAMETAG ESP", false, function(r0_148)
+-- line: [0, 0] id: 148
+r39_0.AINameTag = r0_148.Toggle
+if r39_0.AINameTag == true then
+r73_0(true)
+else
+r73_0("NameTag")
+end
+end):add_color({
+Color = r39_0.NameTagColor,
+}, function(r0_185)
+-- line: [0, 0] id: 185
+r39_0.NameTagColor = r0_185.Color
+if r39_0.AINameTag == true then
+r73_0("NameTag")
+r73_0(true)
+end
+end)
+local r105_56 = r18_56.element("Slider", "AI ESP Text Size", {
+default = {
+min = 1,
+max = 20,
+default = 11,
+},
+}, function(r0_169)
+-- line: [0, 0] id: 169
+r39_0.AiNameTagTextSize = r0_169.Slider
+if r39_0.AINameTag == true then
+r73_0("NameTag")
+r73_0(true)
+end
+end)
+r19_56.element("Toggle", "INVENTORY CHECKER", false, function(r0_78)
+-- line: [0, 0] id: 78
+r39_0.InvChecker = r0_78.Toggle
+r27_0.UpdateKeybinds("INVENTORY CHECKER", "None", r39_0.InvChecker, r39_0.InvCheckerActive)
+end):add_keybind("Hold", function(r0_128)
+-- line: [0, 0] id: 128
+if r39_0.InvChecker and r0_128.Active then
+r39_0.InvCheckerActive = true
+else
+r39_0.InvCheckerActive = false
+end
+r27_0.UpdateKeybinds("Inventory Checker", r0_128.Key, r39_0.InvChecker, r39_0.InvCheckerActive)
+end)
+local r107_56 = r19_56.element("Combo", "INVENTORY CHECK TOGGLES", {
+options = {
+"Inventory Check Corpses",
+"Show Full Inventory",
+"Show Inventory Value"
+},
+}, function(r0_178)
+-- line: [0, 0] id: 178
+r39_0.FullInventoryChecker = false
+r39_0.InventoryCheckCorpse = false
+r39_0.AIChecker = false
+for r4_178, r5_178 in ipairs(r0_178.Combo) do
+if r5_178 == "Inventory Check Corpses" then
+r39_0.InventoryCheckCorpse = true
+end
+if r5_178 == "Show Full Inventory" then
+r39_0.FullInventoryChecker = true
+end
+if r5_178 == "Show Inventory Value" then
+r39_0.InvCheckValue = true
+end
+end
+end)
+r19_56.element("Toggle", "SHOW INVENTORY CHECK TARGET", false, function(r0_83)
+-- line: [0, 0] id: 83
+r39_0.InvCheckTarget = r0_83.Toggle
+end):add_color({
+Color = Color3.fromRGB(255, 255, 255),
+}, nil, function(r0_210)
+-- line: [0, 0] id: 210
+r56_0.TextColor3 = r0_210.Color
+end)
+local r109_56 = r27_56.element("Toggle", "BOSS INFORMATION", false, function(r0_224)
+-- line: [0, 0] id: 224
+r39_0.ShowBoss = r0_224.Toggle
+end)
+local r110_56 = r27_56.element("Toggle", "DRAGABLE BOSS INFORMATION GUI", false, function(r0_168)
+-- line: [0, 0] id: 168
+r39_0.BossMovable = r0_168.Toggle
+end)
+local r111_56 = r35_56.element("Toggle", "MOD DETECTOR", false, function(r0_113)
+-- line: [0, 0] id: 113
+r39_0.ModDetector = r0_113.Toggle
+if r0_113.Toggle then
+r0_0("Mod Dectector", "PREVIEW OF MOD DETECTOR", 1.5)
+end
+end)
+local r112_56 = r35_56.element("Toggle", "CHEATER DETECT - REQUIRES MOD DETECTOR", false, function(r0_192)
+-- line: [0, 0] id: 192
+r39_0.CheatDetector = r0_192.Toggle
+if r0_192.Toggle then
+r0_0("Cheater Detector", "PREVIEW OF CHEATER DETECTOR", 1.5)
+end
+end)
+local r113_56 = r39_56.element("Toggle", "ITEM FINDER", false, function(r0_188)
+-- line: [0, 0] id: 188
+r39_0.ItemFinder = r0_188.Toggle
+if r0_188.Toggle then
+r88_0()
+r0_0("Item Finder", "PREVIEW ITEM FINDER", 1.5)
+end
+end)
+local r114_56 = r39_56.element
+local r115_56 = "Combo"
+local r116_56 = "Item Whitelist"
+r114_56 = r114_56(r115_56, r116_56, {
+options = {
+"TFZ98S",
+"R700",
+"M4",
+"AsVal",
+"PKM",
+"FlareGun",
+"SPSh44",
+"Gold",
+"GoldWatch",
+"RepairKit"
+},
+}, function(r0_214)
+-- line: [0, 0] id: 214
+r39_0.ItemFinderList = {}
+for r4_214, r5_214 in ipairs(r0_214.Combo) do
+if r5_214 == "Gold" then
+r39_0.ItemFinderList.Gold50g = true
+else
+r39_0.ItemFinderList[r5_214] = true
+end
+end
+if r39_0.ItemFinder then
+r88_0()
+end
+end)
+r115_56 = r20_56.element("Toggle", "NO GRASS", false, function(r0_220)
+-- line: [0, 0] id: 220
+sethiddenproperty(workspace.Terrain, "Decoration", not r0_220.Toggle)
+end)
+function r116_56()
+-- line: [0, 0] id: 143
+for r4_143, r5_143 in pairs(workspace:FindFirstChild("SpawnerZones").Foliage:GetDescendants()) do
+if r5_143:FindFirstChildOfClass("SurfaceAppearance") then
+if r39_0.Foliage == true then
+r5_143.Transparency = 1
+else
+r5_143.Transparency = 0
+end
+end
+end
+while r39_0.Foliage do
+task.wait(10)
+r116_56()
+end
+end
+local r117_56 = r20_56.element("Toggle", "No LEAFS", false, function(r0_197)
+-- line: [0, 0] id: 197
+r39_0.Foliage = r0_197.Toggle
+r116_56()
+end)
+local r118_56 = r20_56.element("Toggle", "No CLOUDS", false, function(r0_180)
+-- line: [0, 0] id: 180
+if workspace.Terrain:FindFirstChild("Clouds") then
+workspace.Terrain.Clouds.Enabled = not r0_180.Toggle
+end
+end)
+r28_56.element("Toggle", "CLOUD CHANGER", false, function(r0_109)
+-- line: [0, 0] id: 109
+r39_0.CloudChanger = r0_109.Toggle
+local r1_109 = game.Workspace.Terrain:FindFirstChild("Clouds")
+if r39_0.CloudChanger and r1_109 then
+r1_109.Color = r39_0.CloudColor
+end
+end):add_color({
+Color = Color3.fromRGB(50, 15, 95),
+}, nil, function(r0_159)
+-- line: [0, 0] id: 159
+r39_0.CloudColor = r0_159.Color
+if r39_0.CloudChanger and game.Workspace.Terrain:FindFirstChild("Clouds") then
+game.Workspace.Terrain:FindFirstChild("Clouds").Color = r39_0.CloudColor
+end
+end)
+local r120_56 = 0.25
+local r121_56 = r28_56.element("Slider", "CLOUD TRANSPARENCY", {
+default = {
+min = 1,
+max = 100,
+default = 25,
+},
+}, function(r0_241)
+-- line: [0, 0] id: 241
+r120_56 = r0_241.Slider / 100
+if r39_0.CloudChanger and game.Workspace.Terrain:FindFirstChild("Clouds") then
+game.Workspace.Terrain:FindFirstChild("Clouds").Density = r0_241.Slider / 100
+end
+end)
+r29_56.element("Toggle", "AMBIENT CHANGER", false, function(r0_160)
+-- line: [0, 0] id: 160
+r39_0.AmbientChanger = r0_160.Toggle
+local r1_160 = game.Lighting
+if r0_160.Toggle and r1_160 then
+r1_160.Ambient = r39_0.AmbientColor
+else
+r1_160.Ambient = Color3.fromRGB(25, 25, 25)
+end
+end):add_color({
+Color = Color3.fromRGB(129, 5, 255),
+}, nil, function(r0_122)
+-- line: [0, 0] id: 122
+r39_0.AmbientColor = r0_122.Color
+local r1_122 = game.Lighting
+if r39_0.AmbientChanger and r1_122 then
+r1_122.Ambient = r39_0.AmbientColor
+end
+end)
+local r123_56 = r29_56.element("Toggle", "RGB AMBIENT", false, function(r0_146)
+-- line: [0, 0] id: 146
+r39_0.AmbientChangerRGB = r0_146.Toggle
+end)
+local r124_56 = r29_56.element("Slider", "AIMBIENT RGB SPEED", {
+default = {
+min = 10,
+max = 125,
+default = 50,
+},
+}, function(r0_255)
+-- line: [0, 0] id: 255
+r39_0.AmbientChangerRGBSpeed = r0_255.Slider / 100
+end)
+local r125_56 = r30_56.element("Toggle", "TIME CHANGER", false, function(r0_190)
+-- line: [0, 0] id: 190
+r39_0.TimeChanger = r0_190.Toggle
+end)
+local r126_56 = r30_56.element("Slider", "TIME", {
+default = {
+min = 0,
+max = 2400,
+default = 1200,
+},
+}, function(r0_237)
+-- line: [0, 0] id: 237
+r39_0.CurrentTime = r0_237.Slider / 100
+if r39_0.CurrentTime >= 0 then
+r39_0.CurrentTime = string.format("%02d:%02d:00", math.floor(r39_0.CurrentTime), r0_237.Slider % 100)
+end
+end)
+local r127_56 = r24_56.element("Toggle", "OMNI SPRINT", false, function(r0_216)
+-- line: [0, 0] id: 216
+r39_0.OmniSprint = r0_216.Toggle
+end)
+r24_56.element("Toggle", "SPEED HACK  - SEMI Risky", false, function(r0_156)
+-- line: [0, 0] id: 156
+r39_0.SpeedHackToggle = r0_156.Toggle
+r27_0.UpdateKeybinds("Speed Hack", "None", r39_0.SpeedHackToggle, r39_0.SpeedHackActive)
+end):add_keybind("Hold", function(r0_206)
+-- line: [0, 0] id: 206
+if r0_206.Active and r39_0.SpeedHackToggle then
+r39_0.SpeedHackActive = true
+else
+r39_0.SpeedHackActive = false
+end
+r27_0.UpdateKeybinds("Speed Hack", r0_206.Key, r39_0.SpeedHackToggle, r39_0.SpeedHackActive)
+end)
+local r129_56 = r24_56.element("Toggle", "SILENT SPEED HACK", false, function(r0_117)
+-- line: [0, 0] id: 117
+r39_0.SpeedHackSilent = r0_117.Toggle
+end)
+local r130_56 = r24_56.element("Slider", "SPEED HACK SPEED", {
+default = {
+min = 5,
+max = 17,
+default = 17,
+},
+}, function(r0_191)
+-- line: [0, 0] id: 191
+r39_0.SpeedHackSpeed = r0_191.Slider / 1.3
+end)
+local r131_56 = r24_56.element("Toggle", "INFINITY JUMP - BAN Risk", false, function(r0_253)
+-- line: [0, 0] id: 253
+r39_0.InfinityJump = r0_253.Toggle
+end)
+r24_56.element("Toggle", "BUNNY HOP", false, function(r0_63)
+-- line: [0, 0] id: 63
+r39_0.BunnyHop = r0_63.Toggle
+r27_0.UpdateKeybinds("Bunny Hop", "None", r39_0.BunnyHop, r39_0.BunnyHopActive)
+end):add_keybind("Hold", function(r0_149)
+-- line: [0, 0] id: 149
+if r39_0.BunnyHop and r0_149.Active then
+r47_0()
+r39_0.BunnyHopActive = true
+else
+r39_0.BunnyHopActive = false
+end
+r27_0.UpdateKeybinds("BunnyHop", r0_149.Key, r39_0.BunnyHop, r39_0.BunnyHopActive)
+end)
+r24_56.element("Toggle", "THIRD PERSON", false, function(r0_142)
+-- line: [0, 0] id: 142
+r39_0.ThirdPerson = r0_142.Toggle
+r27_0.UpdateKeybinds("Third Person", "None", r39_0.ThirdPerson, r39_0.ThirdPersonActive)
+end):add_keybind("Hold", function(r0_183)
+-- line: [0, 0] id: 183
+if r0_183.Active and r39_0.ThirdPerson then
+r39_0.ThirdPersonActive = true
+else
+r39_0.ThirdPersonActive = false
+end
+r27_0.UpdateKeybinds("Third Person", r0_183.Key, r39_0.ThirdPerson, r39_0.ThirdPersonActive)
+end)
+local r134_56 = r24_56.element("Slider", "THIRD PERSON DISTANCE", {
+default = {
+min = 1,
+max = 50,
+default = 15,
+},
+}, function(r0_234)
+-- line: [0, 0] id: 234
+r39_0.ThirdPersonDistance = r0_234.Slider
+end)
+local r135_56 = r24_56.element("Toggle", "NOFALL DAMAGE", false, function(r0_246)
+-- line: [0, 0] id: 246
+r39_0.NoFall = r0_246.Toggle
+end)
+local r136_56 = r24_56.element("Slider", "INFINITY & BUNNY HOP JUMP POWER", {
+default = {
+min = 1,
+max = 28,
+default = 22,
+},
+}, function(r0_184)
+-- line: [0, 0] id: 184
+r39_0.InfJumpPower = r0_184.Slider
+end)
+local r137_56 = r24_56.element("Toggle", "NO VISOR + FLASHBANG", false, function(r0_141)
+-- line: [0, 0] id: 141
+r39_0.VisorEnabled = r0_141.Toggle
+r81_0("Visor", r0_141.Toggle)
+end)
+local r138_56 = r24_56.element("Toggle", "NO INVENTORY BLUR", false, function(r0_139)
+-- line: [0, 0] id: 139
+r39_0.InventoryBlur = r0_139.Toggle
+local r1_139 = r81_0("Inventory", false)
+if r0_139.Toggle == false and r1_139 then
+local r2_139 = game.Lighting
+if r2_139 then
+r2_139.InventoryBlur.Size = 20
+end
+end
+end)
+local r139_56 = r24_56.element("Toggle", "NO REPAIR BLUR", false, function(r0_74)
+-- line: [0, 0] id: 74
+r39_0.NoReapirBlur = r0_74.Toggle
+r81_0("Reapir", r39_0.NoReapirBlur)
+end)
+r24_56.element("Toggle", "PEEK KILL- SEMI RISKY", false, function(r0_176)
+-- line: [0, 0] id: 176
+r39_0.TPKill = r0_176.Toggle
+end):add_keybind("Hold", function(r0_226)
+-- line: [0, 0] id: 226
+if r39_0.TPKill and r0_226.Active and r8_0.Character and r8_0.Character:FindFirstChild("HumanoidRootPart") then
+local r1_226 = r8_0.Character:FindFirstChild("HumanoidRootPart")
+r1_226.Velocity = Vector3.new(r1_226.Velocity.X, r39_0.TPKillSpeed + math.random(-15, 15), r1_226.Velocity.Z)
+end
+end)
+local r141_56 = r24_56.element("Slider", "PEEK KILL SPEED", {
+default = {
+min = 50,
+max = 200,
+default = 150,
+},
+}, function(r0_171)
+-- line: [0, 0] id: 171
+r39_0.TPKillSpeed = r0_171.Slider
+end)
+r24_56.element("Toggle", "Freeze", false, function(r0_207)
+-- line: [0, 0] id: 207
+r39_0.FreezeUrSelf = r0_207.Toggle
+if not r0_207.Toggle and not r39_0.SpeedHackActive and r8_0.Character then
+local r1_207 = r8_0.Character:FindFirstChild("HumanoidRootPart")
+if r1_207 then
+r1_207.Massless = false
+end
+end
+r27_0.UpdateKeybinds("Freeze", "None", r39_0.FreezeUrSelf, r39_0.FreezeUrSelfActive)
+end):add_keybind("Hold", function(r0_239)
+-- line: [0, 0] id: 239
+if r8_0.Character then
+local r1_239 = r8_0.Character:FindFirstChild("HumanoidRootPart")
+if r1_239 and r39_0.FreezeUrSelf and r0_239.Active then
+r1_239.Massless = true
+r39_0.FreezeUrSelfActive = true
+elseif r1_239 then
+r1_239.Massless = false
+r39_0.FreezeUrSelfActive = false
+end
+end
+r27_0.UpdateKeybinds("Freeze", r0_239.Key, r39_0.FreezeUrSelf, r39_0.FreezeUrSelfActive)
+end)
+local r143_56 = r26_56.element("Button", "Amogus", false, function(r0_134)
+-- line: [0, 0] id: 134
+if r39_0.UPAngleChanger then
+r0_0("Smoke.Weed", "Amogus doesn\'t work while you have Yaw Changer enabled.", 1.5)
+return
+end
+game:GetService("ReplicatedStorage").Remotes.UpdateTilt:FireServer(0 / 0)
+end)
+local r144_56 = r26_56.element("Toggle", "Player Yaw Changer", false, function(r0_232)
+-- line: [0, 0] id: 232
+r39_0.UPAngleChanger = r0_232.Toggle
+end)
+local r145_56 = r26_56.element("Slider", "Y - Yaw", {
+default = {
+min = -160,
+max = 160,
+default = 0,
+},
+}, function(r0_121)
+-- line: [0, 0] id: 121
+r39_0.UPAngleValue = r0_121.Slider
+end)
+local r146_56 = 10
+local r147_56 = false
+local r148_56 = false
+r23_56.element("Toggle", "ZOOM", false, function(r0_218)
+-- line: [0, 0] id: 218
+r147_56 = r0_218.Toggle
+if not r147_56 then
+r79_0(r89_0)
+end
+r27_0.UpdateKeybinds("Zoom", "None", r147_56, r148_56)
+end):add_keybind("None", function(r0_151)
+-- line: [0, 0] id: 151
+r148_56 = r0_151.Active
+if r0_151.Active and r148_56 and r147_56 and r39_0.Loaded then
+r79_0(r146_56)
+elseif r39_0.Loaded then
+r79_0(r89_0)
+end
+r27_0.UpdateKeybinds("Zoom", r0_151.Key, r147_56, r148_56)
+end)
+local r150_56 = r23_56.element("Slider", "ZOOM FOV", {
+default = {
+min = 1,
+max = 70,
+default = 10,
+},
+}, function(r0_152)
+-- line: [0, 0] id: 152
+r146_56 = r0_152.Slider
+if r147_56 and r148_56 then
+r79_0(r146_56)
+end
+end)
+local r151_56 = r23_56.element("Slider", "FOV CHANGER", {
+default = {
+min = 1,
+max = 120,
+default = 90,
+},
+}, function(r0_157)
+-- line: [0, 0] id: 157
+r89_0 = r0_157.Slider
+if not r148_56 then
+r79_0(r89_0)
+end
+end)
+local r152_56 = nil
+local r153_56 = r36_56.element("Toggle", "SKIN CHANGER", false, function(r0_136)
+-- line: [0, 0] id: 136
+r42_0.SkinChanger = r0_136.Toggle
+if r42_0.SkinChanger then
+task.spawn(function()
+-- line: [0, 0] id: 137
+while not r152_56 do
+task.wait(0.1)
+end
+r50_0(r42_0.Skin)
+end)
+end
+end)
+r152_56 = r36_56.element("Dropdown", "SKIN", {
+options = {
+"Anton",
+"Banana",
+"SpaceSuit",
+"Valentine",
+"Crusader",
+"Freedom",
+"Artic",
+"Nutcracker",
+"Watergun",
+"Serpant",
+"Galaxy",
+"Hunter",
+"Permafrost",
+"Thunder",
+"GiftWrap",
+"Shoreline",
+"Ancient",
+"AnodizedRed",
+"DeltaAnime",
+"PeaceWalker",
+"Anarchy",
+"Blackout",
+"Tan",
+"TigerStripe",
+"VOLK",
+"Woodland",
+"Pineapple",
+"Apollo",
+"Shark",
+"Devil",
+"Dialbo",
+"Freedom",
+"Melon",
+"WhiteDeath",
+nil,
+nil
+},
+}, function(r0_233)
+-- line: [0, 0] id: 233
+r42_0.Skin = r0_233.Dropdown
+if r42_0.SkinChanger then
+r50_0(r42_0.Skin)
+end
+end)
+local r154_56 = r36_56.element("Combo", "Blacklist Parts", {
+options = {
+"Stock",
+"Front",
+"Sight",
+"Magazine",
+"Handle",
+"Muzzle",
+"Extra",
+"ItemRoot"
+},
+}, function(r0_225)
+-- line: [0, 0] id: 225
+for r4_225, r5_225 in pairs(r42_0) do
+if r4_225 ~= "Skin" and r4_225 ~= "SkinChanger" then
+r42_0[r4_225] = true
+end
+end
+for r4_225, r5_225 in ipairs(r0_225.Combo) do
+r42_0[r5_225] = false
+end
+r50_0(r42_0.Skin)
+end)
+local r155_56 = r37_56.element("Toggle", "LOW FOOD/WATER INDICATOR", false, function(r0_104)
+-- line: [0, 0] id: 104
+r39_0.LowFoodDetector = r0_104.Toggle
+end)
+local r156_56 = r37_56.element("Slider", "LOW FOOD/WATER INDICATOR THRESHOLD", {
+default = {
+min = 1,
+max = 1000,
+default = 200,
+},
+}, function(r0_187)
+-- line: [0, 0] id: 187
+r39_0.LowFoodThreshold = r0_187.Slider
+end)
+local r157_56 = {}
+local r158_56 = nil
+local r159_56 = r20_56.element("Toggle", "NO LANDMINES", false, function(r0_200)
+-- line: [0, 0] id: 200
+if r39_0.Lobby then
+return
+end
+r39_0.NoLandMine = r0_200.Toggle
+if r39_0.NoLandMine then
+local function r1_200(r0_201)
+-- line: [0, 0] id: 201
+for r4_201, r5_201 in pairs(r0_201:GetChildren()) do
+if r5_201:IsA("Model") and (r5_201.Name == "PMN2" or r5_201.Name == "MON50") then
+r5_201:Destroy()
+end
+end
+if not r157_56[r0_201] then
+r157_56[r0_201] = r0_201.ChildAdded:Connect(function(r0_203)
+-- line: [0, 0] id: 203
+if r0_203:IsA("Model") and (r0_203.Name == "PMN2" or r0_203.Name == "MON50") and r39_0.NoLandMine then
+task.wait(2.5)
+r0_203:Destroy()
+end
+end)
+end
+if not r158_56 and not workspace.AiZones:FindFirstChild("Landmines") then
+r158_56 = game.workspace.ChildAdded:Connect(function(r0_202)
+-- line: [0, 0] id: 202
+if r0_202 and r0_202:IsA("Model") and r39_0.NoLandMine and r0_202:IsA("Model") and (r0_202.Name == "PMN2" or r0_202.Name == "MON50") then
+task.wait(2.5)
+r0_202:Destroy()
+end
+end)
+end
+end
+if workspace.AiZones:FindFirstChild("Landmines") then
+r1_200(workspace.AiZones.Landmines)
+r1_200(workspace.AiZones.Claymores)
+else
+r1_200(workspace.AiZones.OutpostLandmines)
+r1_200(workspace.AiZones.BridgeClaymores)
+r1_200(workspace.AiZones.HeliCrashClaymores)
+r1_200(workspace.AiZones.ShipWreckClaymores)
+end
+else
+if r158_56 then
+r158_56:Disconnect()
+r158_56 = nil
+end
+for r4_200, r5_200 in pairs(r157_56) do
+if r5_200 then
+r5_200:Disconnect()
+end
+end
+end
+end)
+local r160_56 = r20_56.element("Toggle", "FULL BRIGHTNESS", false, function(r0_166)
+-- line: [0, 0] id: 166
+r39_0.FullBrightness = r0_166.Toggle
+if not r39_0.AmbientChanger then
+FullBrightness(r0_166.Toggle)
+end
+end)
+local r161_56 = r20_56.element("Toggle", "NO FOG", false, function(r0_119)
+-- line: [0, 0] id: 119
+r39_0.NoFog = r0_119.Toggle
+end)
+r20_56.element("Toggle", "Xray", false, function(r0_103)
+-- line: [0, 0] id: 103
+r39_0.Xray = r0_103.Toggle
+r27_0.UpdateKeybinds("Xray", "None", r39_0.Xray, r39_0.XrayActive)
+end):add_keybind("None", function(r0_162)
+-- line: [0, 0] id: 162
+if r39_0.Xray and r0_162.Toggle then
+r60_0(r0_162.Active)
+r39_0.XrayActive = true
+else
+r60_0(r0_162.Active)
+r39_0.XrayActive = false
+end
+r27_0.UpdateKeybinds("Xray", "None", r39_0.Xray, r39_0.XrayActive)
+end)
+local r163_56 = r20_56.element("Dropdown", "SKY", {
+options = {
+"Default",
+"Orange Sunset",
+"Pink Sky",
+"Night",
+"Galaxy Sky",
+"Purple Space Sky",
+"Spring Sky"
+},
+}, function(r0_174)
+-- line: [0, 0] id: 174
+local r1_174 = game.Lighting:FindFirstChildOfClass("Sky")
+local r2_174 = r39_0.Sky[r0_174.Dropdown]
+if r2_174 then
+if r2_174.Value then
+r1_174.SkyboxBk = r2_174.Value
+r1_174.SkyboxDn = r2_174.Value
+r1_174.SkyboxFt = r2_174.Value
+r1_174.SkyboxLf = r2_174.Value
+r1_174.SkyboxRt = r2_174.Value
+r1_174.SkyboxUp = r2_174.Value
+else
+r1_174.SkyboxBk = r2_174.SkyboxBk
+r1_174.SkyboxDn = r2_174.SkyboxDn
+r1_174.SkyboxFt = r2_174.SkyboxFt
+r1_174.SkyboxLf = r2_174.SkyboxLf
+r1_174.SkyboxRt = r2_174.SkyboxRt
+r1_174.SkyboxUp = r2_174.SkyboxUp
+end
+end
+end)
+r25_56.element("Toggle", "ViewModel Changer", false, function(r0_150)
+-- line: [0, 0] id: 150
+r39_0.ViewModelChanger = r0_150.Toggle
+if r0_150.Toggle == true then
+local r1_150 = r9_0:FindFirstChild("ViewModel")
+if r1_150 then
+r66_0(r1_150, true)
+r68_0(r1_150)
+end
+end
+end):add_color({
+Color = Color3.fromRGB(79, 155, 121),
+}, nil, function(r0_111)
+-- line: [0, 0] id: 111
+r39_0.ArmColor = r0_111.Color
+if r39_0.ViewModelChanger then
+local r1_111 = r9_0:FindFirstChild("ViewModel")
+if r1_111 then
+r67_0("Color", r1_111)
+r67_0("Transparency", r1_111)
+end
+end
+end)
+local r165_56 = r25_56.element("Slider", "Arm Transparency", {
+default = {
+min = 0,
+max = 100,
+default = 0,
+},
+}, function(r0_261)
+-- line: [0, 0] id: 261
+r39_0.ViewModelTransparency = r0_261.Slider / 100
+local r1_261 = r9_0:FindFirstChild("ViewModel")
+if r1_261 then
+r67_0("Transparency", r1_261)
+end
+end)
+local r166_56 = r25_56.element("Slider", "Arm X Pos", {
+default = {
+min = 0,
+max = 100,
+default = 50,
+},
+}, function(r0_204)
+-- line: [0, 0] id: 204
+r62_0 = r0_204.Slider / 20 - 2.5
+local r1_204 = r9_0:FindFirstChild("ViewModel")
+if r1_204 then
+r66_0(r1_204, true)
+end
+end)
+local r167_56 = r25_56.element("Slider", "Arm Y Pos", {
+default = {
+min = 0,
+max = 100,
+default = 50,
+},
+}, function(r0_179)
+-- line: [0, 0] id: 179
+r63_0 = r0_179.Slider / 20 - 2.5
+local r1_179 = r9_0:FindFirstChild("ViewModel")
+if r1_179 then
+r66_0(r1_179, true)
+end
+end)
+local r168_56 = r25_56.element("Slider", "Arm Z Pos", {
+default = {
+min = 0,
+max = 100,
+default = 50,
+},
+}, function(r0_247)
+-- line: [0, 0] id: 247
+r64_0 = r0_247.Slider / 20 - 2.5
+local r1_247 = r9_0:FindFirstChild("ViewModel")
+if r1_247 then
+r66_0(r1_247, true)
+end
+end)
+local r169_56 = r38_56.element("Toggle", "CUSTOM HIT SOUND", false, function(r0_118)
+-- line: [0, 0] id: 118
+r39_0.CustomHitSound = r0_118.Toggle
+end)
+local r170_56 = r38_56.element("Dropdown", "HIT SOUND", {
+options = {
+"Default",
+"Rust",
+"Neverlose",
+"Gamesense",
+"Bubble",
+"Ding",
+"Mlg"
+},
+}, function(r0_102)
+-- line: [0, 0] id: 102
+r39_0.CustomHitSoundID = r39_0.HitSounds[r0_102.Dropdown]
+end)
+local r171_56 = r38_56.element("Slider", "HIT SOUND VOLUME", {
+default = {
+min = 1,
+max = 500,
+default = 100,
+},
+}, function(r0_211)
+-- line: [0, 0] id: 211
+r39_0.CustomHitSoundVolume = r0_211.Slider / 100
+end)
+local r172_56 = r38_56.element("Button", "PLAY HITSOUND", false, function(r0_158)
+-- line: [0, 0] id: 158
+local r1_158 = Instance.new("Sound", workspace)
+if r39_0.CustomHitSoundID == "Default" then
+r1_158.SoundId = "rbxassetid://4585351098"
+else
+r1_158.SoundId = r39_0.CustomHitSoundID
+end
+r1_158.Volume = r39_0.CustomHitSoundVolume
+r1_158:Play()
+task.wait(1)
+r1_158:Destroy()
+end)
+r8_0.PlayerGui.ChildAdded:Connect(function(r0_69)
+-- line: [0, 0] id: 69
+if r0_69.Name == "MainGui" then
+r0_69.ChildAdded:Connect(function(r0_70)
+-- line: [0, 0] id: 70
+if r0_70:IsA("Sound") and r39_0.CustomHitSound and r39_0.CustomHitSoundID ~= "Default" then
+if r0_70.SoundId == "rbxassetid://4585382589" or r0_70.SoundId == "rbxassetid://4585351098" then
+r0_70.SoundId = r39_0.CustomHitSoundID
+r0_70.Volume = r39_0.CustomHitSoundVolume
+elseif r0_70.SoundId == "rbxassetid://4585382046" or r0_70.SoundId == "rbxassetid://4585364605" then
+r0_70.SoundId = r39_0.CustomHitSoundID
+r0_70.Volume = r39_0.CustomHitSoundVolume
+end
+end
+end)
+end
+end)
+r175_56 = "MainGui"
+if r8_0.PlayerGui:FindFirstChild(r175_56) then
+r175_56 = "MainGui"
+r8_0.PlayerGui:FindFirstChild(r175_56).ChildAdded:Connect(function(r0_58)
+-- line: [0, 0] id: 58
+if r0_58:IsA("Sound") and r39_0.CustomHitSound and r39_0.CustomHitSoundID ~= "Default" then
+if r0_58.SoundId == "rbxassetid://4585382589" or r0_58.SoundId == "rbxassetid://4585351098" then
+r0_58.SoundId = r39_0.CustomHitSoundID
+r0_58.Volume = r39_0.CustomHitSoundVolume
+elseif r0_58.SoundId == "rbxassetid://4585382046" or r0_58.SoundId == "rbxassetid://4585364605" then
+r0_58.SoundId = r39_0.CustomHitSoundID
+r0_58.Volume = r39_0.CustomHitSoundVolume
+end
+end
+end)
+end
+r31_56.element("Toggle", "SHOW CROSSHAIR", false, function(r0_175)
+-- line: [0, 0] id: 175
+r40_0.Visible = r0_175.Toggle
+r51_0()
+end):add_color({
+Color = Color3.fromRGB(r40_0.Color),
+}, nil, function(r0_57)
+-- line: [0, 0] id: 57
+r40_0.Color = r0_57.Color
+end)
+local r174_56 = r31_56.element("Toggle", "RGB", false, function(r0_82)
+-- line: [0, 0] id: 82
+r40_0.RGB = r0_82.Toggle
+end)
+r175_56 = r31_56.element("Toggle", "CROSSHAIR AUTO ROTATION", false, function(r0_138)
+-- line: [0, 0] id: 138
+r40_0.RotateAuto = r0_138.Toggle
+end)
+local r176_56 = r31_56.element("Slider", "CROSSHAIR ROTATION SPEED ", {
+default = {
+min = 1,
+max = 5,
+default = 1,
+},
+}, function(r0_235)
+-- line: [0, 0] id: 235
+r40_0.RotateSpeed = r0_235.Slider
+end)
+local r177_56 = r31_56.element("Slider", "CROSSHAIR TRANSPARENCY", {
+default = {
+min = 0,
+max = 100,
+default = 100,
+},
+}, function(r0_243)
+-- line: [0, 0] id: 243
+r40_0.Transparency = r0_243.Slider / 100
+end)
+local r178_56 = r31_56.element("Slider", "CROSSHAIR LENGTH", {
+default = {
+min = 1,
+max = 50,
+default = 10,
+},
+}, function(r0_126)
+-- line: [0, 0] id: 126
+r40_0.Size = r0_126.Slider
+end)
+local r179_56 = r31_56.element("Slider", "CROSSHAIR THICKNESS", {
+default = {
+min = 1,
+max = 25,
+default = 3,
+},
+}, function(r0_130)
+-- line: [0, 0] id: 130
+r40_0.Thickness = r0_130.Slider
+end)
+local r180_56 = r31_56.element("Slider", "CROSSHAIR GAP", {
+default = {
+min = 1,
+max = 25,
+default = 5,
+},
+}, function(r0_125)
+-- line: [0, 0] id: 125
+r40_0.Gap = r0_125.Slider
+end)
+r32_56.element("Toggle", "Custom Theme (Beta)", false, function(r0_199)
+-- line: [0, 0] id: 199
+r39_0.Menu.CustomTheme = r0_199.Toggle
+if r0_199.Toggle == false then
+r4_0.unknown.Main.ImageColor3 = Color3.fromRGB(255, 255, 255)
+r4_0.unknown.Main.BorderColor3 = Color3.fromRGB(15, 15, 15)
+else
+r4_0.unknown.Main.ImageColor3 = r39_0.Menu.CustomThemeColor
+r4_0.unknown.Main.BorderColor3 = r39_0.Menu.CustomThemeColor
+end
+end):add_color({
+Color = Color3.fromRGB(129, 210, 255),
+}, nil, function(r0_124)
+-- line: [0, 0] id: 124
+r39_0.Menu.CustomThemeColor = r0_124.Color
+if r39_0.Menu.CustomTheme then
+r4_0.unknown.Main.ImageColor3 = r39_0.Menu.CustomThemeColor
+r4_0.unknown.Main.BorderColor3 = r39_0.Menu.CustomThemeColor
+end
+end)
+local r182_56 = r34_56.element("Dropdown", "NPC - Only In Lobby", {
+options = {
+"Mihkel",
+"Seryozha",
+"Tarmo",
+"Nurse",
+"Blaze",
+"Boss",
+"Designer",
+"Anna"
+},
+}, function(r0_132)
+-- line: [0, 0] id: 132
+r39_0.NPC = r0_132.Dropdown
+end)
+local r183_56 = r34_56.element("Button", "TELEPORT NPC  TO YOU", false, function(r0_251)
+-- line: [0, 0] id: 251
+local r1_251 = game.Workspace:FindFirstChild(r39_0.NPC)
+if r1_251 then
+r1_251.HumanoidRootPart.CFrame = r8_0.Character.HumanoidRootPart.CFrame
+end
+end)
+local r184_56 = r33_56.element("Toggle", "HIDESERVER INFORMATION", false, function(r0_154)
+-- line: [0, 0] id: 154
+r39_0.ServerInfo = r0_154.Toggle
+local r1_154 = r8_0.PlayerGui:FindFirstChild("ServerInfo")
+if r1_154 then
+r1_154:FindFirstChild("Frame").serverInfo.Visible = not r0_154.Toggle
+return
+end
+local r2_154 = nil
+r2_154 = r8_0.PlayerGui.ChildAdded:Connect(function(r0_155)
+-- line: [0, 0] id: 155
+if r0_155.Name == "ServerInfo" and r39_0.ServerInfo then
+r0_155:FindFirstChild("Frame").serverInfo.Visible = not r39_0.ServerInfo
+end
+end)
+end)
+local r185_56 = nil
+local r186_56 = nil
+local r187_56 = r33_56.element("Toggle", "HIDE NAME IN CHAT", false, function(r0_193)
+-- line: [0, 0] id: 193
+r39_0.HideName = r0_193.Toggle
+local r1_193 = r8_0.PlayerGui:FindFirstChild("ChatV3")
+local r2_193 = r0_193.Toggle
+if r2_193 then
+r2_193 = r185_56
+if not r2_193 then
+r2_193 = r39_0.HideName
+if r2_193 then
+function r2_193()
+-- line: [0, 0] id: 194
+for r3_194, r4_194 in pairs(r1_193:FindFirstChild("MainFrame").ChatBox.ChatWindow:GetChildren()) do
+if r4_194:IsA("TextLabel") and r4_194:FindFirstChild("Message") then
+local r5_194 = r4_194:FindFirstChild("Message")
+if r5_194.Text:find(r8_0.Name) then
+r5_194.Text = r5_194.Text:gsub(r8_0.Name, "Hidden")
+end
+end
+end
+r185_56 = r1_193:FindFirstChild("MainFrame").ChatBox.ChatWindow.ChildAdded:Connect(function(r0_195)
+-- line: [0, 0] id: 195
+if r0_195:IsA("TextLabel") and r0_195:FindFirstChild("Message") and r39_0.HideName then
+local r1_195 = r0_195:FindFirstChild("Message")
+if r1_195.Text:find(r8_0.Name) then
+r1_195.Text = r1_195.Text:gsub(r8_0.Name, "Hidden")
+end
+elseif r39_0.HideName then
+r185_56:Disconnect()
+r185_56 = nil
+end
+end)
+end
+if r1_193 then
+r2_193()
+else
+r186_56 = r8_0.PlayerGui.ChildAdded:Connect(function(r0_196)
+-- line: [0, 0] id: 196
+if r0_196.Name == "ChatV3" and r39_0.HideName then
+r1_193 = r0_196
+r2_193()
+r186_56:Disconnect()
+r186_56 = nil
+elseif not r39_0.HideName then
+r186_56:Disconnect()
+r186_56 = nil
+end
+end)
+end
+-- close: r2_193
+end
+end
+else
+r2_193 = r185_56
+if r2_193 then
+r2_193 = r185_56
+r2_193:Disconnect()
+r2_193 = nil
+r185_56 = r2_193
+r2_193 = pairs
+for r5_193, r6_193 in r2_193(r1_193:FindFirstChild("MainFrame").ChatBox.ChatWindow:GetChildren()) do
+if r6_193:IsA("TextLabel") and r6_193:FindFirstChild("Message") then
+local r7_193 = r6_193:FindFirstChild("Message")
+if r7_193.Text:find("Hidden") then
+r7_193.Text = r7_193.Text:gsub("Hidden", r8_0.Name)
+end
+end
+end
+end
+end
+end)
+task.spawn(function()
+-- line: [0, 0] id: 84
+local r0_84 = r40_56.element("Toggle", "DISABLE GAS MASK INHALE SOUND", false, function(r0_88)
+-- line: [0, 0] id: 88
+r39_0.GasMaskSound = r0_88.Toggle
+end)
+local r1_84 = r41_56.element("Toggle", "KEYBIND  INDICATOR", false, function(r0_85)
+-- line: [0, 0] id: 85
+r27_0.Visible(r0_85.Toggle)
+end)
+local r2_84 = r39_0.Lobby
+local r3_84 = nil -- notice: implicit variable refs by block#[2]
+if r2_84 then
+function r2_84()
+-- line: [0, 0] id: 96
+for r3_96, r4_96 in ipairs(r39_0.ServerListCopy) do
+if not r12_0:FindFirstChild(r4_96.Name) then
+r4_96:Clone().Parent = r12_0
+end
+end
+end
+r12_0.ChildAdded:Connect(function(r0_89)
+-- line: [0, 0] id: 89
+if r0_89:GetAttribute("ServerLocation") and r39_0.ServerChanger then
+local r1_89 = tostring(r0_89:GetAttribute("ServerLocation"))
+local r2_89 = nil
+local r3_89 = r0_89:GetAttribute("MapName")
+local r4_89 = r0_89:GetAttribute("Ver")
+local r5_89 = tonumber(string.match(r0_89:GetAttribute("TimeOfDay"), "^(%d%d)"))
+if not r0_89:GetAttribute("Premium") and not r0_89:GetAttribute("Veteran") then
+r2_89 = "Default"
+elseif r0_89:GetAttribute("Premium") then
+r2_89 = "Premium"
+elseif r0_89:GetAttribute("Veteran") then
+r2_89 = "Veteran"
+end
+if r1_89 and r0_89 then
+if not r39_0.ServerListCopy[r0_89] then
+table.insert(r39_0.ServerListCopy, r0_89)
+end
+local r6_89 = tonumber(r0_89:GetAttribute("PlayerCount"))
+local r7_89 = r0_89.Name:lower()
+local r8_89 = r39_0.ServerName:lower()
+if r39_0.ServerName and r39_0.ServerName ~= "Default" and 2 < #r8_89 and not r7_89:find(r8_89) or #r8_89 <= 2 and r7_89:sub(1, #r8_89) ~= r8_89 and r7_89:sub(-#r8_89) ~= r8_89 then
+task.wait(0.5)
+r0_89:Destroy()
+elseif r39_0.ServerTarget ~= "Any" and r1_89 ~= r39_0.ServerTarget then
+task.wait(0.5)
+r0_89:Destroy()
+elseif r39_0.ServerRank ~= "All" and r2_89 ~= r39_0.ServerRank then
+task.wait(0.5)
+r0_89:Destroy()
+elseif r39_0.ServerMap ~= "Any" and r3_89 ~= r39_0.ServerMap then
+task.wait(0.5)
+r0_89:Destroy()
+elseif r39_0.ServerVersion ~= "Any" and r4_89 ~= r39_0.ServerVersion and r0_89 then
+task.wait(0.5)
+r0_89:Destroy()
+elseif r39_0.ServerClock ~= "Any" and r0_89 then
+if r39_0.ServerClock == "Day" and r5_89 < 12 then
+task.wait(0.5)
+r0_89:Destroy()
+elseif r5_89 > 12 then
+task.wait(0.5)
+r0_89:Destroy()
+end
+elseif r6_89 < r39_0.ServerPlayerMax then
+task.wait(0.5)
+r0_89:Destroy()
+elseif r39_0.ServerPlayerMin < r6_89 and r39_0.ServerPlayerMax <= r39_0.ServerPlayerMin then
+task.wait(0.5)
+r0_89:Destroy()
+end
+end
+end
+end)
+function r3_84(r0_90)
+-- line: [0, 0] id: 90
+local r1_90 = 0
+local r2_90 = 0
+r2_84()
+if r39_0.ServerChanger then
+for r6_90, r7_90 in pairs(r12_0:GetChildren()) do
+if r0_90 == "ServerLocation" then
+local r8_90 = tostring(r7_90:GetAttribute("ServerLocation"))
+local r9_90 = nil
+local r10_90 = r7_90:GetAttribute("MapName")
+local r11_90 = r7_90:GetAttribute("Ver")
+local r12_90 = tonumber(string.match(r7_90:GetAttribute("TimeOfDay"), "^(%d%d)"))
+if r7_90:GetAttribute("Veteran") then
+r9_90 = "Veteran"
+end
+if not r9_90 then
+if not r7_90:GetAttribute("Premium") or not r7_90:GetAttribute("Premium") then
+r9_90 = "Default"
+elseif r7_90:GetAttribute("Premium") then
+r9_90 = "Premium"
+end
+end
+if r8_90 and r7_90 then
+if r39_0.ServerName and r39_0.ServerName ~= "Default" then
+local r13_90 = r7_90.Name:lower()
+local r14_90 = r39_0.ServerName:lower()
+if 2 < #r14_90 and not r13_90:find(r14_90) or #r14_90 <= 2 and r13_90:sub(1, #r14_90) ~= r14_90 and r13_90:sub(-#r14_90) ~= r14_90 then
+r7_90:Destroy()
+r1_90 = r1_90 + 1
+end
+end
+if r39_0.ServerTarget ~= "Any" and r8_90 ~= r39_0.ServerTarget then
+r7_90:Destroy()
+r1_90 = r1_90 + 1
+end
+if r39_0.ServerRank ~= "All" and r9_90 ~= r39_0.ServerRank and r7_90 then
+r7_90:Destroy()
+r1_90 = r1_90 + 1
+end
+if r39_0.ServerMap ~= "Any" and r10_90 ~= r39_0.ServerMap and r7_90 then
+r7_90:Destroy()
+r1_90 = r1_90 + 1
+end
+if r39_0.ServerVersion ~= "Any" and r11_90 ~= r39_0.ServerVersion and r7_90 then
+r7_90:Destroy()
+r1_90 = r1_90 + 1
+end
+if r39_0.ServerClock ~= "Any" and r7_90 and r12_90 and 12 < r12_90 then
+r7_90:Destroy()
+r1_90 = r1_90 + 1
+end
+local r13_90 = tonumber(r7_90:GetAttribute("PlayerCount"))
+if r13_90 < r39_0.ServerPlayerMax then
+r7_90:Destroy()
+r1_90 = r1_90 + 1
+end
+if r39_0.ServerPlayerMin < r13_90 and r39_0.ServerPlayerMax <= r39_0.ServerPlayerMin then
+r7_90:Destroy()
+r1_90 = r1_90 + 1
+end
+end
+end
+end
+end
+return r1_90
+-- warn: not visited block [41]
+-- block#41:
+-- r7_90:Destroy()
+-- r1_90 = r1_90 + 1
+-- --goto label_185
+end
+local r4_84 = r42_56.element("Toggle", "Server List Filter", false, function(r0_93)
+-- line: [0, 0] id: 93
+r39_0.ServerChanger = r0_93.Toggle
+if r0_93.Toggle then
+r3_84("ServerLocation")
+else
+r2_84()
+end
+end)
+local r5_84 = r42_56.element("Dropdown", "Server Region", {
+options = {
+"Any",
+"EU",
+"NA",
+"AS"
+},
+}, function(r0_97)
+-- line: [0, 0] id: 97
+r39_0.ServerTarget = r0_97.Dropdown
+if r39_0.ServerChanger then
+r3_84("ServerLocation")
+end
+end)
+local r6_84 = r42_56.element("Dropdown", "Server Level", {
+options = {
+"All",
+"Default",
+"Veteran",
+"Premium"
+},
+}, function(r0_92)
+-- line: [0, 0] id: 92
+r39_0.ServerRank = r0_92.Dropdown
+if r39_0.ServerChanger then
+r3_84("ServerLocation")
+end
+end)
+local r7_84 = r42_56.element("Dropdown", "Server Map", {
+options = {
+"Any",
+"Estonian Border",
+"City-13"
+},
+}, function(r0_91)
+-- line: [0, 0] id: 91
+r39_0.ServerMap = r0_91.Dropdown
+if r39_0.ServerChanger then
+r3_84("ServerLocation")
+end
+end)
+local r8_84 = r42_56.element("Dropdown", "Server Version", {
+options = {
+"Any",
+"0.501c",
+"0.5h",
+"0.501b"
+},
+}, function(r0_87)
+-- line: [0, 0] id: 87
+r39_0.ServerVersion = r0_87.Dropdown
+if r39_0.ServerChanger then
+r3_84("ServerLocation")
+end
+end)
+local r9_84 = r42_56.element("TextBox", "Server ID Must Contain", false, function(r0_98)
+-- line: [0, 0] id: 98
+r39_0.ServerName = r0_98.Text
+if r39_0.ServerChanger then
+r3_84("ServerLocation")
+end
+end)
+local r10_84 = r42_56.element("Dropdown", "Server Clock", {
+options = {
+"Any",
+"Day",
+"Night"
+},
+}, function(r0_99)
+-- line: [0, 0] id: 99
+r39_0.ServerClock = r0_99.Dropdown
+if r39_0.ServerChanger then
+r3_84("ServerLocation")
+end
+end)
+local r11_84 = r42_56.element("Slider", "Minimum Players In Server", {
+default = {
+min = 1,
+max = 25,
+default = 1,
+},
+}, function(r0_86)
+-- line: [0, 0] id: 86
+r39_0.ServerPlayerMax = r0_86.Slider
+if r39_0.ServerChanger then
+r3_84("ServerLocation")
+end
+end)
+local r12_84 = r42_56.element("Slider", "Maximum Players In Server", {
+default = {
+min = 1,
+max = 25,
+default = 25,
+},
+}, function(r0_94)
+-- line: [0, 0] id: 94
+r39_0.ServerPlayerMin = r0_94.Slider
+if r39_0.ServerChanger then
+r3_84("ServerLocation")
+end
+end)
+-- close: r2_84
+end
+r2_84 = r43_56
+r2_84 = r2_84.element
+r3_84 = "Button"
+r2_84 = r2_84(r3_84, "Join random server", false, function(r0_100)
+-- line: [0, 0] id: 100
+local r2_100, r3_100 = (function()
+-- line: [0, 0] id: 101
+local r0_101 = r12_0:GetChildren()
+if #r0_101 == 0 then
+return nil
+end
+local r1_101 = r0_101[math.random(1, #r0_101)]
+return r1_101:GetAttribute("PlaceId"), r1_101:GetAttribute("JobId")
+end)()
+if r2_100 then
+game:GetService("TeleportService"):TeleportToPlaceInstance(r2_100, r3_100, r8_0)
+else
+r0_0("Smoke.Weed | Servers", "No server has been found to be suitable with your current requirements.", 2.5)
+end
+end)
+r3_84 = r43_56
+r3_84 = r3_84.element
+r3_84 = r3_84("Button", "Rejoin server", false, function(r0_95)
+-- line: [0, 0] id: 95
+local r1_95 = game.JobId
+local r2_95 = game.PlaceId
+if r1_95 and r2_95 then
+game:GetService("TeleportService"):TeleportToPlaceInstance(r2_95, r1_95, r8_0)
+end
+end)
+end)
+local r188_56 = r22_56.element("Button", "Unload - Will Lag Once", false, function(r0_244)
+-- line: [0, 0] id: 244
+local r1_244 = r4_0:FindFirstChild("unknown")
+if not unknown then
+for r5_244, r6_244 in pairs(r4_0:GetChildren()) do
+if r6_244.Name == "unknown" then
+unknown = r6_244
+end
+end
+end
+if r52_0 and unknown then
+r23_0 = false
+r25_0.Enabled = false
+r39_0.Loaded = false
+r39_0.MasterAimbot = false
+r39_0.SpeedHack = false
+r39_0.LastTarget = nil
+r39_0.AmbientChanger = false
+r39_0.TimeChanger = false
+r39_0.CustomHitSound = false
+r39_0.ViewModelChanger = false
+r42_0.SkinChanger = false
+r39_0.ExitESP = false
+r39_0.AiNameTag = false
+r39_0.ContainerESP = false
+r39_0.VehicleTag = false
+r39_0.DroppedItemESP = false
+r39_0.TPKill = false
+r39_0.InstantEquip = false
+r77_0(false)
+NoSpread(false)
+r72_0(false)
+r39_0.Foliage = false
+r116_56()
+r79_0("Fov")
+r81_0("Visor", false)
+r81_0("Reapir", false)
+r27_0.Disconnect()
+if r39_0.Xray then
+r60_0(false)
+end
+for r5_244, r6_244 in ipairs(r7_0:GetChildren()) do
+r83_0(r6_244, false)
+end
+local r2_244 = game.Lighting:FindFirstChildOfClass("Sky")
+local r3_244 = r39_0.Sky.Default
+if r3_244 then
+r2_244.SkyboxBk = r3_244.Value
+r2_244.SkyboxDn = r3_244.Value
+r2_244.SkyboxFt = r3_244.Value
+r2_244.SkyboxLf = r3_244.Value
+r2_244.SkyboxRt = r3_244.Value
+r2_244.SkyboxUp = r3_244.Value
+end
+if r3_0 then
+r3_0:Disconnect()
+end
+if r158_56 then
+r158_56:Disconnect()
+end
+if r2_0 then
+r2_0:Disconnect()
+end
+if r76_56 then
+r76_56:Disconnect()
+end
+for r7_244, r8_244 in pairs(r69_0) do
+r8_244:Disconnect()
+end
+if r39_0.FOVCircle then
+r39_0.FOVCircle:Destroy()
+end
+r52_0:Destroy()
+r53_0:Destroy()
+r1_244:Destroy()
+if Tracer then
+Tracer:Destroy()
+end
+r39_0.HorizontalLine1:Destroy()
+r39_0.HorizontalLine2:Destroy()
+r39_0.VerticalLine1:Destroy()
+r39_0.VerticalLine2:Destroy()
+game.Lighting.Brightness = 2
+game.Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+game.Lighting.Ambient = Color3.fromRGB(128, 128, 128)
+for r7_244, r8_244 in pairs(game.Workspace:GetDescendants()) do
+local r9_244 = r8_244:FindFirstChild("BillboardGui") or r8_244:FindFirstChild("ExitLocation") or r8_244:FindFirstChild("Highlight")
+if r9_244 then
+r9_244:Destroy()
+end
+if r8_244:IsA("Highlight") then
+r8_244:Destroy()
+end
+end
+if r39_0.FreezeUrSelf and r8_0.Character then
+r39_0.FreezeUrSelf = false
+r8_0.Character.HumanoidRootPart.Massless = false
+end
+sethiddenproperty(workspace.Terrain, "Decoration", true)
+_G.InjectedGui = false
+_G.Injected = false
+task.wait(0.01)
+r25_0:Disconnect()
+end
+end)
+local r189_56 = "Default"
+local r190_56 = r21_56.element("TextBox", "Enter Config Name", false, function(r0_260)
+-- line: [0, 0] id: 260
+r189_56 = r0_260.Text
+if r0_260.Text == nil then
+r189_56 = "Default"
+elseif r0_260.Text == "" or r0_260.Text == " " then
+r189_56 = "Default"
+end
+end)
+local r191_56 = r21_56.element("Button", "Save Config", false, function(r0_110)
+-- line: [0, 0] id: 110
+Save(r189_56, "AutoLoadConfig")
+r1_56.save_cfg(r189_56)
+r0_0("Smoke.Weed By 3ms| Configs", "Config Named: " .. r189_56 .. " Was Saved", 5)
+end)
+local r192_56 = r21_56.element("Button", "Load Config", false, function(r0_240)
+-- line: [0, 0] id: 240
+Save(r189_56, "AutoLoadConfig")
+r1_56.load_cfg(r189_56)
+r0_0("Smoke.Weed By 3ms| Configs", "Config Named: " .. r189_56 .. " Was Loaded", 5)
+end)
+local r193_56 = Load("Text", "AutoLoadConfig")
+if r193_56 then
+r1_56.load_cfg(r193_56)
+r0_0("Smoke.Weed By 3ms| Configs", "Config Named: " .. r193_56 .. " Was Loaded", 5)
+end
+r0_0("Smoke.Weed By 3ms3.5/4", "Finished Creating UI", 2.5)
+end)
+r0_0("Smoke.Weed By 3ms4/5", "Almost Done...", 2.5)
+local r90_0 = {}
+local r91_0 = Load("UDim2", "Position.txt") or UDim2.new(0.004277, 0, 0.444444, 0)
+task.spawn(function()
+-- line: [0, 0] id: 298
+-- notice: unreachable block#1
+local r0_298 = Instance.new("Frame", r52_0)
+r0_298.BackgroundColor3 = Color3.new(1, 1, 1)
+r0_298.Name = "Frame"
+r0_298.Position = r91_0
+r0_298.BorderColor3 = Color3.new(0, 0, 0)
+r0_298.BackgroundTransparency = 1
+r0_298.BorderSizePixel = 0
+r0_298.Size = UDim2.new(0.171062, 0, 0.231481, 0)
+r0_298.Visible = false
+table.insert(r90_0, r0_298)
+local r1_298 = Instance.new("TextLabel", r0_298)
+r1_298.TextColor3 = Color3.new(0, 0, 0)
+r1_298.BorderColor3 = Color3.new(0.305882, 0.364706, 0.917647)
+r1_298.Text = ""
+r1_298.BorderSizePixel = 1
+r1_298.Font = Enum.Font.SourceSans
+r1_298.Name = "TextLabel"
+r1_298.Position = UDim2.new(0.00011, 0, 0, 0)
+r1_298.BackgroundTransparency = 0
+r1_298.BackgroundColor3 = Color3.new(0.058824, 0.058824, 0.058824)
+r1_298.TextSize = 14
+r1_298.Size = UDim2.new(0.995723, 0, 0.755699, 0)
+local r2_298 = Instance.new("TextLabel", r0_298)
+r2_298.TextColor3 = Color3.new(1, 1, 1)
+r2_298.BorderColor3 = Color3.new(0.305882, 0.364706, 0.917647)
+r2_298.Text = "Boss Information"
+r2_298.BorderSizePixel = 1
+r2_298.Font = Enum.Font.SourceSans
+r2_298.Name = "TextLabel"
+r2_298.Position = UDim2.new(0.004277, 0, 0, 0)
+r2_298.BackgroundTransparency = 0
+r2_298.BackgroundColor3 = Color3.new(0.058824, 0.058824, 0.058824)
+r2_298.TextSize = 14
+r2_298.Size = UDim2.new(0.992602, 0, 0.129032, 0)
+local r3_298 = Instance.new("TextLabel", r0_298)
+r3_298.TextColor3 = Color3.new(1, 1, 1)
+r3_298.BorderColor3 = Color3.new(0.305882, 0.364706, 0.917647)
+r3_298.Text = ""
+r3_298.BorderSizePixel = 1
+r3_298.Font = Enum.Font.SourceSans
+r3_298.Name = "TextLabel"
+r3_298.Position = UDim2.new(0.004277, 0, 0.129033, 0)
+r3_298.BackgroundTransparency = 0
+r3_298.BackgroundColor3 = Color3.new(1, 1, 1)
+r3_298.TextSize = 14
+r3_298.Size = UDim2.new(0.995723, 0, 0.005226, 0)
+local r4_298 = Instance.new("TextLabel", r0_298)
+r4_298.TextColor3 = Color3.new(1, 0, 0)
+r4_298.BorderColor3 = Color3.new(0.305882, 0.364706, 0.917647)
+r4_298.Text = "Boss Not Found"
+r4_298.BorderSizePixel = 1
+r4_298.Font = Enum.Font.SourceSans
+r4_298.Name = "TextLabel"
+r4_298.Position = UDim2.new(0.004277, 0, 0.173333, 0)
+r4_298.BackgroundTransparency = 0
+r4_298.BackgroundColor3 = Color3.new(0.058824, 0.058824, 0.058824)
+r4_298.TextSize = 14
+r4_298.Size = UDim2.new(0.992602, 0, 0.175699, 0)
+table.insert(r90_0, r4_298)
+local r5_298 = Instance.new("TextLabel", r0_298)
+r5_298.TextColor3 = Color3.new(1, 0, 0)
+r5_298.BorderColor3 = Color3.new(0.305882, 0.364706, 0.917647)
+r5_298.Text = "Boss Not Found"
+r5_298.BorderSizePixel = 1
+r5_298.Font = Enum.Font.SourceSans
+r5_298.Name = "Dozer"
+r5_298.Position = UDim2.new(0.004277, 0, 0.393333, 0)
+r5_298.BackgroundTransparency = 0
+r5_298.BackgroundColor3 = Color3.new(0.058824, 0.058824, 0.058824)
+r5_298.TextSize = 14
+r5_298.Size = UDim2.new(0.991557, 0, 0.162366, 0)
+table.insert(r90_0, r5_298)
+local r6_298 = Instance.new("TextLabel", r0_298)
+r6_298.TextColor3 = Color3.new(1, 0, 0)
+r6_298.BorderColor3 = Color3.new(0.305882, 0.364706, 0.917647)
+r6_298.Text = "Boss Not Found"
+r6_298.BorderSizePixel = 1
+r6_298.Font = Enum.Font.SourceSans
+r6_298.Name = "Whisper"
+r6_298.Position = UDim2.new(0.004277, 0, 0.595699, 0)
+r6_298.BackgroundTransparency = 0
+r6_298.BackgroundColor3 = Color3.new(0.058824, 0.058824, 0.058824)
+r6_298.TextSize = 14
+r6_298.Size = UDim2.new(0.992602, 0, 0.16, 0)
+table.insert(r90_0, r6_298)
+local r7_298 = nil
+local r8_298 = nil
+local r9_298 = nil
+local r10_298 = nil
+function EnableDragging(r0_299)
+-- line: [0, 0] id: 299
+r0_299.InputBegan:Connect(function(r0_301)
+-- line: [0, 0] id: 301
+if r0_301.UserInputType == Enum.UserInputType.MouseButton1 then
+r7_298 = true
+r9_298 = r0_299.Position
+r10_298 = r6_0:GetMouseLocation()
+end
+end)
+r0_299.InputChanged:Connect(function(r0_302)
+-- line: [0, 0] id: 302
+if r0_302.UserInputType == Enum.UserInputType.MouseMovement then
+r8_298 = r0_302
+end
+end)
+r6_0.InputChanged:Connect(function(r0_303)
+-- line: [0, 0] id: 303
+if r0_303 == r8_298 and r7_298 and r39_0.BossMovable then
+local r1_303 = r6_0:GetMouseLocation() - r10_298
+r0_299.Position = UDim2.new(r9_298.X.Scale, r9_298.X.Offset + r1_303.X, r9_298.Y.Scale, r9_298.Y.Offset + r1_303.Y)
+r91_0 = r0_299.Position
+Save(r0_299.Position, "Position")
+end
+end)
+r0_299.InputEnded:Connect(function(r0_300)
+-- line: [0, 0] id: 300
+if r0_300.UserInputType == Enum.UserInputType.MouseButton1 then
+r7_298 = false
+end
+end)
+end
+EnableDragging(r0_298)
+-- close: r0_298
+end)
+local r92_0 = {}
+local r93_0 = {}
+local r94_0 = {}
+local r95_0 = {}
+for r99_0 = 1, 12, 1 do
+local r100_0 = Instance.new("ImageLabel", r52_0)
+r100_0.Visible = false
+r100_0.Size = UDim2.new(0, 60, 0, 60)
+r100_0.BackgroundTransparency = 0.25
+r100_0.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+Instance.new("UICorner", r100_0).CornerRadius = UDim.new(0, 12)
+if r99_0 <= 3 then
+r100_0.Position = UDim2.new(0, (r52_0.AbsoluteSize.X - 135 - 825) / 2 + (r99_0 - 1) * 85, 0, 0)
+else
+r100_0.Position = UDim2.new(0, (r52_0.AbsoluteSize.X - 135 - 800) / 2 + (r99_0 - 1) * 80, 0, 0)
+end
+r92_0[r99_0] = r100_0
+end
+for r99_0 = 1, 12, 1 do
+local r100_0 = Instance.new("ImageLabel", r52_0)
+r100_0.Visible = false
+r100_0.Size = UDim2.new(0, 25, 0, 20)
+r100_0.BackgroundTransparency = 0.2
+r100_0.BackgroundColor3 = Color3.fromRGB(155, 30, 30)
+r100_0.ZIndex = 2
+Instance.new("UICorner", r100_0).CornerRadius = UDim.new(0, 9)
+if r99_0 <= 4 then
+r100_0.Position = UDim2.new(0, (r52_0.AbsoluteSize.X - 135 - 850) / 2 + (r99_0 - 1) * 21, 0, 55)
+r100_0.BackgroundColor3 = Color3.fromRGB(155, 20, 30)
+elseif r99_0 <= 8 then
+r100_0.Position = UDim2.new(0, (r52_0.AbsoluteSize.X - 135 - 845) / 2 + (r99_0 - 1) * 21, 0, 55)
+r100_0.BackgroundColor3 = Color3.fromRGB(30, 50, 155)
+elseif r99_0 <= 12 then
+r100_0.Position = UDim2.new(0, (r52_0.AbsoluteSize.X - 135 - 840) / 2 + (r99_0 - 1) * 21, 0, 55)
+r100_0.BackgroundColor3 = Color3.fromRGB(50, 155, 30)
+end
+r95_0[r99_0] = r100_0
+end
+for r99_0 = 1, 54, 1 do
+local r100_0 = Instance.new("ImageLabel", r52_0)
+r100_0.Visible = false
+r100_0.Size = UDim2.new(0, 35, 0, 35)
+r100_0.BackgroundTransparency = 0.35
+r100_0.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Instance.new("UICorner", r100_0).CornerRadius = UDim.new(0, 12)
+local r102_0 = Instance.new("TextLabel", r52_0)
+r102_0.Visible = true
+r102_0.Text = ""
+r102_0.TextScaled = true
+r102_0.Size = UDim2.new(0, 20, 0, 15)
+r102_0.BackgroundTransparency = 1
+r102_0.TextColor3 = Color3.fromRGB(255, 255, 255)
+Instance.new("UICorner", r102_0).CornerRadius = UDim.new(0, 12)
+if r99_0 <= 6 then
+r100_0.Position = UDim2.new(0, (r52_0.AbsoluteSize.X - -900 - 400) / 2 + (r99_0 - 1) * 40, 0, 100)
+r102_0.Position = UDim2.new(0, (r52_0.AbsoluteSize.X - -918 - 400) / 2 + (r99_0 - 1) * 40, 0, 124)
+elseif r99_0 <= 12 then
+r100_0.Position = UDim2.new(0, (r52_0.AbsoluteSize.X - -900 - 400) / 2 + (r99_0 - 6 - 1) * 40, 0, 140)
+r102_0.Position = UDim2.new(0, (r52_0.AbsoluteSize.X - -918 - 400) / 2 + (r99_0 - 6 - 1) * 40, 0, 164)
+elseif r99_0 <= 18 then
+r100_0.Position = UDim2.new(0, (r52_0.AbsoluteSize.X - -900 - 400) / 2 + (r99_0 - 12 - 1) * 40, 0, 180)
+r102_0.Position = UDim2.new(0, (r52_0.AbsoluteSize.X - -918 - 400) / 2 + (r99_0 - 12 - 1) * 40, 0, 204)
+elseif r99_0 <= 24 then
+r100_0.Position = UDim2.new(0, (r52_0.AbsoluteSize.X - -900 - 400) / 2 + (r99_0 - 18 - 1) * 40, 0, 220)
+r102_0.Position = UDim2.new(0, (r52_0.AbsoluteSize.X - -918 - 400) / 2 + (r99_0 - 18 - 1) * 40, 0, 244)
+elseif r99_0 <= 30 then
+r100_0.Position = UDim2.new(0, (r52_0.AbsoluteSize.X - -900 - 400) / 2 + (r99_0 - 24 - 1) * 40, 0, 260)
+r102_0.Position = UDim2.new(0, (r52_0.AbsoluteSize.X - -918 - 400) / 2 + (r99_0 - 24 - 1) * 40, 0, 284)
+elseif r99_0 <= 36 then
+r100_0.Position = UDim2.new(0, (r52_0.AbsoluteSize.X - -900 - 400) / 2 + (r99_0 - 30 - 1) * 40, 0, 300)
+r102_0.Position = UDim2.new(0, (r52_0.AbsoluteSize.X - -918 - 400) / 2 + (r99_0 - 30 - 1) * 40, 0, 324)
+elseif r99_0 <= 42 then
+r100_0.Position = UDim2.new(0, (r52_0.AbsoluteSize.X - -900 - 400) / 2 + (r99_0 - 36 - 1) * 40, 0, 340)
+r102_0.Position = UDim2.new(0, (r52_0.AbsoluteSize.X - -918 - 400) / 2 + (r99_0 - 36 - 1) * 40, 0, 364)
+elseif r99_0 <= 48 then
+r100_0.Position = UDim2.new(0, (r52_0.AbsoluteSize.X - -900 - 400) / 2 + (r99_0 - 42 - 1) * 40, 0, 380)
+r102_0.Position = UDim2.new(0, (r52_0.AbsoluteSize.X - -918 - 400) / 2 + (r99_0 - 42 - 1) * 40, 0, 404)
+elseif r99_0 <= 54 then
+r100_0.Position = UDim2.new(0, (r52_0.AbsoluteSize.X - -900 - 400) / 2 + (r99_0 - 48 - 1) * 40, 0, 420)
+r102_0.Position = UDim2.new(0, (r52_0.AbsoluteSize.X - -918 - 400) / 2 + (r99_0 - 48 - 1) * 40, 0, 424)
+end
+r93_0[r99_0] = r100_0
+r94_0[r99_0] = r102_0
+end
+local r96_0 = {
+LastVisibility = false,
+LastTargetInventory = nil,
+LastTargetClothes = nil,
+LastTargetValueName = nil,
+LastTargetValue = 0,
+}
+function VisibilityToggle(r0_23)
+-- line: [0, 0] id: 23
+local r1_23 = r96_0.LastVisibility
+if r0_23 == r1_23 then
+return
+end
+r96_0.LastVisibility = r0_23
+for r4_23 = 1, 12, 1 do
+r92_0[r4_23].Visible = r0_23
+r95_0[r4_23].Visible = r0_23
+end
+if r0_23 then
+r1_23 = r39_0.FullInventoryChecker or false
+else
+--goto label_24 -- block#7 is visited secondly
+end
+for r5_23 = 1, 54, 1 do
+r94_0[r5_23].Visible = r1_23
+r93_0[r5_23].Visible = r1_23
+end
+end
+local function r97_0(r0_47)
+-- line: [0, 0] id: 47
+if r0_47.Name == r8_0.Name then
+return
+end
+local r1_47 = nil
+if r0_47:FindFirstChild("Humanoid") then
+r1_47 = r0_47.Inventory
+else
+r1_47 = game.ReplicatedStorage.Players[r0_47.Name].Inventory
+end
+if r1_47 or not r96_0.LastTargetInventory == r0_47 then
+for r5_47 = 1, 12, 1 do
+r92_0[r5_47].Image = "rbxassetid://12459616555"
+end
+for r5_47 = 4, 12, 1 do
+r92_0[r5_47].Image = "rbxassetid://12459616555"
+end
+for r5_47 = 1, 12, 1 do
+r95_0[r5_47].Image = "rbxassetid://12459616555"
+end
+local r2_47 = 4
+local r3_47 = 1
+local r4_47 = 0
+for r8_47, r9_47 in pairs(r1_47:GetChildren()) do
+if r9_47:GetAttribute("Slot"):find("Clothing") then
+local r11_47 = r13_0:FindFirstChild(r9_47.Name)
+if r11_47 then
+r92_0[r2_47].Image = r11_47.ItemProperties.ItemIcon.Image
+r2_47 = r2_47 + 1
+end
+elseif r9_47:FindFirstChild("Attachments") then
+local r11_47 = r13_0:FindFirstChild(r9_47.Name)
+if r11_47 then
+r92_0[r3_47].Image = r11_47.ItemProperties.ItemIcon.Image
+r3_47 = r3_47 + 1
+for r15_47, r16_47 in pairs(r9_47.Attachments:GetChildren()) do
+local r17_47 = r16_47:GetAttribute("Slot")
+local r18_47 = r13_0:FindFirstChild(r16_47.Name)
+local r19_47 = nil
+if r17_47 == "Magazine" then
+r19_47 = 1
+elseif r17_47 == "Sight" then
+r19_47 = 2
+elseif r17_47 == "Muzzle" then
+r19_47 = 3
+elseif r17_47 == "Extra" then
+r19_47 = 4
+end
+if r19_47 and r18_47 then
+r95_0[r19_47 + r4_47].Image = r18_47.ItemProperties.ItemIcon.Image
+end
+end
+r4_47 = r4_47 + 4
+end
+end
+end
+if r39_0.FullInventoryChecker then
+for r8_47 = 1, 54, 1 do
+r93_0[r8_47].Image = "rbxassetid://12459616555"
+r94_0[r8_47].Text = ""
+end
+local r5_47 = 1
+for r9_47, r10_47 in pairs(r1_47:GetChildren()) do
+local r11_47 = r10_47:FindFirstChild("Inventory")
+if r11_47 and r10_47.Name ~= "KeyChain" then
+for r15_47, r16_47 in pairs(r11_47:GetChildren()) do
+local r17_47 = r16_47:GetAttribute("Amount") or 1
+r93_0[r5_47].Image = r13_0:FindFirstChild(r16_47.Name).ItemProperties.ItemIcon.Image
+if r17_47 >= 1000 then
+r17_47 = math.floor(r17_47 / 1000) .. "K"
+else
+r17_47 = "x" .. r17_47
+end
+r94_0[r5_47].Text = r17_47
+r5_47 = r5_47 + 1
+end
+end
+end
+end
+end
+r96_0.LastTargetInventory = r0_47
+end
+local function r98_0(r0_8)
+-- line: [0, 0] id: 8
+if r96_0.LastTargetValueName == r0_8 then
+return r96_0.LastTargetValue
+end
+local r1_8 = nil
+if r0_8:FindFirstChild("Humanoid") then
+r1_8 = r0_8.Inventory
+else
+r1_8 = game.ReplicatedStorage.Players[r0_8.Name].Inventory
+end
+local r2_8 = 0
+if r1_8 then
+for r6_8, r7_8 in pairs(r1_8:GetChildren()) do
+local r8_8 = r7_8:GetAttribute("Slot")
+if r8_8 and r8_8:find("Clothing") and r7_8:FindFirstChild("Inventory") then
+for r13_8, r14_8 in pairs(r7_8:FindFirstChild("Inventory"):GetChildren()) do
+local r15_8 = r13_0:FindFirstChild(r14_8.Name)
+if r15_8 then
+local r16_8 = 0
+if r14_8.Name ~= "Rubles" then
+r16_8 = r15_8.ItemProperties:GetAttribute("Price") or 1
+if r16_8 >= 10 then
+local r17_8 = r15_8.ItemProperties:GetAttribute("ItemType")
+if r17_8 == "Extra" then
+r16_8 = r16_8 * 0.4
+elseif r17_8 == "Ammo" then
+r16_8 = r16_8 * r14_8:GetAttribute("Amount") * 0.7
+elseif r17_8 == "Clothing" then
+r16_8 = r16_8 * 0.35
+elseif r17_8 == "Medical" then
+r16_8 = r16_8 * 0.75
+elseif r17_8 == "Barter" then
+r16_8 = r16_8 * 0.4
+end
+end
+r2_8 = r2_8 + r16_8
+else
+r2_8 = r2_8 + (r14_8:GetAttribute("Amount") or 1)
+end
+end
+end
+end
+end
+end
+r96_0.LastTargetValueName = r0_8
+r96_0.LastTargetValue = math.floor(r2_8)
+return math.floor(r2_8)
+end
+local function r99_0()
+-- line: [0, 0] id: 55
+local r1_55 = nil -- notice: implicit variable refs by block#[3]
+if r39_0.SilentAimbot and r39_0.AimbotRandomizeHitPart then
+local r0_55 = {
+"Head",
+"FaceHitBox",
+"HeadTopHitBox",
+"UpperTorso",
+"LowerTorso",
+"LeftUpperArm",
+"LeftLowerArm",
+"LeftHand",
+"RightUpperArm",
+"RightLowerArm",
+"RightHand",
+"LeftUpperLeg",
+"LeftLowerLeg",
+"LeftFoot",
+"RightUpperLeg",
+"RightLowerLeg",
+"RightFoot",
+"HumanoidRootPart"
+}
+r39_0.RealAimPart = r0_55[math.random(#r0_55)]
+return
+end
+if not r1_55 then
+r39_0.RealAimPart = r39_0.AimPart
+end
+end
+local function r100_0(r0_50, r1_50)
+-- line: [0, 0] id: 50
+local r2_50 = r39_0.AimbotFov or 0
+local r3_50 = r9_0:WorldToViewportPoint(r0_50)
+local r5_50 = (Vector2.new(r3_50.X, r3_50.Y) - Vector2.new(r9_0.ViewportSize.X / 2, r9_0.ViewportSize.Y / 2)).Magnitude
+if r1_50 == "Infinity" then
+r2_50 = 1000
+end
+local r6_50 = math.min(r2_50, math.max(r9_0.ViewportSize.X, r9_0.ViewportSize.Y))
+local r7_50 = r3_50.Z
+if r7_50 > 0 then
+r7_50 = r5_50 < r6_50
+else
+--goto label_48 -- block#6 is visited secondly
+end
+return r7_50
+end
+local function r101_0()
+-- line: [0, 0] id: 48
+local r0_48 = nil -- notice: implicit variable refs by block#[0, 15]
+local r1_48 = math.huge
+local function r2_48()
+-- line: [0, 0] id: 49
+for r3_49, r4_49 in ipairs(r7_0:GetPlayers()) do
+if r4_49 ~= r7_0.LocalPlayer and r4_49.Character and r4_49.Character:FindFirstChild("Head") and r4_49.Character:FindFirstChild("Head") and r4_49.Character:FindFirstChild("Humanoid") and 0 < r4_49.Character.Humanoid.Health and r100_0(r4_49.Character:FindFirstChild(r39_0.RealAimPart).Position, "Infinity") then
+local r6_49 = r9_0:WorldToViewportPoint(r4_49.Character.Head.Position)
+local r8_49 = (Vector2.new(r6_49.X, r6_49.Y) - Vector2.new(r9_0.ViewportSize.X / 2, r9_0.ViewportSize.Y / 2)).Magnitude
+if r8_49 < r1_48 then
+r1_48 = r8_49
+r0_48 = r4_49
+end
+end
+end
+end
+if not r39_0.LastTarget then
+r2_48()
+elseif r39_0.LastTarget:FindFirstChild("Head") then
+r2_48()
+else
+return r39_0.LastTarget
+end
+if r39_0.InventoryCheckCorpse then
+for r6_48, r7_48 in ipairs(game.Workspace.DroppedItems:GetChildren()) do
+if r7_48 and r7_48:FindFirstChild("Humanoid") and r7_48:FindFirstChild("Head") and not r7_48:FindFirstChild("AttackedBy") and r100_0(r7_48.Head.Position, "Infinity") then
+local r9_48 = r9_0:WorldToViewportPoint(r7_48.Head.Position)
+local r11_48 = (Vector2.new(r9_48.X, r9_48.Y) - Vector2.new(r9_0.ViewportSize.X / 2, r9_0.ViewportSize.Y / 2)).Magnitude
+if r11_48 < r1_48 then
+r1_48 = r11_48
+r0_48 = r7_48
+end
+end
+end
+end
+return r0_48
+end
+local function r102_0(r0_6)
+-- line: [0, 0] id: 6
+local r1_6 = r8_0.Character.Head.Position + Vector3.new(0, 1, 0)
+local r2_6 = nil
+local r3_6 = nil
+if r0_6:IsA("Model") then
+if r0_6:FindFirstChild(r39_0.RealAimPart) then
+r3_6 = r0_6:FindFirstChild(r39_0.RealAimPart).Position
+else
+return false
+end
+end
+if not r3_6 then
+r3_6 = r0_6.Character.HumanoidRootPart.Position
+end
+local r4_6 = workspace:Raycast(r1_6, ((r3_6 - r1_6)).Unit * ((r3_6 - r1_6)).Magnitude)
+if r4_6 and r4_6.Instance.Parent:FindFirstChildOfClass("Humanoid") then
+return true
+end
+return false
+end
+local function r103_0(r0_37)
+-- line: [0, 0] id: 37
+local r1_37 = false
+if r0_37:IsA("Model") then
+r1_37 = true
+end
+if r1_37 == false and not r0_37.Character then
+return false
+end
+if r1_37 == false and not r0_37.Character:FindFirstChild("Head") then
+return false
+end
+if r1_37 == false and r0_37.Character:FindFirstChild("Humanoid") and r0_37.Character.Humanoid.Health <= 0 then
+return false
+end
+if r39_0.WallCheck then
+if r102_0(r0_37) then
+return true
+end
+return false
+end
+local r2_37 = r39_0.TeamCheck
+if r2_37 and r1_37 == false then
+r2_37 = game.ReplicatedStorage.Players
+local function r3_37(r0_38)
+-- line: [0, 0] id: 38
+return r2_37[r0_38.Name].Status.Journey.Clan:GetAttribute("CurrentClan")
+end
+local r4_37 = r3_37(r8_0)
+if r4_37 then
+local r5_37 = r3_37(r0_37)
+if r5_37 and not r4_37 == nil or not r4_37 == "nil" or r5_37 and not r5_37 == nil or not r5_37 == "nil" then
+if r4_37 == r5_37 then
+return false
+end
+return true
+end
+end
+-- close: r2_37
+end
+r2_37 = true
+return r2_37
+end
+local r104_0 = LastTargetSwitchTime or 0
+local r105_0 = 0.05
+local function r106_0()
+-- line: [0, 0] id: 307
+local r0_307 = nil -- notice: implicit variable refs by block#[12]
+if r39_0.StickyAim and r39_0.LastTarget then
+if r39_0.LastTarget:FindFirstChild("Head") then
+if r100_0(r39_0.LastTarget:FindFirstChild(r39_0.RealAimPart).Position, "Empty") then
+r0_307 = false
+else
+r0_307 = true
+end
+elseif r39_0.LastTarget.Character then
+local r1_307 = r39_0.LastTarget.Character:FindFirstChild(r39_0.RealAimPart)
+if r1_307 and r100_0(r1_307.Position, "Empty") then
+r0_307 = false
+else
+r0_307 = true
+end
+else
+r0_307 = true
+end
+end
+if r0_307 == false then
+return
+end
+local r1_307 = nil
+local r2_307 = math.huge
+local r3_307 = tick()
+local r4_307 = nil
+local r5_307 = nil
+local r6_307 = nil
+local r7_307 = nil
+if r39_0.AimbotPlayer then
+for r11_307, r12_307 in ipairs(r7_0:GetPlayers()) do
+if r12_307 ~= r8_0 and r103_0(r12_307) and not r25_0.Moderators[r12_307.Name] then
+local r13_307 = r12_307.Character:FindFirstChild(r39_0.RealAimPart)
+if r13_307 and r100_0(r13_307.Position, "Empty") then
+r4_307 = r13_307.Position
+r5_307 = r9_0:WorldToViewportPoint(r4_307)
+r6_307 = Vector2.new(r9_0.ViewportSize.X / 2, r9_0.ViewportSize.Y / 2)
+r7_307 = (Vector2.new(r5_307.X, r5_307.Y) - r6_307).Magnitude
+if r7_307 < r2_307 then
+r2_307 = r7_307
+r1_307 = r12_307
+end
+end
+end
+end
+end
+if r39_0.AimbotTargetAi then
+for r11_307, r12_307 in pairs(workspace.AiZones:GetChildren()) do
+for r16_307, r17_307 in pairs(r12_307:GetChildren()) do
+if r17_307:IsA("Model") and r17_307:FindFirstChild("Humanoid") then
+local r18_307 = nil
+if r17_307.Name == "MI24V" then
+r18_307 = r17_307.Pilots.Pilot:FindFirstChild("Head") or r17_307.Pilots.Gunner:FindFirstChild("Head")
+else
+r18_307 = r17_307:FindFirstChild(r39_0.RealAimPart)
+end
+if r18_307 and r100_0(r18_307.Position, "Empty") and r103_0(r17_307) then
+r4_307 = r18_307.Position
+r5_307 = r9_0:WorldToViewportPoint(r4_307)
+r6_307 = Vector2.new(r9_0.ViewportSize.X / 2, r9_0.ViewportSize.Y / 2)
+r7_307 = (Vector2.new(r5_307.X, r5_307.Y) - r6_307).Magnitude
+if r7_307 < r2_307 then
+r2_307 = r7_307
+if r17_307.Name == "MI24V" then
+r1_307 = r17_307.Pilots.Pilot
+else
+r1_307 = r17_307
+end
+end
+end
+end
+end
+end
+end
+if r1_307 and (r39_0.LastTarget ~= r1_307 or r105_0 <= r3_307 - r104_0) then
+r39_0.LastTarget = r1_307
+r104_0 = r3_307
+end
+if not r1_307 then
+r39_0.LastTarget = nil
+end
+end
+local r107_0 = game.ReplicatedStorage.Players:FindFirstChild(r8_0.Name)
+local function r108_0(r0_287)
+-- line: [0, 0] id: 287
+if r107_0 and r107_0.Status.GameplayVariables.EquippedTool.Value and r107_0:FindFirstChild("Inventory") then
+local r6_287 = r107_0.Inventory:FindFirstChild(tostring(r107_0.Status.GameplayVariables.EquippedTool.Value))
+if r6_287 and r6_287:FindFirstChild("Attachments") then
+local r7_287 = nil
+for r11_287, r12_287 in pairs(r6_287.Attachments:GetChildren()) do
+if r12_287.Name:lower():find("mag") or r12_287.Name:lower():find("rnd") then
+r7_287 = r12_287:FindFirstChild("LoadedAmmo")
+if r7_287 then
+r7_287 = r7_287:GetChildren()[1]
+break
+else
+break
+end
+end
+end
+if r7_287 then
+local r8_287 = r7_287:GetAttribute("AmmoType")
+if r8_287 then
+local r9_287 = game.ReplicatedStorage.AmmoTypes:FindFirstChild(r8_287)
+if r9_287 then
+if r6_287:FindFirstChild("LoadedAmmo") then
+local r3_287 = r6_287.LoadedAmmo:FindFirstChild("1")
+if r3_287 then
+local r4_287 = r3_287:GetAttribute("AmmoType")
+if r4_287 then
+local r5_287 = game.ReplicatedStorage.AmmoTypes:FindFirstChild(r4_287)
+if r5_287 then
+return r5_287:GetAttribute(r0_287) or 0
+end
+end
+end
+end
+return r9_287:GetAttribute(r0_287) or 0
+end
+end
+else
+--goto label_91 -- block#17 is visited secondly
+end
+end
+end
+return 0
+end
+local r109_0 = nil
+local function r110_0()
+-- line: [0, 0] id: 293
+if r39_0.AimbotEnabled and r39_0.LastTarget then
+local r0_293 = nil
+local r1_293 = nil
+local r2_293 = nil
+local r3_293 = nil
+local r4_293 = r108_0("MuzzleVelocity")
+local function r5_293(r0_294)
+-- line: [0, 0] id: 294
+if r39_0.AimbotTracer then
+local r1_294, r2_294 = workspace.CurrentCamera:WorldToViewportPoint(r0_294.Position)
+if not r109_0 then
+r109_0 = Drawing.new("Line")
+end
+if r2_294 then
+r109_0.Color = r39_0.AimbotTracerColor
+r109_0.Thickness = 2
+r109_0.Transparency = 1
+r109_0.From = Vector2.new(workspace.CurrentCamera.ViewportSize.X / 2, workspace.CurrentCamera.ViewportSize.Y / 2)
+r109_0.To = Vector2.new(r1_294.X, r1_294.Y)
+else
+r109_0.Transparency = 0
+end
+end
+end
+if r39_0.AimbotNearestPartToCursor and not r39_0.AimbotRandomizeHitPart then
+local function r6_293(r0_295)
+-- line: [0, 0] id: 295
+if r0_295 then
+local r1_295 = math.huge
+for r5_295, r6_295 in pairs(r0_295:GetChildren()) do
+if r6_295:IsA("MeshPart") then
+local r7_295, r8_295 = r9_0:WorldToViewportPoint(r6_295.Position)
+if r8_295 then
+local r10_295 = (Vector2.new(r7_295.X, r7_295.Y) - Vector2.new(r9_0.ViewportSize.X / 2, r9_0.ViewportSize.Y / 2)).Magnitude
+if r10_295 < r1_295 then
+r1_295 = r10_295
+r2_293 = r6_295
+end
+end
+end
+end
+end
+end
+if r39_0.LastTarget:IsA("Player") then
+r6_293(r39_0.LastTarget.Character)
+elseif not r39_0.LastTarget.Name == "MI24V" then
+r6_293(r39_0.LastTarget)
+end
+end
+if not r2_293 then
+if r39_0.LastTarget:IsA("Player") then
+r2_293 = r39_0.LastTarget.Character:FindFirstChild(r39_0.RealAimPart) or r39_0.LastTarget.Character:FindFirstChild("Head")
+else
+r2_293 = r39_0.LastTarget:FindFirstChild(r39_0.RealAimPart) or r39_0.LastTarget:FindFirstChild("Head")
+end
+end
+if r2_293 then
+r5_293(r2_293)
+end
+if r39_0.MasterAimbot and not r39_0.SilentAimbot then
+local r6_293 = false
+if r39_0.LastTarget:IsA("Model") then
+r6_293 = true
+end
+if r2_293 then
+r0_293 = r9_0.CFrame.Position
+r1_293 = r2_293.Position
+local r7_293 = (Vector3.new(r1_293.X, 0, r1_293.Z) - Vector3.new(r0_293.X, 0, r0_293.Z)).Magnitude
+local r8_293 = r1_293
+if r39_0.Prediction and r4_293 and 100 < r4_293 and not r39_0.FreezeTarget or r39_0.Prediction and r4_293 and 100 < r4_293 and r39_0.FreezeTarget and r6_293 then
+local r9_293 = r7_293 / r4_293 * 1.3
+if not r6_293 then
+if r39_0.LastTarget.Character:FindFirstChild("HumanoidRootPart") then
+r3_293 = r39_0.LastTarget.Character.HumanoidRootPart.Velocity or Vector3.new(0, 0, 0)
+else
+--goto label_177 -- block#34 is visited secondly
+end
+elseif r39_0.LastTarget:FindFirstChild("HumanoidRootPart") then
+if r39_0.LastTarget.HumanoidRootPart then
+r3_293 = r39_0.LastTarget.HumanoidRootPart.Velocity or Vector3.new(0, 0, 0)
+else
+--goto label_203 -- block#39 is visited secondly
+end
+end
+r8_293 = Vector3.new(r1_293.X + r3_293.X * r9_293, r1_293.Y, r1_293.Z + r3_293.Z * r9_293)
+end
+if r8_293 then
+r9_0.CFrame = r9_0.CFrame:Lerp(CFrame.new(r0_293, r8_293), 1 / r39_0.AimbotSmoothness)
+end
+end
+elseif r39_0.MasterAimbot and r39_0.SilentAimbot and r2_293 then
+if r39_0.SilentHitChance < math.random() * 100 then
+return
+end
+if r9_0:FindFirstChild("ViewModel") then
+r0_293 = r9_0.CFrame.Position
+r1_293 = r2_293.Position
+local r7_293 = nil
+if r39_0.PerfectSilent then
+r7_293 = r2_293.Position - Vector3.new(0, 0.15, 0)
+else
+r7_293 = r2_293.Position - Vector3.new(0, 1.75, 0)
+end
+local r8_293 = (r7_293 - r0_293).Magnitude
+r3_293 = Vector3.new(0, 0, 0)
+if r39_0.Prediction and r4_293 and 100 < r4_293 and not r39_0.FreezeTarget or r39_0.Prediction and r4_293 and 100 < r4_293 and r39_0.FreezeTarget and Npc then
+local r9_293 = r8_293 / r4_293 * 1.33
+if r39_0.LastTarget:IsA("Player") then
+local r10_293 = r39_0.LastTarget.Character:FindFirstChild("HumanoidRootPart")
+if r10_293 then
+r3_293 = r10_293.AssemblyLinearVelocity
+end
+elseif r39_0.LastTarget:IsA("Model") then
+local r10_293 = r39_0.LastTarget:FindFirstChild("HumanoidRootPart")
+if r10_293 then
+r3_293 = r10_293.AssemblyLinearVelocity
+end
+end
+r7_293 = Vector3.new(r2_293.Position.X + r3_293.X * r9_293, r7_293.Y, r2_293.Position.Z + r3_293.Z * r9_293)
+end
+if r7_293 then
+local r9_293 = r9_0:FindFirstChild("ViewModel")
+if r39_0.PerfectSilent and r9_293 and r9_293:FindFirstChild("Item") and r9_293.Item:FindFirstChild("AttachmentPoints") then
+r9_293 = r9_293.Item.AttachmentPoints:FindFirstChild("Extra")
+elseif r9_293 then
+r9_293 = r9_293.HumanoidRootPart
+end
+if r9_293 then
+r9_293.CFrame = CFrame.new(r9_293.Position, r7_293)
+end
+end
+end
+end
+-- close: r0_293
+end
+end
+local function r111_0()
+-- line: [0, 0] id: 9
+local r0_9 = r8_0.Character
+if r0_9 and r0_9:FindFirstChild("Humanoid") and r0_9.Humanoid:GetState() == Enum.HumanoidStateType.Landed and r0_9:FindFirstChild("HumanoidRootPart") then
+r0_9.HumanoidRootPart.Velocity = Vector3.new(0, r39_0.InfJumpPower, 0)
+end
+end
+local function r112_0(r0_36, r1_36)
+-- line: [0, 0] id: 36
+local r2_36 = r8_0.Character
+if r2_36 and r2_36:FindFirstChild("HumanoidRootPart") then
+local r3_36 = r2_36:FindFirstChild("HumanoidRootPart")
+if r0_36 and not r39_0.FreezeUrSelf and r39_0.SpeedHackToggle and r39_0.SpeedHackActive then
+local r4_36 = nil
+if not r39_0.SpeedHackSilent then
+r4_36 = r39_0.SpeedHackSpeed / 100
+else
+r4_36 = r39_0.SpeedHackSpeed / 50
+end
+if r1_36 == "W" then
+r3_36.CFrame = r3_36.CFrame + r9_0.CFrame.LookVector * r4_36
+elseif r1_36 == "S" then
+r3_36.CFrame = r3_36.CFrame - r9_0.CFrame.LookVector * r4_36
+elseif r1_36 == "A" then
+r3_36.CFrame = r3_36.CFrame - r9_0.CFrame.RightVector * r4_36
+elseif r1_36 == "D" then
+r3_36.CFrame = r3_36.CFrame + r9_0.CFrame.RightVector * r4_36
+end
+end
+end
+end
+local r113_0 = {}
+local function r114_0()
+-- line: [0, 0] id: 304
+for r3_304, r4_304 in pairs(r113_0) do
+if r4_304 then
+r4_304:Disconnect()
+end
+end
+r113_0.Began = r6_0.InputBegan:Connect(function(r0_305, r1_305)
+-- line: [0, 0] id: 305
+if not r1_305 and r39_0.Loaded then
+local r2_305 = r0_305.KeyCode
+if (r2_305 == Enum.KeyCode.W or r2_305 == Enum.KeyCode.A or r2_305 == Enum.KeyCode.S or r2_305 == Enum.KeyCode.D or r2_305 == Enum.KeyCode.Q or r2_305 == Enum.KeyCode.E) and not r84_0[r2_305] then
+r84_0[r2_305] = true
+while r84_0[r2_305] do
+r112_0(true, r2_305.Name)
+task.wait()
+end
+end
+if r2_305 == Enum.KeyCode.Space and r39_0.InfinityJump and r8_0.Character then
+local r3_305 = r8_0.Character:FindFirstChild("HumanoidRootPart")
+if r3_305 then
+r3_305.Velocity = r3_305.Velocity + Vector3.new(0, r39_0.InfJumpPower, 0)
+end
+end
+end
+end)
+r113_0.Ended = r6_0.InputEnded:Connect(function(r0_306)
+-- line: [0, 0] id: 306
+local r1_306 = r0_306.KeyCode
+if r84_0[r1_306] then
+r84_0[r1_306] = false
+end
+end)
+end
+function r117_0(r0_4)
+-- line: [0, 0] id: 4
+r0_4.CharacterAdded:Connect(function(r0_5)
+-- line: [0, 0] id: 5
+if r0_5.Parent ~= r0_4 then
+if r25_0.Enabled and r39_0.Chams and (r39_0.VisibleChams or r39_0.HiddenChams) then
+task.wait(1.5)
+r83_0(r0_4, true)
+else
+r83_0(r0_4, false)
+end
+else
+r114_0()
+end
+end)
+end
+r7_0.PlayerAdded:Connect(r117_0)
+r114_0()
+r117_0 = "Remotes"
+local r115_0 = r11_0:WaitForChild(r117_0)
+r117_0 = "ProjectileInflict"
+r115_0 = r115_0:WaitForChild(r117_0)
+r118_0 = "Remotes"
+local r116_0 = r11_0:WaitForChild(r118_0)
+r118_0 = "FireProjectile"
+r116_0 = r116_0:WaitForChild(r118_0)
+r117_0 = tick()
+r118_0 = nil
+local r119_0 = nil
+function r122_0()
+-- line: [0, 0] id: 273
+-- notice: unreachable block#12
+-- notice: unreachable block#4
+-- notice: unreachable block#242
+--r34_0.Value = r33_0
+if false then --not r11_0:FindFirstChild(r37_0) then
+r14_0 = true
+r22_0("[Script 1] Crashing Game: Integrity Check Failed", true)
+while true do
+local r0_273 = math.random() * 100 / 300 * 500000000000000000000000000000000000000000000
+end
+--goto label_22 -- block#3 is visited secondly
+else
+if r119_0 then
+if r118_0 then
+if not r118_0:FindFirstChild("Title") or r118_0.Title.Text ~= "Smoke.Weed By 3ms| Project Delta | 2025/11/12 | discord.gg/8RrWuEabnc" then
+r14_0 = true
+r22_0("[Script] Crashing Game: GUI Name Changed (" .. r118_0.Title.Text .. ")", true)
+Save("92, 33, 33, 33, 23", "InfYield")
+while true do
+local r0_273 = math.random() * 100 / 300 * 500000000000000000000000000000000000000000000
+end
+--goto label_65 -- block#11 is visited secondly
+end
+else
+r118_0 = r119_0:FindFirstChild("Main")
+end
+else
+r119_0 = r4_0:FindFirstChild("unknown")
+end
+if r14_0 then
+local r0_273 = r8_0:FindFirstChild("Character")
+if p.Liable then
+local r1_273 = "player.character"
+end
+end
+local r0_273 = r8_0.Character
+local r1_273 = nil
+local r2_273 = nil
+if r0_273 then
+r1_273 = r0_273:FindFirstChild("HumanoidRootPart")
+r2_273 = r0_273:FindFirstChild("Humanoid")
+end
+if r39_0.UPAngleChanger and r0_273 then
+game:GetService("ReplicatedStorage").Remotes.UpdateTilt:FireServer(r39_0.UPAngleValue or 0)
+end
+if r39_0.ViewModelChanger and 0 < r39_0.ViewModelTransparency then
+local r3_273 = r9_0:FindFirstChild("ViewModel")
+if r3_273 then
+r67_0("Transparency", r3_273)
+end
+end
+local r4_273 = nil -- notice: implicit variable refs by block#[67]
+if r39_0.NoFall and r0_273 and r2_273 then
+local r3_273 = r2_273:GetState()
+r4_273 = Enum.HumanoidStateType.FallingDown
+if r3_273 ~= r4_273 then
+r4_273 = Enum.HumanoidStateType.Freefall
+if r3_273 == r4_273 then
+--::label_163--::
+r4_273 = r1_273.AssemblyLinearVelocity.Y
+if r4_273 < -12.5 then
+r2_273:ChangeState(Enum.HumanoidStateType.Landed)
+end
+end
+else
+--goto label_163 -- block#34 is visited secondly
+end
+end
+local r6_273 = nil -- notice: implicit variable refs by block#[244]
+local r7_273 = nil -- notice: implicit variable refs by block#[180, 191, 209, 210, 211, 236, 237, 240, 244, 254, 257, 258, 263, 267, 268]
+local r8_273 = nil -- notice: implicit variable refs by block#[211, 212, 217, 219, 220, 221, 222, 223, 237, 244, 277, 278, 283, 284, 285, 286, 287, 288, 290, 291, 292, 293, 294, 295, 296]
+if r39_0.LowFoodDetector then
+local r3_273 = r8_0.PlayerGui:FindFirstChild("MainGui")
+if r3_273 then
+r4_273 = r3_273.MainFrame.BackpackFrame.CharacterFrame.VitalSigns
+local r5_273 = tonumber(r4_273.Hunger.Number.Text:match("^(.-)/"))
+r6_273 = tonumber(r4_273.Hydration.Number.Text:match("^(.-)/"))
+r7_273 = false
+r8_273 = r39_0.LowFoodThreshold
+if r5_273 <= r8_273 then
+r7_273 = true
+r8_273 = r54_0
+r8_273.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+end
+r8_273 = r39_0.LowFoodThreshold
+if r6_273 <= r8_273 then
+r7_273 = true
+r8_273 = r54_0
+r8_273.BackgroundColor3 = Color3.fromRGB(0, 255, 255)
+end
+r8_273 = r54_0.Visible
+if r8_273 ~= r7_273 then
+r8_273 = r54_0
+r8_273.Visible = r7_273
+end
+end
+elseif r54_0.Visible then
+r54_0.Visible = false
+end
+if r39_0.DynamicFov then
+r39_0.AimbotFov = r39_0.ActualAimbotFov * r89_0 / r9_0.FieldOfView
+r6_273 = r9_0.FieldOfView
+r4_273 = r39_0.ActualAimbotFov * r89_0 / r6_273
+r39_0.FOVCircle.Radius = r4_273
+else
+r4_273 = r39_0.ActualAimbotFov
+if r39_0.AimbotFov ~= r4_273 then
+r39_0.AimbotFov = r39_0.ActualAimbotFov
+r4_273 = r39_0.AimbotFov
+r39_0.FOVCircle.Radius = r4_273
+end
+end
+if r39_0.MasterAimbot and r39_0.AimbotEnabled then
+r99_0()
+r106_0()
+r110_0()
+else
+r39_0.LastTarget = nil
+end
+if r39_0.LastTarget and r39_0.MasterAimbot and r39_0.AimbotEnabled then
+if r55_0 and r39_0.ShowTarget and not r39_0.ShowTargetVisibleState then
+r55_0.Visible = true
+r4_273 = r39_0.LastTarget.Name
+r55_0.Text = r4_273
+elseif r55_0 and r39_0.ShowTarget and r39_0.ShowTargetVisibleState then
+if r102_0(r39_0.LastTarget) then
+r4_273 = "SHOOOOT!!!"
+if not r4_273 then
+--::label_350--::
+r4_273 = "Hidden"
+end
+else
+--goto label_350 -- block#66 is visited secondly
+end
+r55_0.Visible = true
+r7_273 = " | "
+r8_273 = r4_273
+r6_273 = r39_0.LastTarget.Name .. r7_273 .. r8_273
+r55_0.Text = r6_273
+end
+else
+if r109_0 then
+r109_0.Transparency = 0
+end
+if r55_0 then
+r55_0.Visible = false
+end
+end
+local r11_273 = nil -- notice: implicit variable refs by block#[277, 285, 286, 287, 289]
+if r39_0.InvChecker and r39_0.InvCheckerActive then
+local r3_273 = r101_0()
+r4_273 = " | Inventory "
+if r3_273 then
+r97_0(r3_273)
+VisibilityToggle(true)
+if r3_273:FindFirstChild("Head") then
+r4_273 = " | Corpse "
+end
+if r39_0.InvCheckTarget or r39_0.InvCheckValue then
+if r39_0.InvCheckTarget and r39_0.InvCheckValue then
+local r5_273 = r98_0(r3_273)
+r6_273 = r56_0
+r8_273 = r3_273.Name
+r11_273 = r5_273
+r7_273 = "Viewing " .. r8_273 .. r4_273 .. "| $" .. r11_273
+r6_273.Text = r7_273
+elseif r39_0.InvCheckTarget then
+r7_273 = r3_273.Name
+r8_273 = r4_273
+r6_273 = "Viewing " .. r7_273 .. r8_273
+r56_0.Text = r6_273
+elseif r39_0.InvCheckValue then
+local r5_273 = r98_0(r3_273)
+r6_273 = r56_0
+r8_273 = r5_273
+r7_273 = "$" .. r8_273
+r6_273.Text = r7_273
+end
+r56_0.Visible = true
+else
+r56_0.Visible = false
+end
+else
+VisibilityToggle(false)
+r56_0.Visible = false
+end
+else
+VisibilityToggle(false)
+r56_0.Visible = false
+end
+if r39_0.ThirdPerson and r39_0.ThirdPersonActive then
+r4_273 = Enum.CameraMode.LockFirstPerson
+if r8_0.CameraMode == r4_273 then
+r8_0.CameraMode = "Classic"
+end
+r8_0.CameraMaxZoomDistance = r39_0.ThirdPersonDistance
+r4_273 = r39_0.ThirdPersonDistance
+r8_0.CameraMinZoomDistance = r4_273
+r8_0.DevComputerCameraMode = "CameraToggle"
+else
+r4_273 = Enum.CameraMode.Classic
+if r8_0.CameraMode == r4_273 then
+r8_0.CameraMode = "LockFirstPerson"
+end
+end
+if r39_0.TimeChanger and game.Lighting then
+r4_273 = r39_0.CurrentTime
+game.Lighting.TimeOfDay = r4_273
+end
+if r40_0.Visible and 0 < r40_0.Transparency then
+r51_0()
+end
+if r39_0.BunnyHopActive then
+r111_0()
+end
+if r39_0.NoFog and game.Lighting.Atmosphere then
+game.Lighting.Atmosphere.Haze = 0
+game.Lighting.Atmosphere.Density = 0
+end
+if r39_0.VisorEnabled then
+r81_0("Visor", true)
+end
+if r39_0.GasMaskSound then
+r81_0("GasMask", true)
+end
+if r39_0.InventoryBlur then
+r81_0("InventoryBlur", true)
+end
+if r39_0.NoReapirBlur then
+r81_0("Reapir", true)
+end
+if r39_0.CloudChanger then
+local r3_273 = game.Workspace.Terrain:FindFirstChild("Clouds")
+if r3_273 then
+r4_273 = r39_0.CloudColor or Color3.fromRGB(50, 15, 95)
+r3_273.Color = r4_273
+r4_273 = CloudDensity
+r3_273.Density = r4_273
+end
+end
+if r39_0.AmbientChanger or r39_0.FullBrightness then
+if r39_0.AmbientChanger and game.Lighting then
+if r39_0.AmbientChangerRGB then
+local r3_273 = tick()
+r4_273 = game.Lighting
+r4_273.Ambient = Color3.fromHSV(r3_273 % 1 / r39_0.AmbientChangerRGBSpeed / 1 / r39_0.AmbientChangerRGBSpeed, 1, 1)
+else
+r4_273 = r39_0.AmbientColor
+game.Lighting.Ambient = r4_273
+end
+end
+if r39_0.FullBrightness and not r39_0.AmbientChanger then
+FullBrightness(r39_0.FullBrightness)
+end
+end
+if r2_273 and r39_0.SpeedHackToggle and r39_0.SpeedHackActive and r39_0.SpeedHackSilent then
+r2_273.WalkSpeed = 0
+r2_273.JumpPower = 0
+elseif r2_273 and r2_273.JumpPower == 0 and not r39_0.OmniSprint then
+r2_273.WalkSpeed = 16
+r2_273.JumpPower = 1
+elseif r2_273 and r39_0.OmniSprint and r0_273 and r8_0.PlayerGui:FindFirstChild("MainGui") then
+r2_273.WalkSpeed = 18.2
+end
+if r39_0.InstantHit and r39_0.InstantHitActive then
+local r3_273 = nil
+r4_273 = r39_0.LastTarget
+if not r4_273 then
+r106_0()
+end
+r4_273 = r39_0.LastTarget
+if r4_273 then
+r4_273 = r9_0:FindFirstChild("ViewModel")
+if r4_273 and r4_273.Item:FindFirstChild("Offsets") then
+local r5_273 = r4_273.Item.Offsets:FindFirstChild("AimPart")
+r6_273 = nil
+r7_273 = r39_0.LastTarget:FindFirstChild("Head")
+if r7_273 then
+r7_273 = r39_0.LastTarget:FindFirstChild(r39_0.RealAimPart)
+r6_273 = r7_273
+if r6_273 then
+r7_273 = r39_0.LastTarget:FindFirstChild("Head")
+r6_273 = r7_273
+end
+else
+r7_273 = r39_0.LastTarget.Character
+r6_273 = r7_273
+if r6_273 then
+r7_273 = r39_0.LastTarget.Character:FindFirstChild(r39_0.RealAimPart)
+r6_273 = r7_273
+end
+end
+if r5_273 and r6_273 then
+r5_273.CFrame = CFrame.lookAt(r5_273.Position, r6_273.Position)
+r7_273 = tick()
+r7_273 = r7_273 - r117_0
+r8_273 = r39_0.InstantHitDelay
+if r8_273 <= r7_273 then
+r117_0 = tick()
+r7_273 = math.random(-10000, 10000)
+r3_273 = r6_273.Position
+r8_273 = r116_0:InvokeServer(Vector3.new(0 / 0, 0 / 0, 0 / 0), r7_273, r117_0)
+if r8_273 then
+task.spawn(function()
+-- line: [0, 0] id: 274
+r115_0:FireServer(r6_273, r6_273.CFrame:ToObjectSpace(CFrame.new(r6_273.Position + Vector3.new(0, 1, 0) * 0.01)), r7_273, 0 / 0)
+end)
+end
+-- close: r7_273
+end
+end
+-- close: r5_273
+end
+end
+if r3_273 then
+task.spawn(function()
+-- line: [0, 0] id: 280
+r85_0(r3_273)
+end)
+end
+-- close: r3_273
+end
+if r39_0.FovVisible and 1 <= r39_0.AimbotFov and r39_0.MasterAimbot then
+r39_0.FOVCircle.Visible = true
+r4_273 = Vector2.new(r9_0.ViewportSize.X / 2, r9_0.ViewportSize.Y / 2)
+r39_0.FOVCircle.Position = r4_273
+else
+r39_0.FOVCircle.Visible = false
+end
+if r39_0.AutoShoot and r39_0.AimbotEnabled then
+local r3_273 = r10_0.Target
+r4_273 = r0_273 and r0_273:FindFirstChild("HumanoidRootPart")
+if not r39_0.SilentAimbot and r3_273 and r3_273.Parent then
+r7_273 = "Model"
+local r5_273 = r3_273:IsA(r7_273)
+r6_273 = r39_0.LastTarget
+r7_273 = false
+r8_273 = r39_0.TeamCheck
+if r8_273 and not r5_273 then
+r8_273 = game.ReplicatedStorage.Players
+local function r9_273(r0_279)
+-- line: [0, 0] id: 279
+return r8_273[r0_279.Name].Status.Journey.Clan:GetAttribute("CurrentClan")
+end
+local r10_273 = r9_273(r8_0)
+if r10_273 then
+r11_273 = r9_273(r6_273)
+if r11_273 and r10_273 and r11_273 ~= "nil" and r10_273 ~= "nil" then
+r7_273 = r10_273 ~= r11_273
+end
+end
+-- close: r8_273
+end
+if r7_273 or not r5_273 then
+if r3_273 then
+r8_273 = r7_0
+r8_273 = r8_273.LocalPlayer
+if r3_273 ~= r8_273 then
+--::label_941--::
+r8_273 = nil
+if r5_273 then
+r8_273 = r3_273:FindFirstChild("HumanoidRootPart") or r3_273.Parent:FindFirstChild("HumanoidRootPart")
+else
+r8_273 = r3_273.Parent:FindFirstChild("HumanoidRootPart") or r3_273:FindFirstChildOfClass("HumanoidRootPart") or r3_273.Character and r3_273.Character:FindFirstChild("HumanoidRootPart")
+end
+if r8_273 and r4_273 and (r4_273.Position - r8_273.Position).Magnitude < 500 then
+task.wait(0.01)
+mouse1press()
+mouse1release()
+end
+end
+end
+else
+--goto label_941 -- block#195 is visited secondly
+end
+elseif r39_0.SilentAimbot and r39_0.LastTarget then
+local r5_273 = r39_0.LastTarget
+r6_273 = false
+r7_273 = r39_0
+r7_273 = r7_273.TeamCheck
+if r7_273 then
+r7_273 = r5_273:IsA("Model")
+if not r7_273 then
+r7_273 = game
+r7_273 = r7_273.ReplicatedStorage
+r7_273 = r7_273.Players
+function r8_273(r0_276)
+-- line: [0, 0] id: 276
+return r7_273[r0_276.Name].Status.Journey.Clan:GetAttribute("CurrentClan")
+end
+local r9_273 = r8_273(r8_0)
+if r9_273 then
+local r10_273 = r8_273(r5_273)
+if r10_273 and r9_273 and r10_273 == r9_273 then
+r6_273 = true
+end
+end
+-- close: r7_273
+end
+end
+r7_273 = nil
+r8_273 = r102_0
+r8_273 = r8_273(r5_273)
+if r8_273 and not r6_273 then
+r8_273 = r39_0
+r8_273 = r8_273.AutoShootType
+if r8_273 == "Regular" then
+r8_273 = task
+r8_273 = r8_273.wait
+r8_273(0.01)
+r8_273 = mouse1press
+r8_273()
+r8_273 = mouse1release
+r8_273()
+else
+r8_273 = r9_0
+r8_273 = r8_273:FindFirstChild("ViewModel")
+if r8_273 and r8_273.Item:FindFirstChild("Offsets") then
+local r9_273 = r8_273.Item.Offsets:FindFirstChild("AimPart")
+local r10_273 = nil
+r11_273 = r5_273:FindFirstChild("Head")
+if r11_273 then
+r11_273 = r5_273:FindFirstChild(r39_0.RealAimPart)
+r10_273 = r11_273
+if r10_273 then
+r11_273 = r5_273:FindFirstChild("Head")
+r10_273 = r11_273
+end
+else
+r11_273 = r5_273.Character
+r10_273 = r11_273
+if r10_273 then
+r11_273 = r5_273.Character:FindFirstChild(r39_0.RealAimPart)
+r10_273 = r11_273
+end
+end
+if r9_273 and r10_273 then
+r9_273.CFrame = CFrame.lookAt(r9_273.Position, r10_273.Position)
+r11_273 = tick()
+r11_273 = r11_273 - r117_0
+if r39_0.InstantHitDelay <= r11_273 then
+r117_0 = tick()
+r11_273 = math.random(-10000, 10000)
+r7_273 = r10_273.Position
+if r116_0:InvokeServer(Vector3.new(0 / 0, 0 / 0, 0 / 0), r11_273, r117_0) then
+task.spawn(function()
+-- line: [0, 0] id: 277
+r115_0:FireServer(r10_273, r10_273.CFrame:ToObjectSpace(CFrame.new(r10_273.Position + Vector3.new(0, 1, 0) * 0.01)), r11_273, 0 / 0)
+end)
+end
+-- close: r11_273
+end
+end
+-- close: r9_273
+end
+end
+if r7_273 then
+r8_273 = task
+r8_273 = r8_273.spawn
+r8_273(function()
+-- line: [0, 0] id: 278
+r85_0(r7_273)
+end)
+end
+end
+-- close: r5_273
+end
+end
+local r3_273 = r39_0.ShowBoss
+if r3_273 then
+r3_273 = {}
+r7_273 = 0
+r3_273.Green = Color3.new(0, 1, r7_273)
+r7_273 = 0
+r3_273.Red = Color3.new(1, 0, r7_273)
+r4_273 = r81_0("Inventory", false)
+local r5_273 = r90_0[1]
+if r4_273 then
+r6_273 = r39_0.BossMovable
+else
+r6_273 = true
+end
+r5_273.Visible = r6_273
+function r5_273(r0_275, r1_275, r2_275, r3_275)
+-- line: [0, 0] id: 275
+local r4_275 = game.Workspace.AiZones:FindFirstChild(r0_275)
+local r5_275 = r4_275 and r4_275:FindFirstChild(r1_275)
+local r6_275 = r90_0[r2_275]
+if r5_275 and r5_275:IsA("Model") then
+local r7_275 = r5_275:FindFirstChild("Humanoid")
+if r7_275 then
+local r8_275 = nil
+if r3_275 then
+local r9_275 = r7_275:GetAttribute(r3_275)
+local r10_275 = r7_275:GetAttribute("Max" .. r3_275)
+if r9_275 and r10_275 and 0 < r10_275 then
+r8_275 = math.floor(r9_275 / r10_275 * 100)
+else
+r8_275 = 0
+end
+else
+r8_275 = math.floor(r7_275.Health)
+end
+r6_275.Text = r1_275 .. ": Alive Health: " .. r8_275
+r6_275.TextColor3 = r3_273.Green
+return
+end
+end
+r6_275.Text = r1_275 .. ": Dead"
+r6_275.TextColor3 = r3_273.Red
+end
+r7_273 = "Sawmill"
+r8_273 = "Anton"
+r5_273(r7_273, r8_273, 2)
+r7_273 = "Factory"
+r8_273 = "Dozer"
+r5_273(r7_273, r8_273, 3)
+r7_273 = "Whisper"
+r8_273 = "Whisper"
+r5_273(r7_273, r8_273, 4, "DodgeStamina")
+-- close: r3_273
+else
+r3_273 = r90_0
+r3_273 = r3_273[1]
+r3_273 = r3_273.Visible
+if r3_273 then
+r3_273 = r90_0
+r3_273 = r3_273[1]
+r3_273.Visible = false
+end
+end
+r3_273 = tick
+r3_273 = r3_273()
+r4_273 = r39_0.ModDetector
+if r4_273 then
+r4_273 = r3_273 - r39_0.LastModCheck
+if r4_273 >= 10 then
+r46_0()
+r4_273 = r39_0
+r4_273.LastModCheck = r3_273
+end
+end
+r4_273 = r39_0.ItemFinder
+if r4_273 then
+r4_273 = r3_273 - r39_0.LastItemFinderCheck
+if r4_273 >= 25 then
+r88_0()
+r4_273 = r39_0
+r4_273.LastItemFinderCheck = r3_273
+end
+end
+r4_273 = r39_0.LastTarget
+if r4_273 then
+r4_273 = false
+r7_273 = "Head"
+if r39_0.LastTarget:FindFirstChild(r7_273) then
+r4_273 = true
+end
+if not r4_273 then
+r7_273 = "HighlightVisible"
+if not r39_0.LastTarget:FindFirstChild(r7_273) then
+r7_273 = "HighlightHidden"
+if not r39_0.LastTarget:FindFirstChild(r7_273) and r25_0.Enabled and r39_0.Chams and (r39_0.VisibleChams or r39_0.HiddenChams) then
+r7_273 = true
+r83_0(r39_0.LastTarget, r7_273)
+end
+end
+end
+if not r4_273 and r39_0.FreezeTarget then
+r6_273 = r39_0.LastTarget.Name
+if not r39_0.Freeze[r6_273] then
+r6_273 = r39_0.LastTarget.Name
+r7_273 = r39_0
+r7_273 = r7_273.LastTarget
+r39_0.Freeze[r6_273] = r7_273
+end
+r7_273 = "HumanoidRootPart"
+if r39_0.LastTarget.Character:FindFirstChild(r7_273) then
+r39_0.LastTarget.Character.HumanoidRootPart.Anchored = true
+end
+elseif not r39_0.FreezeTarget then
+r6_273 = r39_0.Freeze
+for r8_273, r9_273 in pairs(r6_273) do
+if r9_273.Character:FindFirstChild("HumanoidRootPart") then
+r9_273.Character.HumanoidRootPart.Anchored = false
+end
+end
+r6_273 = {}
+r39_0.Freeze = r6_273
+end
+else
+r4_273 = pairs
+for r7_273, r8_273 in r4_273(r39_0.Freeze) do
+r11_273 = "HumanoidRootPart"
+if r8_273.Character:FindFirstChild(r11_273) then
+r8_273.Character.HumanoidRootPart.Anchored = false
+end
+end
+r4_273 = r39_0
+r4_273.Freeze = {}
+end
+r4_273 = r39_0.Resolver
+if r4_273 then
+r4_273 = pairs
+for r7_273, r8_273 in r4_273(r7_0:GetChildren()) do
+if r8_0.Name ~= r8_273.Name and r8_273.Character then
+r11_273 = "HumanoidRootPart"
+if r8_273.Character:FindFirstChild(r11_273) then
+r11_273 = r8_273.Name
+local r9_273 = r11_0.Players:FindFirstChild(r11_273)
+if r9_273 then
+local r10_273 = r9_273.Status.UAC:GetAttribute("LastVerifiedPos")
+r11_273 = r8_273.Character
+r11_273 = r11_273.HumanoidRootPart
+r11_273 = r11_273.Position
+r11_273 = r11_273 - r10_273
+r11_273 = r11_273.Magnitude
+if not r39_0.ResolverCache[r8_273.Name] then
+r39_0.ResolverCache[r8_273.Name] = 1
+end
+if r11_273 >= 10 then
+r39_0.ResolverCache[r8_273.Name] = r39_0.ResolverCache[r8_273.Name] + 1
+if r39_0.ResolverCache[r8_273.Name] == 250 then
+r0_0("Cheat | Detector (Desync)", "Player: " .. r8_273.Name .. " Has been suspected for Cheating!", 5)
+r25_0.Cheaters[r8_273.Name] = true
+r8_273.Character.HumanoidRootPart.CFrame = CFrame.new(r10_273)
+elseif r39_0.ResolverCache[r8_273.Name] > 250 then
+r8_273.Character.HumanoidRootPart.CFrame = CFrame.new(r10_273)
+end
+elseif not r25_0.Cheaters[r8_273.Name] and 0 < r39_0.ResolverCache[r8_273.Name] then
+r39_0.ResolverCache[r8_273.Name] = r39_0.ResolverCache[r8_273.Name] - 1
+end
+end
+end
+end
+end
+end
+return
+end
+end
+r2_0 = r5_0.Heartbeat:Connect(r122_0)
+getgenv().Key = nil
+r0_0("Smoke.Weed 5/5", "Cheat Has Been Loaded Succesfuly.", 2.5)
+r0_0("Smoke.Weed", "THIS SHIT WAS MADE BY GHOSTY NIGGA!", 1.5)
+-- close: r0_0
+return
+end
